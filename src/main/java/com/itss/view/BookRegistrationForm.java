@@ -21,6 +21,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JTextField inputAuthor;
     private JTable dataTable;
     private JButton btnConfirm;
+    private JButton btnCancel;
     private BookRegistrationController brc;
     private DefaultTableModel dtm;
 
@@ -37,6 +38,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         dataTable.setModel(dtm);
         dataTable.setVisible(false);
         btnConfirm.setVisible(false);
+        btnCancel.setVisible(false);
         btnSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 submit();
@@ -67,6 +69,12 @@ public class BookRegistrationForm extends JDialog implements BasicView {
                 }
             }
         });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                close();
+            }
+        });
     }
 
     @Override
@@ -80,7 +88,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     }
 
     @Override
-    public void updateModelFromView() throws Exception {
+    public void updateModelFromView() {
         brc.updateData();
         close();
     }
@@ -94,11 +102,12 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             }
             for (Object s : data) {
                 String[] tmp = (String[])s;
-                dtm.addRow(new Object[]{tmp[0], tmp[1]});
+                dtm.addRow(new Object[]{tmp[0], tmp[1], tmp[2], tmp[3], tmp[4]});
             }
             dtm.fireTableDataChanged();
             dataTable.setVisible(true);
             btnSubmit.setVisible(false);
+            btnCancel.setVisible(true);
             btnConfirm.setVisible(true);
         }
         else {
@@ -112,10 +121,14 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         String author = inputAuthor.getText();
         String publisher = inputPubl.getText();
         String type = (String) combType.getSelectedItem();
-        Double price = Double.parseDouble(inputPrice.getText());
+        String price = inputPrice.getText();
 
-        brc.genCode(title, author, publisher, type, price);
-        updateViewFromController();
+        BookForm bf = new BookForm(title, author, publisher, type, price);
+        brc.setForm(bf);
+        if ( brc.validateData() ) {
+            brc.genCode();
+            updateViewFromController();
+        }
     }
 
     @Override

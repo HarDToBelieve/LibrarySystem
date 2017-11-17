@@ -25,9 +25,11 @@ public class BookCopyInfo implements BasicModel {
 	 * @param bookID orginal book id of copy
 	 */
 	public BookCopyInfo(String copyID, String author, String type, double price, String bookID) {
-		// TODO:
-		// - init attribute
-		// - connect to db
+		this.copyID = copyID;
+		this.author = author;
+		this.type = type;
+		this.price = price;
+		this.bookID = bookID;
 	}
 
 	/**
@@ -47,6 +49,10 @@ public class BookCopyInfo implements BasicModel {
 	}
 
 	@Override
+	public void getByID(String ID) {
+
+	}
+
 	public boolean getAll() {
 		return true;
 	}
@@ -56,7 +62,11 @@ public class BookCopyInfo implements BasicModel {
 	}
 
 	@Override
-	public boolean add() {
-		return true;
+	public void add() {
+	}
+
+	@Override
+	public boolean validObject() {
+		return false;
 	}
 }

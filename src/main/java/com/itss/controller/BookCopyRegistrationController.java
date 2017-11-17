@@ -2,10 +2,12 @@ package com.itss.controller;
 import com.itss.BookCopyInfo;
 import com.itss.basic.BasicController;
 import com.itss.exception.*;
+import com.itss.utilities.RandomString;
 import com.itss.view.BookCopyRegistrationForm;
 
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by HarDToBelieve on 10/17/2017.
@@ -13,7 +15,6 @@ import java.util.Vector;
 
 public class BookCopyRegistrationController implements BasicController {
 	private ArrayList<BookCopyInfo> copies;
-	private BookCopyRegistrationForm form;
 
 	/**
 	 * Constructor
@@ -25,6 +26,10 @@ public class BookCopyRegistrationController implements BasicController {
 		// TODO:
 		// - init attributes
 	}
+
+    public BookCopyRegistrationController() {
+
+    }
 
 	/**
 	 * Get the status of a book by book id
@@ -49,21 +54,13 @@ public class BookCopyRegistrationController implements BasicController {
 		// - Call method insertCopy of each BookCopyInfo elements
 	}
 
-	/**
-	 * Generate code for each copy
-	 */
-	public void genCopyCode() {
-		// TODO:
-		// - Generate code for each element in the list
-	}
-
 	@Override
 	public Vector<Object> getModel() {
 		return null;
 	}
 
 	@Override
-	public void validateData() {
+	public boolean validateData() {
 
 	}
 
@@ -75,5 +72,13 @@ public class BookCopyRegistrationController implements BasicController {
 	@Override
 	public void selectData() {
 
+	}
+
+	public void genCopyCode(String bookID, String type, double avgPrice, String author) {
+		RandomString gen = new RandomString(8, ThreadLocalRandom.current());
+		for (BookCopyInfo bci : copies) {
+			String copyID = bookID + "_" + gen.nextString();
+			copies.set(copies.indexOf(bci), new BookCopyInfo(copyID, author, type, avgPrice, bookID));
+		}
 	}
 }

@@ -6,8 +6,10 @@ import java.util.HashMap;
  * Created by HarDToBelieve on 11/15/2017.
  */
 public interface BasicModel {
+    static final String host = "http://localhost/bookinfo";
     boolean checkConnection();
-    boolean getAll();
+    void getByID(String ID);
 
-    boolean add() throws Exception;
+    void add();
+    boolean validObject();
 }

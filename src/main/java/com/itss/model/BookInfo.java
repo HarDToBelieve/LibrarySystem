@@ -14,6 +14,10 @@ import java.util.Vector;
  */
 
 public class BookInfo implements BasicModel {
+	public BookInfo() {
+
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -38,8 +42,8 @@ public class BookInfo implements BasicModel {
 		return bookID;
 	}
 
-	public String getEndpoint() {
-		return endpoint;
+	public String getHost() {
+		return host;
 	}
 
 	private String title;
@@ -48,9 +52,7 @@ public class BookInfo implements BasicModel {
 	private String type;
 	private double price;
 	private String bookID;
-
-	private final String endpoint = "http://localhost/bookinfo";
-	private final String keyLocation = ".keydb";
+	private boolean valid;
 
 	/**
 	 * Init attribute
@@ -70,19 +72,40 @@ public class BookInfo implements BasicModel {
 		this.bookID = bookID;
 	}
 
-	public BookInfo() {
+	public BookInfo(String title, String author, String publisher, String type, double v) {
 
 	}
 
 	/**
 	 * Get the status of a book by book id
-	 * @param bookID the id of book
+	 * @param ID the id of book
 	 * @return BookInfo instance
 	 * @throws BookNotFoundException if there is no such book
 	 */
-	public static BookInfo getBookByID(String bookID) throws BookNotFoundException {
 
-		return new BookInfo("", "", "", "", 0, "");
+	@Override
+	public void getByID(String ID) {
+		String endpoint = "/get.php";
+		HashMap<String, String> dict = new HashMap<>();
+		dict.put("bookID", ID);
+		try {
+			HashMap<String, Object> result = APIClient.get(BookInfo.host + endpoint, dict);
+			if ( result.get("status_code").equals("Success") ) {
+				JSONObject o = (JSONObject) result.get("result");
+				this.title = o.getString("title");
+				this.author = o.getString("author");
+				this.publisher = o.getString("publisher");
+				this.type = o.getString("type");
+				this.price = Double.parseDouble(o.getString("price"));
+				this.bookID = o.getString("bookID");
+				this.valid = true;
+			}
+			else {
+				this.valid = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -90,35 +113,56 @@ public class BookInfo implements BasicModel {
 		return true;
 	}
 
-	@Override
-	public boolean getAll() {
-		return false;
-	}
+	static Vector<BookInfo> dumpBooks (JSONArray lineItems) {
+		Vector<BookInfo> books = new Vector<>();
+		for (Object o : lineItems) {
+			JSONObject jsonLineItem = (JSONObject) o;
+			String title = jsonLineItem.getString("title");
+			String author = jsonLineItem.getString("author");
+			String publisher = jsonLineItem.getString("publisher");
+			String type = jsonLineItem.getString("type");
+			double price = Double.parseDouble(jsonLineItem.getString("price"));
+			String bookID = jsonLineItem.getString("bookID");
 
-	public static Vector<BookInfo> getUnique(String url, HashMap<String, String> dict) throws Exception {
-		HashMap<String, Object> result = APIClient.get(url, dict);
-		if ( result.get("status_code").equals("Success") ) {
-			Vector<BookInfo> books = new Vector<>();
-			JSONArray lineItems = (JSONArray) result.get("result");
-			for (Object o : lineItems) {
-				JSONObject jsonLineItem = (JSONObject) o;
-				String title = jsonLineItem.getString("title");
-				String author = jsonLineItem.getString("author");
-				String publisher = jsonLineItem.getString("publisher");
-				String type = jsonLineItem.getString("type");
-				double price = Double.parseDouble(jsonLineItem.getString("price"));
-				String bookID = jsonLineItem.getString("bookID");
-
-				BookInfo tmp = new BookInfo(title, author, publisher, type, price, bookID);
-				books.add(tmp);
-			}
-			return books;
+			BookInfo tmp = new BookInfo(title, author, publisher, type, price, bookID);
+			books.add(tmp);
 		}
-		else return new Vector<>();
+		return books;
+	}
+
+	public static Vector<BookInfo> getAll() {
+		String endpoint = "/getall.php";
+		HashMap<String, Object> result = null;
+		try {
+			result = APIClient.get(BookInfo.host + endpoint, new HashMap<>());
+			if ( result.get("status_code").equals("Success") ) {
+				return dumpBooks((JSONArray) result.get("result"));
+			}
+			else return new Vector<>();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new Vector<>();
+	}
+
+	public static Vector<BookInfo> getUnique(HashMap<String, String> dict) {
+		HashMap<String, Object> result = null;
+		String endpoint = "/get.php";
+		try {
+			result = APIClient.get(BookInfo.host + endpoint, dict);
+			if ( result.get("status_code").equals("Success") ) {
+				return dumpBooks((JSONArray) result.get("result"));
+
+			}
+			else return new Vector<>();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new Vector<>();
 	}
 
 	@Override
-	public boolean add() throws Exception {
+	public void add() {
 		HashMap<String, String> data = new HashMap<>();
 		data.put("title", title);
 		data.put("author", author);
@@ -127,18 +171,18 @@ public class BookInfo implements BasicModel {
 		data.put("price", String.valueOf(price));
 		data.put("bookID", bookID);
 
-		HashMap<String, Object> result = APIClient.post(endpoint, data);
-		if ( result.get("status_code").equals("Success") )
-			return true;
-		else return false;
+		HashMap<String, Object> result = null;
+		String endpoint = "/post.php";
+		try {
+			result = APIClient.post(BookInfo.host + endpoint, data);
+			valid = result.get("status_code").equals("Success");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void setInfo(String title, String author, String publisher, String type, Double price, String bookid) {
-		this.title = title;
-		this.author = author;
-		this.publisher = publisher;
-		this.type = type;
-		this.price = price;
-		this.bookID = bookid;
+	@Override
+	public boolean validObject() {
+		return valid;
 	}
 }

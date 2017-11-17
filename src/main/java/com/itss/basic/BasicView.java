@@ -8,7 +8,7 @@ public interface BasicView {
 
     void setController(BasicController bc);
 
-    void updateModelFromView() throws Exception;
+    void updateModelFromView();
     void updateViewFromController();
 
     void submit();
