@@ -1,8 +1,9 @@
-package com.itss.view;
+package com.itss.Boundary;
 
+import com.itss.Controller.BookCopyRegistrationController;
 import com.itss.basic.BasicController;
 import com.itss.basic.BasicView;
-import com.itss.controller.BookRegistrationController;
+import com.itss.Controller.BookRegistrationController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,13 +16,15 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JButton btnSubmit;
     private JTextField inputTitle;
     private JTextField inputPubl;
-    private JTextField inputPrice;
     private JComboBox combType;
     private JPanel dataField;
     private JTextField inputAuthor;
     private JTable dataTable;
     private JButton btnConfirm;
     private JButton btnCancel;
+    private JTextField inputISBN;
+
+    BookCopyRegistrationController bcrc;
     private BookRegistrationController brc;
     private DefaultTableModel dtm;
 
@@ -30,6 +33,8 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         setModal(true);
         getRootPane().setDefaultButton(btnSubmit);
         brc = new BookRegistrationController();
+        bcrc = new BookCopyRegistrationController();
+
         String[] listTypes = new String[]{"Reference", "Borrowable"};
         combType.addItem(listTypes[0]);
         combType.addItem(listTypes[1]);
@@ -63,7 +68,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    updateModelFromView();
+                    updateModel();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -88,8 +93,14 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     }
 
     @Override
-    public void updateModelFromView() {
+    public void updateModel() {
         brc.updateData();
+        int opt =JOptionPane.showConfirmDialog(this,"Do you want to add a copy?");
+        if ( opt == JOptionPane.YES_OPTION) {
+            String type = JOptionPane.showInputDialog(this,"Enter type");
+            String price = JOptionPane.showInputDialog(this,"Enter price");
+            brc.addSample(Double.parseDouble(price), type);
+        }
         close();
     }
 
@@ -120,10 +131,9 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         String title = inputTitle.getText();
         String author = inputAuthor.getText();
         String publisher = inputPubl.getText();
-        String type = (String) combType.getSelectedItem();
-        String price = inputPrice.getText();
+        String isbn = inputISBN.getText();
 
-        BookForm bf = new BookForm(title, author, publisher, type, price);
+        BookForm bf = new BookForm(title, author, publisher, isbn);
         brc.setForm(bf);
         if ( brc.validateData() ) {
             brc.genCode();

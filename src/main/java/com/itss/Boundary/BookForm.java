@@ -1,4 +1,4 @@
-package com.itss.view;
+package com.itss.Boundary;
 
 import com.itss.basic.BasicForm;
 
@@ -9,8 +9,7 @@ public class BookForm implements BasicForm {
     private String title;
     private String author;
     private String publisher;
-    private String type;
-    private String price;
+    private String isbn;
 
     public String getTitle() {
         return title;
@@ -24,19 +23,15 @@ public class BookForm implements BasicForm {
         return publisher;
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public BookForm(String title, String author, String publisher, String type, String price) {
+    public BookForm(String title, String author, String publisher, String isbn) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
-        this.type = type;
-        this.price = price;
+        this.isbn = isbn;
+    }
+
+    public String getIsbn() {
+        return isbn;
     }
 }

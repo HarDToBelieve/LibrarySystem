@@ -1,11 +1,10 @@
-package com.itss.model;
+package com.itss.Entity;
 import com.itss.basic.BasicModel;
 import com.itss.exception.*;
 import com.itss.utilities.APIClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.awt.print.Book;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -30,14 +29,6 @@ public class BookInfo implements BasicModel {
 		return publisher;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
 	public String getBookID() {
 		return bookID;
 	}
@@ -49,31 +40,21 @@ public class BookInfo implements BasicModel {
 	private String title;
 	private String author;
 	private String publisher;
-	private String type;
-	private double price;
 	private String bookID;
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	private String isbn;
 	private boolean valid;
 
-	/**
-	 * Init attribute
-	 * @param title title of the book
-	 * @param author author of the book
-	 * @param publisher publisher of the book
-	 * @param type type of the book
-	 * @param price price of the book
-	 * @param bookID id of the book
-	 */
-	public BookInfo(String title, String author, String publisher, String type, double price, String bookID) {
+	public BookInfo(String title, String author, String publisher, String isbn, String bookID) {
 		this.title = title;
 		this.author = author;
 		this.publisher = publisher;
-		this.type = type;
-		this.price = price;
 		this.bookID = bookID;
-	}
-
-	public BookInfo(String title, String author, String publisher, String type, double v) {
-
+		this.isbn = isbn;
 	}
 
 	/**
@@ -95,8 +76,7 @@ public class BookInfo implements BasicModel {
 				this.title = o.getString("title");
 				this.author = o.getString("author");
 				this.publisher = o.getString("publisher");
-				this.type = o.getString("type");
-				this.price = Double.parseDouble(o.getString("price"));
+				this.isbn = o.getString("isbn");
 				this.bookID = o.getString("bookID");
 				this.valid = true;
 			}
@@ -113,52 +93,28 @@ public class BookInfo implements BasicModel {
 		return true;
 	}
 
-	static Vector<BookInfo> dumpBooks (JSONArray lineItems) {
+	static Vector<BookInfo> dumpBooks (Object lineItems) {
 		Vector<BookInfo> books = new Vector<>();
-		for (Object o : lineItems) {
+		for (Object o : (JSONArray) lineItems) {
 			JSONObject jsonLineItem = (JSONObject) o;
 			String title = jsonLineItem.getString("title");
 			String author = jsonLineItem.getString("author");
 			String publisher = jsonLineItem.getString("publisher");
-			String type = jsonLineItem.getString("type");
-			double price = Double.parseDouble(jsonLineItem.getString("price"));
+			String isbn = jsonLineItem.getString("isbn");
 			String bookID = jsonLineItem.getString("bookID");
 
-			BookInfo tmp = new BookInfo(title, author, publisher, type, price, bookID);
+			BookInfo tmp = new BookInfo(title, author, publisher, isbn, bookID);
 			books.add(tmp);
 		}
 		return books;
 	}
 
 	public static Vector<BookInfo> getAll() {
-		String endpoint = "/getall.php";
-		HashMap<String, Object> result = null;
-		try {
-			result = APIClient.get(BookInfo.host + endpoint, new HashMap<>());
-			if ( result.get("status_code").equals("Success") ) {
-				return dumpBooks((JSONArray) result.get("result"));
-			}
-			else return new Vector<>();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new Vector<>();
+		return dumpBooks(BookInfo.getAll());
 	}
 
 	public static Vector<BookInfo> getUnique(HashMap<String, String> dict) {
-		HashMap<String, Object> result = null;
-		String endpoint = "/get.php";
-		try {
-			result = APIClient.get(BookInfo.host + endpoint, dict);
-			if ( result.get("status_code").equals("Success") ) {
-				return dumpBooks((JSONArray) result.get("result"));
-
-			}
-			else return new Vector<>();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new Vector<>();
+		return dumpBooks(BookInfo.getUnique(dict));
 	}
 
 	@Override
@@ -167,8 +123,7 @@ public class BookInfo implements BasicModel {
 		data.put("title", title);
 		data.put("author", author);
 		data.put("publisher", publisher);
-		data.put("type", type);
-		data.put("price", String.valueOf(price));
+		data.put("isbn", isbn);
 		data.put("bookID", bookID);
 
 		HashMap<String, Object> result = null;

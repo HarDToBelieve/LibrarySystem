@@ -1,10 +1,10 @@
-package com.itss.controller;
+package com.itss.Controller;
+import com.itss.Entity.BookCopyInfo;
 import com.itss.basic.BasicController;
-import com.itss.basic.BasicForm;
-import com.itss.model.BookInfo;
+import com.itss.Entity.BookInfo;
 import com.itss.exception.*;
 import com.itss.utilities.RandomString;
-import com.itss.view.BookForm;
+import com.itss.Boundary.BookForm;
 
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,9 +16,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BookRegistrationController implements BasicController {
 	private BookInfo book;
 	private BookForm bookform;
+	private BookCopyInfo bookcopy;
+	private String bookid;
 
 	public BookRegistrationController() {
 		book = new BookInfo();
+		bookcopy = new BookCopyInfo();
 	}
 
 	@Override
@@ -27,8 +30,7 @@ public class BookRegistrationController implements BasicController {
 		result.add(new String[]{"Title" , book.getTitle()});
 		result.add(new String[]{"Author" , book.getAuthor()});
 		result.add(new String[]{"Publisher", book.getPublisher()});
-		result.add(new String[]{"Type", book.getType()});
-		result.add(new String[]{"Price", String.valueOf(book.getPrice())});
+		result.add(new String[]{"ISBN", book.getIsbn()});
 		result.add(new String[]{"BookID", book.getBookID()});
 		return result;
 	}
@@ -42,9 +44,8 @@ public class BookRegistrationController implements BasicController {
 		boolean condTitle = !bookform.getTitle().isEmpty() && bookform.getTitle().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condAuthor = !bookform.getAuthor().isEmpty() && bookform.getAuthor().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condPublisher = !bookform.getPublisher().isEmpty() && bookform.getPublisher().matches("^[a-zA-Z0-9\\s]*$");
-		boolean condType = !bookform.getTitle().isEmpty() && bookform.getType().matches("Reference|Borrowable$");
-		boolean condPrice = !bookform.getPrice().isEmpty() && bookform.getPrice().matches("^[0-9\\.]*$");
-		return condTitle && condAuthor && condPublisher && condType && condPrice;
+		boolean condISBN = !bookform.getIsbn().isEmpty() && bookform.getIsbn().matches("^[a-zA-Z0-9\\s]*$");
+		return condTitle && condAuthor && condPublisher && condISBN;
 	}
 
 	/**
@@ -63,9 +64,14 @@ public class BookRegistrationController implements BasicController {
 
 	public void genCode() {
 		RandomString gen = new RandomString(8, ThreadLocalRandom.current());
-        String bookid = gen.nextString();
+        bookid = gen.nextString();
 		book = new BookInfo(bookform.getTitle(), bookform.getAuthor(), bookform.getPublisher(),
-				bookform.getType(), Double.parseDouble(bookform.getPrice()), bookid);
+				bookform.getIsbn(), bookid);
+	}
+
+	public void addSample(double price, String type) {
+		bookcopy = new BookCopyInfo(bookid + "_00", type, price, bookid);
+		bookcopy.add();
 	}
 
 	public void setForm (BookForm bf) {

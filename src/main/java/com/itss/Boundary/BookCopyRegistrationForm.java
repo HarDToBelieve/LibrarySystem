@@ -1,8 +1,8 @@
-package com.itss.view;
+package com.itss.Boundary;
 
 import com.itss.basic.BasicController;
 import com.itss.basic.BasicView;
-import com.itss.controller.BookCopyRegistrationController;
+import com.itss.Controller.BookCopyRegistrationController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +18,6 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     private JTextField inputBookID;
     private JTextField inputNumCopy;
     private JTextField inputAvgPrice;
-    private JTextField inputAuthor;
     private JButton btnConfirm;
     private JTable dataTable;
     private JComboBox combType;
@@ -79,7 +78,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     }
 
     @Override
-    public void updateModelFromView() {
+    public void updateModel() {
         bcrc.updateData();
         close();
     }
@@ -109,13 +108,15 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     @Override
     public void submit() {
         String bookID = inputBookID.getText();
-        int numOfCopy = Integer.parseInt(inputNumCopy.getText());
+        String numOfCopy = inputNumCopy.getText();
         String type = (String) combType.getSelectedItem();
-        double avgPrice = Double.parseDouble(inputAvgPrice.getText());
-        String author = inputAuthor.getText();
+        String avgPrice = inputAvgPrice.getText();
 
-        bcrc.genCopyCode(bookID, type, avgPrice, author);
-        updateViewFromController();
+        bcrc.setForm(bookID, type, avgPrice, numOfCopy);
+        if ( bcrc.validateData() ) {
+            bcrc.genCopyCode();
+            updateViewFromController();
+        }
     }
 
     @Override
