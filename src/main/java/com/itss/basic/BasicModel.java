@@ -11,18 +11,17 @@ import java.util.Vector;
  * Created by HarDToBelieve on 11/15/2017.
  */
 public interface BasicModel {
-    static final String host = "http://localhost/bookinfo";
+    static final String host = "http://2flf3l7wp7.hardtobelieve.me/";
     boolean checkConnection();
     void getByID(String ID);
 
     void add();
     boolean validObject();
 
-    static JSONArray getAll() {
-        String endpoint = "/getall.php";
-        HashMap<String, Object> result = null;
+    static JSONArray getAll(String folder) {
+        String endpoint = folder + "/getall.php";
         try {
-            result = APIClient.get(host + endpoint, new HashMap<>());
+            HashMap<String, Object> result = APIClient.get(host + endpoint, new HashMap<>());
             if ( result.get("status_code").equals("Success") ) {
                 return (JSONArray) result.get("result");
             }
@@ -33,11 +32,10 @@ public interface BasicModel {
         return new JSONArray();
     }
 
-    static JSONArray getUnique(HashMap<String, String> dict) {
-        HashMap<String, Object> result = null;
-        String endpoint = "/get.php";
+    static JSONArray getUnique(String folder, HashMap<String, String> dict) {
+        String endpoint = folder + "/get.php";
         try {
-            result = APIClient.get(host + endpoint, dict);
+            HashMap<String, Object> result = APIClient.get(host + endpoint, dict);
             if ( result.get("status_code").equals("Success") ) {
                 return (JSONArray) result.get("result");
 

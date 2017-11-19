@@ -61,7 +61,7 @@ public class BookCopyRegistrationController implements BasicController {
 
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("bookID", bcf.getBookID());
-		boolean existBook = BookInfo.getUnique(dict).size() > 0;
+		boolean existBook = BookInfo.getUniqueBook(dict).size() > 0;
 		return condBookID && condType && condPrice && existBook;
 	}
 

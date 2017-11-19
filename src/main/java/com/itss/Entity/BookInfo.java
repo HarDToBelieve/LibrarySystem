@@ -8,6 +8,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Vector;
 
+import static com.itss.basic.BasicModel.getAll;
+import static com.itss.basic.BasicModel.getUnique;
+
 /**
  * Created by HarDToBelieve on 10/17/2017.
  */
@@ -66,7 +69,7 @@ public class BookInfo implements BasicModel {
 
 	@Override
 	public void getByID(String ID) {
-		String endpoint = "/get.php";
+		String endpoint = "bookinfo/get.php";
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("bookID", ID);
 		try {
@@ -109,12 +112,12 @@ public class BookInfo implements BasicModel {
 		return books;
 	}
 
-	public static Vector<BookInfo> getAll() {
-		return dumpBooks(BookInfo.getAll());
+	public static Vector<BookInfo> getAllBook() {
+		return dumpBooks(getAll("bookinfo"));
 	}
 
-	public static Vector<BookInfo> getUnique(HashMap<String, String> dict) {
-		return dumpBooks(BookInfo.getUnique(dict));
+	public static Vector<BookInfo> getUniqueBook(HashMap<String, String> dict) {
+		return dumpBooks(getUnique("bookinfo", dict));
 	}
 
 	@Override
@@ -127,7 +130,7 @@ public class BookInfo implements BasicModel {
 		data.put("bookID", bookID);
 
 		HashMap<String, Object> result = null;
-		String endpoint = "/post.php";
+		String endpoint = "bookinfo/post.php";
 		try {
 			result = APIClient.post(BookInfo.host + endpoint, data);
 			valid = result.get("status_code").equals("Success");

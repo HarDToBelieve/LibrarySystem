@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -48,17 +49,19 @@ public class APIClient {
 
     public static HashMap<String, Object> post(String url, HashMap<String, String> data) throws Exception {
         URL obj = new URL(url);
-        HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         con.setRequestMethod("POST");
 
-        JSONObject js = new JSONObject();
+//        JSONObject js = new JSONObject();
+        ArrayList<String> tmp = new ArrayList<>();
         for (Map.Entry<String, String> entry : data.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            js.put(key, value);
+            tmp.add(key + "=" + value);
+//            js.put(key, value);
         }
-        String urlParameters = String.valueOf(js);
+        String urlParameters = String.join("&", tmp);
 
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());

@@ -92,7 +92,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             }
             for (Object s : data) {
                 String[] tmp = (String[])s;
-                dtm.addRow(new Object[]{tmp[0], tmp[1]});
+                dtm.addRow(new Object[]{tmp[0], tmp[1], tmp[2], tmp[3], tmp[4]});
             }
             dtm.fireTableDataChanged();
             dataTable.setVisible(true);

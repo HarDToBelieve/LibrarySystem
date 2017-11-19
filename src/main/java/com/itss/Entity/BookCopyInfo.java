@@ -8,6 +8,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Vector;
 
+import static com.itss.basic.BasicModel.getAll;
+import static com.itss.basic.BasicModel.getUnique;
+
 /**
  * Created by HarDToBelieve on 10/17/2017.
  */
@@ -99,12 +102,12 @@ public class BookCopyInfo implements BasicModel {
 		return books;
 	}
 
-	public static Vector<BookCopyInfo> getAll() {
-		return dumpCopy(BookCopyInfo.getAll());
+	public static Vector<BookCopyInfo> getAllCopy() {
+		return dumpCopy(getAll("bookcopy"));
 	}
 
-	public static Vector<BookCopyInfo> getUnique(HashMap<String, String> dict) {
-		return dumpCopy(BookCopyInfo.getUnique(dict));
+	public static Vector<BookCopyInfo> getUniqueCopy(HashMap<String, String> dict) {
+		return dumpCopy(getUnique("bookcopy", dict));
 	}
 
 	@Override

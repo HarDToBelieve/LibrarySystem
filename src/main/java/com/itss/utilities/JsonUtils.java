@@ -18,12 +18,15 @@ public class JsonUtils {
             try{
                 JSONObject value = json.getJSONObject(key);
                 parse(value, out);
-            }catch(Exception e){
+            } catch(Exception e){
                 try {
                     val = json.getJSONObject(key);
-                }
-                catch (Exception ee) {
-                    val = json.getJSONArray(key);
+                } catch (Exception ee) {
+                    try {
+                        val = json.getJSONArray(key);
+                    } catch (Exception eee) {
+                        val = json.getString(key);
+                    }
                 }
             }
 

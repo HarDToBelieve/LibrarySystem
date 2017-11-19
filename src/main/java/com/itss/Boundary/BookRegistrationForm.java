@@ -16,7 +16,6 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JButton btnSubmit;
     private JTextField inputTitle;
     private JTextField inputPubl;
-    private JComboBox combType;
     private JPanel dataField;
     private JTextField inputAuthor;
     private JTable dataTable;
@@ -35,9 +34,6 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         brc = new BookRegistrationController();
         bcrc = new BookCopyRegistrationController();
 
-        String[] listTypes = new String[]{"Reference", "Borrowable"};
-        combType.addItem(listTypes[0]);
-        combType.addItem(listTypes[1]);
         Vector<String> colNames = new Vector<>(); colNames.add(""); colNames.add("");
         dtm = new DefaultTableModel(colNames, 0);
         dataTable.setModel(dtm);
@@ -113,7 +109,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             }
             for (Object s : data) {
                 String[] tmp = (String[])s;
-                dtm.addRow(new Object[]{tmp[0], tmp[1], tmp[2], tmp[3], tmp[4]});
+                dtm.addRow(new Object[]{tmp[0], tmp[1]});
             }
             dtm.fireTableDataChanged();
             dataTable.setVisible(true);
