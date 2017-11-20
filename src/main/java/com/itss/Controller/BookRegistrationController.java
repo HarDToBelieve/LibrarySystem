@@ -2,7 +2,6 @@ package com.itss.Controller;
 import com.itss.Entity.BookCopyInfo;
 import com.itss.basic.BasicController;
 import com.itss.Entity.BookInfo;
-import com.itss.exception.*;
 import com.itss.utilities.RandomString;
 import com.itss.Boundary.BookForm;
 
@@ -35,12 +34,8 @@ public class BookRegistrationController implements BasicController {
 		return result;
 	}
 
-	/**
-	 * Validate the book
-	 * @return status of the book ( whether "Available" or "Duplicated" )
-	 */
 	@Override
-	public boolean validateData() {
+	public boolean getBookStatus() {
 		boolean condTitle = !bookform.getTitle().isEmpty() && bookform.getTitle().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condAuthor = !bookform.getAuthor().isEmpty() && bookform.getAuthor().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condPublisher = !bookform.getPublisher().isEmpty() && bookform.getPublisher().matches("^[a-zA-Z0-9\\s]*$");
@@ -48,10 +43,6 @@ public class BookRegistrationController implements BasicController {
 		return condTitle && condAuthor && condPublisher && condISBN;
 	}
 
-	/**
-	 * Add a copy of a book
-	 * @throws AddBookException if cannot insert copy to database
-	 */
 	@Override
 	public void updateData() {
 		book.add();

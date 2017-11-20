@@ -131,7 +131,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
 
         BookForm bf = new BookForm(title, author, publisher, isbn);
         brc.setForm(bf);
-        if ( brc.validateData() ) {
+        if ( brc.getBookStatus() ) {
             brc.genCode();
             updateViewFromController();
         }

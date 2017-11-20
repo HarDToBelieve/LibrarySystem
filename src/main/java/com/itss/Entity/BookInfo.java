@@ -1,6 +1,5 @@
 package com.itss.Entity;
 import com.itss.basic.BasicModel;
-import com.itss.exception.*;
 import com.itss.utilities.APIClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -60,13 +59,6 @@ public class BookInfo implements BasicModel {
 		this.isbn = isbn;
 	}
 
-	/**
-	 * Get the status of a book by book id
-	 * @param ID the id of book
-	 * @return BookInfo instance
-	 * @throws BookNotFoundException if there is no such book
-	 */
-
 	@Override
 	public void getByID(String ID) {
 		String endpoint = "bookinfo/get.php";
@@ -116,8 +108,8 @@ public class BookInfo implements BasicModel {
 		return dumpBooks(getAll("bookinfo"));
 	}
 
-	public static Vector<BookInfo> getUniqueBook(HashMap<String, String> dict) {
-		return dumpBooks(getUnique("bookinfo", dict));
+	public static BookInfo getUniqueBook(HashMap<String, String> dict) {
+		return dumpBooks(getUnique("bookinfo", dict)).get(0);
 	}
 
 	@Override

@@ -3,7 +3,6 @@ import com.itss.Boundary.BookCopyForm;
 import com.itss.Entity.BookCopyInfo;
 import com.itss.Entity.BookInfo;
 import com.itss.basic.BasicController;
-import com.itss.exception.*;
 import com.itss.utilities.RandomString;
 import com.itss.Boundary.BookCopyRegistrationForm;
 
@@ -25,43 +24,24 @@ public class BookCopyRegistrationController implements BasicController {
 		bcf = new BookCopyForm();
     }
 
-	/**
-	 * Get the status of a book by book id
-	 * @param bookID the id of book
-	 * @return status of the book ( whether "Available" or "Unavailable" )
-	 */
-	public static String getBookStatus(String bookID) {
-		// TODO: 
-		// - Call method getBookByID of BookInfo
-		// - return result
-		return new String("Available");
-	}
-
-	/**
-	 * Add a copy of a book
-	 * @throws AddCopyException if cannot insert copy to database
-	 */
-	public void saveData() {
-		// TODO:
-		// - Call method getBookStatus
-		// - Call method genCopyCode
-		// - Call method insertCopy of each BookCopyInfo elements
-	}
-
 	@Override
 	public Vector<Object> getModel() {
-		return null;
+		Vector<Object> result = new Vector<>();
+		for (BookCopyInfo tmp : copies) {
+			result.add(new String[]{tmp.getCopyID(), tmp.getType(), String.valueOf(tmp.getPrice()), tmp.getBookID()});
+		}
+		return result;
 	}
 
 	@Override
-	public boolean validateData() {
+	public boolean getBookStatus() {
 		boolean condBookID = !bcf.getBookID().isEmpty() && bcf.getBookID().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condType = !bcf.getType().isEmpty() && bcf.getType().matches("Reference|Borrowable$");
 		boolean condPrice = !bcf.getPrice().isEmpty() && bcf.getPrice().matches("^[0-9\\.]*$");
 
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("bookID", bcf.getBookID());
-		boolean existBook = BookInfo.getUniqueBook(dict).size() > 0;
+		boolean existBook = BookInfo.getUniqueBook(dict).validObject();
 		return condBookID && condType && condPrice && existBook;
 	}
 
