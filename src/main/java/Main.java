@@ -11,8 +11,8 @@ import java.util.Objects;
  */
 public class Main {
     public static void main (String[] args) {
-        BookCopyRegistrationForm brf = new BookCopyRegistrationForm();
-        brf.pack();
-        brf.setVisible(true);
+        BookCopyRegistrationForm bcrc = new BookCopyRegistrationForm();
+        bcrc.pack();
+        bcrc.setVisible(true);
     }
 }

@@ -29,7 +29,7 @@ public class BookCopyForm implements BasicForm {
         return bookID;
     }
 
-    public BookCopyForm(String type, String price, String bookID, String numOfCopy) {
+    public BookCopyForm(String bookID, String type, String price, String numOfCopy) {
         this.type = type;
         this.price = price;
         this.bookID = bookID;

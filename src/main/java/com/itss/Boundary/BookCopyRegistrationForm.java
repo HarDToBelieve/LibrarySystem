@@ -70,7 +70,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int count = 0; count < dtm.getRowCount(); count++){
-                    dtm.getValueAt(count, 0).toString();
+                    System.out.println(dtm.getValueAt(count, 0).toString());
                 }
                 updateModel();
             }
@@ -102,7 +102,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             }
             for (Object s : data) {
                 String[] tmp = (String[])s;
-                dtm.addRow(new Object[]{tmp[0], tmp[1], tmp[2], tmp[3], tmp[4]});
+                dtm.addRow(new Object[]{tmp[0], tmp[1], tmp[2], tmp[3]});
             }
             dtm.fireTableDataChanged();
             dataTable.setVisible(true);

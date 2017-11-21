@@ -15,6 +15,10 @@
 				echo json_encode(array('status_code' => 'Failure',
 									'result' => array()));
 			}
+			else {
+			    echo json_encode(array('status_code' => 'Success',
+                						'result' => array()));
+			}
 		}
 		else {
 			echo json_encode(array('status_code' => 'Failure',

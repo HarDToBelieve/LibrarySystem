@@ -16,7 +16,7 @@ import static com.itss.basic.BasicModel.getUnique;
 
 public class BookInfo implements BasicModel {
 	public BookInfo() {
-
+		valid = false;
 	}
 
 	public String getTitle() {
@@ -33,10 +33,6 @@ public class BookInfo implements BasicModel {
 
 	public String getBookID() {
 		return bookID;
-	}
-
-	public String getHost() {
-		return host;
 	}
 
 	private String title;
@@ -109,7 +105,11 @@ public class BookInfo implements BasicModel {
 	}
 
 	public static BookInfo getUniqueBook(HashMap<String, String> dict) {
-		return dumpBooks(getUnique("bookinfo", dict)).get(0);
+		try {
+			return dumpBooks(getUnique("bookinfo", dict)).get(0);
+		} catch (Exception e) {
+			return new BookInfo();
+		}
 	}
 
 	@Override

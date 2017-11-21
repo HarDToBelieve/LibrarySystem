@@ -38,11 +38,12 @@ public class BookCopyRegistrationController implements BasicController {
 		boolean condBookID = !bcf.getBookID().isEmpty() && bcf.getBookID().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condType = !bcf.getType().isEmpty() && bcf.getType().matches("Reference|Borrowable$");
 		boolean condPrice = !bcf.getPrice().isEmpty() && bcf.getPrice().matches("^[0-9.]*$");
+		boolean condNumCopies = !bcf.getNumOfCopy().isEmpty() && bcf.getNumOfCopy().matches("^[0-9.]*$");
 
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("bookID", bcf.getBookID());
-		boolean existBook = BookInfo.getUniqueBook(dict).validObject();
-		return condBookID && condType && condPrice && existBook;
+		boolean existBook = !BookInfo.getUniqueBook(dict).validObject();
+		return condBookID && condType && condPrice && existBook && condNumCopies;
 	}
 
 	@Override
@@ -61,10 +62,9 @@ public class BookCopyRegistrationController implements BasicController {
 
 	public void genCopyCode() {
 		int last = getLastCopy();
-		copies = new ArrayList<>(Integer.parseInt(bcf.getNumOfCopy()));
-		for (BookCopyInfo bci : copies) {
-			String copyID = bcf.getBookID() + "_" + String.valueOf(copies.indexOf(bci) + last);
-			copies.set(copies.indexOf(bci), new BookCopyInfo(copyID, bcf.getType(),
+		for (int i=0; i<Integer.parseInt(bcf.getNumOfCopy()); i++) {
+			String copyID = bcf.getBookID() + "_" + String.valueOf(i + last);
+			copies.add(new BookCopyInfo(copyID, bcf.getType(),
 					Double.parseDouble(bcf.getPrice()), bcf.getBookID()));
 		}
 	}
