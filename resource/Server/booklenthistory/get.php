@@ -37,7 +37,7 @@
 				$tmp = array('user_id' => $user_id,
 								'card_number' => $card_number,
 								'copyID' => $copyID,
-								'email' => $email );
+								'date' => $date );
 				$result[] = $tmp;
 			}
 		}
