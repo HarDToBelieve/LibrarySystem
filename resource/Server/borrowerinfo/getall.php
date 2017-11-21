@@ -6,7 +6,6 @@
 	$query = 'SELECT * FROM borrowerinfo'; 
 
 	if ( $stmt = $db->prepare($query) ) {
-		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
 		$stmt->bind_result($id, $card_number, $compensation, $user_id);
 		$result = array();

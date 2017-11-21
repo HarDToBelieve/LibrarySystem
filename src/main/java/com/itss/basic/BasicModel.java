@@ -46,4 +46,15 @@ public interface BasicModel {
         }
         return new JSONArray();
     }
+
+    static boolean deleteUnique(String folder, HashMap<String, String> dict) {
+        String endpoint = folder + "/delete.php";
+        try {
+            HashMap<String, Object> result = APIClient.get(host + endpoint, dict);
+            return result.get("status_code").equals("Success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

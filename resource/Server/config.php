@@ -3,10 +3,10 @@
     ini_set("display_errors", 1);
 
     class BindParam {
-		private $values = array(), $types = ''; 
-		
+		private $values = array(), $types = '';
+
 		public function add( $type, &$value ) {
-			$this->values[] = $value;
+			$this->values[] = &$value;
 			$this->types .= $type;
 		}
 

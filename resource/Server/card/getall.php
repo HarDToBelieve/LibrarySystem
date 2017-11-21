@@ -5,10 +5,7 @@
 	$qArray = array();
 	$query = 'SELECT * FROM card'; 
 
-
-	$query .= implode(' AND ', $qArray);
 	if ( $stmt = $db->prepare($query) ) {
-		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
 		$stmt->bind_result($id, $card_number, $user_id, $is_active, $is_student, $expired_date, $activate_code);
 		$result = array();
