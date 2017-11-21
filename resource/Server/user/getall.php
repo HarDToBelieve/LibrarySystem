@@ -8,22 +8,22 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($copyID, $card_number, $lentDate, $bookID, $returnDate, $user_id);
-		$stmt->fetch();
-		if ( $copyID && $card_number && $lentDate && $bookID && $returnDate && $user_id ) {
-			$result = array('copyID' => $copyID,
-							'card_number' => $card_number,
-							'lentDate' => $lentDate,
-							'bookID' => $bookID,
-							'returnDate' => $returnDate,
-							'user_id' => $user_id );
-			echo json_encode(array('status_code' => 'Success',
-									'result' => $result));
+		$stmt->bind_result($user_id, $name, $address, $date_of_birth, $email);
+		$result = array();
+		
+		while ( $stmt->fetch() ) {
+			if ( $user_id && $name && $address && $date_of_birth && $email ) {
+				$tmp = array('job' => $job,
+								'user_id' => $user_id,
+								'name' => $name,
+								'address' => $address,
+								'date_of_birth' => $date_of_birth,
+								'email' => $email );
+				$result[] = $tmp;
+			}
 		}
-		else {
-			echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-		}
+		echo json_encode(array('status_code' => 'Success',
+										'result' => $result));
 	}
 	else {
 		echo json_encode(array('status_code' => 'Failure',

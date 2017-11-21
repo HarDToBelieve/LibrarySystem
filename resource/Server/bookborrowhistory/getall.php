@@ -9,21 +9,20 @@
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
 		$stmt->bind_result($copyID, $card_number, $lentDate, $bookID, $returnDate, $user_id);
-		$stmt->fetch();
-		if ( $copyID && $card_number && $lentDate && $bookID && $returnDate && $user_id ) {
-			$result = array('copyID' => $copyID,
-							'card_number' => $card_number,
-							'lentDate' => $lentDate,
-							'bookID' => $bookID,
-							'returnDate' => $returnDate,
-							'user_id' => $user_id );
-			echo json_encode(array('status_code' => 'Success',
-									'result' => $result));
+		$result = array();
+		while ( $stmt->fetch() ) {
+			if ( $copyID && $card_number && $lentDate && $bookID && $returnDate && $user_id ) {
+				$tmp = array('copyID' => $copyID,
+								'card_number' => $card_number,
+								'lentDate' => $lentDate,
+								'bookID' => $bookID,
+								'returnDate' => $returnDate,
+								'user_id' => $user_id );
+				$result[] = $tmp;
+			}
 		}
-		else {
-			echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-		}
+		echo json_encode(array('status_code' => 'Success',
+										'result' => $result));
 	}
 	else {
 		echo json_encode(array('status_code' => 'Failure',

@@ -30,19 +30,19 @@
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
 		$stmt->bind_result($copyID, $type, $price, $bookID);
-		$stmt->fetch();
-		if ( $copyID && $type && $price && $bookID) {
-			$result = array('copyID' => $copyID,
-							'type' => $type,
-							'price' => $price,
-							'bookID' => $bookID );
-			echo json_encode(array('status_code' => 'Success',
-									'result' => $result));
+		$result = array();
+
+		while ( $stmt->fetch() ) {
+			if ( $copyID && $type && $price && $bookID) {
+				$tmp = array('copyID' => $copyID,
+								'type' => $type,
+								'price' => $price,
+								'bookID' => $bookID );
+				$result[] = $tmp;
+			}
 		}
-		else {
-			echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-		}
+		echo json_encode(array('status_code' => 'Success',
+										'result' => $result));
 	}
 	else {
 		echo json_encode(array('status_code' => 'Failure',

@@ -9,20 +9,19 @@
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
 		$stmt->bind_result($title, $author, $publisher, $bookID, $isbn);
-		$stmt->fetch();
-		if ( $title && $author && $publisher && $bookID && $isbn ) {
-			$result = array('title' => $title,
-							'author' => $author,
-							'publisher' => $publisher,
-							'bookID' => $bookID,
-							'isbn' => $isbn );
-			echo json_encode(array('status_code' => 'Success',
-									'result' => $result));
+		$result = array();
+		while ( $stmt->fetch() ) {
+			if ( $title && $author && $publisher && $bookID && $isbn ) {
+				$tmp = array('title' => $title,
+								'author' => $author,
+								'publisher' => $publisher,
+								'bookID' => $bookID,
+								'isbn' => $isbn );
+				$result[] = $tmp;
+			}
 		}
-		else {
-			echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-		}
+		echo json_encode(array('status_code' => 'Success',
+										'result' => $result));
 	}
 	else {
 		echo json_encode(array('status_code' => 'Failure',

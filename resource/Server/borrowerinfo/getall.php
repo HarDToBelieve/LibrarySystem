@@ -9,18 +9,19 @@
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
 		$stmt->bind_result($job, $card_number, $compensation, $user_id);
-		$stmt->fetch();
-		if ( $card_number && $compensation && $user_id ) {
-			$result = array('card_number' => $card_number,
-							'compensation' => $compensation,
-							'user_id' => $user_id );
-			echo json_encode(array('status_code' => 'Success',
-									'result' => $result));
+		$result = array();
+
+		while ( $stmt->fetch() ) {
+			if ( $card_number && $compensation && $user_id ) {
+				$tmp = array('card_number' => $card_number,
+								'compensation' => $compensation,
+								'user_id' => $user_id );
+	
+			}
+			$result[] = $tmp;
 		}
-		else {
-			echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-		}
+		echo json_encode(array('status_code' => 'Success',
+										'result' => $result));
 	}
 	else {
 		echo json_encode(array('status_code' => 'Failure',

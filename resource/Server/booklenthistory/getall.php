@@ -9,19 +9,19 @@
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
 		$stmt->bind_result($user_id, $card_number, $copyID, $date);
-		$stmt->fetch();
-		if ( $user_id && $card_number && $copyID && $date ) {
-			$result = array('user_id' => $user_id,
-							'card_number' => $card_number,
-							'copyID' => $copyID,
-							'email' => $email );
-			echo json_encode(array('status_code' => 'Success',
-									'result' => $result));
+		$result = array();
+
+		while ( $stmt->fetch() ) {
+			if ( $user_id && $card_number && $copyID && $date ) {
+				$tmp = array('user_id' => $user_id,
+								'card_number' => $card_number,
+								'copyID' => $copyID,
+								'email' => $email );
+				$result[] = $tmp;
+			}
 		}
-		else {
-			echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-		}
+		echo json_encode(array('status_code' => 'Success',
+										'result' => $result));
 	}
 	else {
 		echo json_encode(array('status_code' => 'Failure',
