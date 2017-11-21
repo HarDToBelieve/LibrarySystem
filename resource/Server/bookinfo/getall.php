@@ -8,7 +8,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($title, $author, $publisher, $bookID, $isbn);
+		$stmt->bind_result($id, $bookID, $title, $author, $publisher, $isbn);
 		$result = array();
 		while ( $stmt->fetch() ) {
 			if ( $title && $author && $publisher && $bookID && $isbn ) {

@@ -39,7 +39,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($copyID, $card_number, $lentDate, $bookID, $returnDate, $user_id);
+		$stmt->bind_result($id, $bookID, $copyID, $card_number, $lentDate, $returnDate, $user_id);
 		$result = array();
 		while ( $stmt->fetch() ) {
 			if ( $copyID && $card_number && $lentDate && $bookID && $returnDate && $user_id ) {

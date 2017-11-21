@@ -10,7 +10,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($card_number, $user_id, $is_active, $is_student, $expired_date, $activate_code);
+		$stmt->bind_result($id, $card_number, $user_id, $is_active, $is_student, $expired_date, $activate_code);
 		$result = array();
 
 		while ( $stmt->fetch() ) {

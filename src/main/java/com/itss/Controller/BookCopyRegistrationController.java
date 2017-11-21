@@ -37,7 +37,7 @@ public class BookCopyRegistrationController implements BasicController {
 	public boolean getBookStatus() {
 		boolean condBookID = !bcf.getBookID().isEmpty() && bcf.getBookID().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condType = !bcf.getType().isEmpty() && bcf.getType().matches("Reference|Borrowable$");
-		boolean condPrice = !bcf.getPrice().isEmpty() && bcf.getPrice().matches("^[0-9\\.]*$");
+		boolean condPrice = !bcf.getPrice().isEmpty() && bcf.getPrice().matches("^[0-9.]*$");
 
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("bookID", bcf.getBookID());
@@ -47,9 +47,7 @@ public class BookCopyRegistrationController implements BasicController {
 
 	@Override
 	public void updateData() {
-		for (BookCopyInfo bci : copies) {
-			bci.add();
-		}
+		copies.forEach(BookCopyInfo::add);
 	}
 
 	@Override
@@ -62,7 +60,6 @@ public class BookCopyRegistrationController implements BasicController {
 	}
 
 	public void genCopyCode() {
-		RandomString gen = new RandomString(8, ThreadLocalRandom.current());
 		int last = getLastCopy();
 		copies = new ArrayList<>(Integer.parseInt(bcf.getNumOfCopy()));
 		for (BookCopyInfo bci : copies) {

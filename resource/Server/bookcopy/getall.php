@@ -8,7 +8,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($copyID, $type, $price, $bookID);
+		$stmt->bind_result($id, $copyID, $bookID, $type, $price);
 		$result = array();
 
 		while ( $stmt->fetch() ) {

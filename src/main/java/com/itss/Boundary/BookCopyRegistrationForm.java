@@ -45,6 +45,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             }
         });
 
+
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 close();
@@ -65,6 +66,15 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
                 close();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        btnConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int count = 0; count < dtm.getRowCount(); count++){
+                    dtm.getValueAt(count, 0).toString();
+                }
+                updateModel();
+            }
+        });
     }
 
     @Override

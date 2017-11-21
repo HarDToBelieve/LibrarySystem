@@ -1,3 +1,4 @@
+import com.itss.Boundary.BookCopyRegistrationForm;
 import com.itss.Boundary.BookRegistrationForm;
 import com.itss.utilities.APIClient;
 
@@ -10,7 +11,7 @@ import java.util.Objects;
  */
 public class Main {
     public static void main (String[] args) {
-        BookRegistrationForm brf = new BookRegistrationForm();
+        BookCopyRegistrationForm brf = new BookCopyRegistrationForm();
         brf.pack();
         brf.setVisible(true);
     }

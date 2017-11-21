@@ -29,7 +29,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($user_id, $card_number, $copyID, $date);
+		$stmt->bind_result($id, $card_number, $copyID, $date, $user_id);
 		$result = array();
 
 		while ( $stmt->fetch() ) {
