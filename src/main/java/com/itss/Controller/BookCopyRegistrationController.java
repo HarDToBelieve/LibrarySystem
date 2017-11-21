@@ -42,7 +42,7 @@ public class BookCopyRegistrationController implements BasicController {
 
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("bookID", bcf.getBookID());
-		boolean existBook = !BookInfo.getUniqueBook(dict).validObject();
+		boolean existBook = BookInfo.getUniqueBook(dict).validObject();
 		return condBookID && condType && condPrice && existBook && condNumCopies;
 	}
 
@@ -71,5 +71,10 @@ public class BookCopyRegistrationController implements BasicController {
 
 	public void setForm(String bookID, String type, String avgPrice, String numOfCopy) {
 		bcf = new BookCopyForm(bookID, type, avgPrice, numOfCopy);
+	}
+
+	public void modifyData(String type, String price, int index) {
+		BookCopyInfo tmp = copies.get(index);
+		copies.set(index, new BookCopyInfo(tmp.getCopyID(), type, Double.parseDouble(price), tmp.getBookID()));
 	}
 }

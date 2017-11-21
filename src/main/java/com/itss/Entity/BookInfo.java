@@ -45,6 +45,11 @@ public class BookInfo implements BasicModel {
 	}
 
 	private String isbn;
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
 	private boolean valid;
 
 	public BookInfo(String title, String author, String publisher, String isbn, String bookID) {
@@ -95,6 +100,7 @@ public class BookInfo implements BasicModel {
 			String bookID = jsonLineItem.getString("bookID");
 
 			BookInfo tmp = new BookInfo(title, author, publisher, isbn, bookID);
+			tmp.setValid(true);
 			books.add(tmp);
 		}
 		return books;

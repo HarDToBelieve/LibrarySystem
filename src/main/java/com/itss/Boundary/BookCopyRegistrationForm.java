@@ -6,6 +6,8 @@ import com.itss.Controller.BookCopyRegistrationController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -34,8 +36,18 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         combType.addItem(listTypes[1]);
         Vector<String> colNames = new Vector<>();
         colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add("");
-        dtm = new DefaultTableModel(colNames, 0);
+        dtm = new DefaultTableModel(colNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return !(column == 0 || column == 3);
+            }
+        };
+
         dataTable.setModel(dtm);
+        TableColumn col = dataTable.getColumnModel().getColumn(1);
+        col.setCellEditor(new MyComboBoxEditor(listTypes));
+        col.setCellRenderer(new MyComboBoxRenderer(listTypes));
+
         dataTable.setVisible(false);
         btnConfirm.setVisible(false);
         btnCancel.setVisible(false);
@@ -70,7 +82,8 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int count = 0; count < dtm.getRowCount(); count++){
-                    System.out.println(dtm.getValueAt(count, 0).toString());
+                    bcrc.modifyData(dtm.getValueAt(count, 1).toString(), dtm.getValueAt(count, 2).toString(), count);
+//                    dtm.getDataVector().elementAt(count);
                 }
                 updateModel();
             }
@@ -137,5 +150,30 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     @Override
     public void error() {
 
+    }
+}
+
+class MyComboBoxRenderer extends JComboBox implements TableCellRenderer {
+    public MyComboBoxRenderer(String[] items) {
+        super(items);
+    }
+
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                   boolean hasFocus, int row, int column) {
+        if (isSelected) {
+            setForeground(table.getSelectionForeground());
+            super.setBackground(table.getSelectionBackground());
+        } else {
+            setForeground(table.getForeground());
+            setBackground(table.getBackground());
+        }
+        setSelectedItem(value);
+        return this;
+    }
+}
+
+class MyComboBoxEditor extends DefaultCellEditor {
+    public MyComboBoxEditor(String[] items) {
+        super(new JComboBox(items));
     }
 }

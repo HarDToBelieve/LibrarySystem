@@ -155,7 +155,7 @@
               <component id="69b51" class="javax.swing.JTable" binding="dataTable">
                 <constraints/>
                 <properties>
-                  <autoResizeMode value="0"/>
+                  <autoResizeMode value="3"/>
                 </properties>
               </component>
             </children>
