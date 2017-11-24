@@ -65,6 +65,7 @@ public class BookCopyRegistrationController implements BasicController {
 		return condBookID && condType && condPrice && existBook;
 	}
 
+
 	@Override
 	public void updateData() {
 		for (BookCopyInfo bci : copies) {

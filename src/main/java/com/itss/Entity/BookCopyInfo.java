@@ -95,7 +95,6 @@ public class BookCopyInfo implements BasicModel {
 			String price = jsonLineItem.getString("price");
 			String copyID = jsonLineItem.getString("copyID");
 			String bookID = jsonLineItem.getString("bookID");
-
 			BookCopyInfo tmp = new BookCopyInfo(copyID, type, Double.parseDouble(price), bookID);
 			books.add(tmp);
 		}
