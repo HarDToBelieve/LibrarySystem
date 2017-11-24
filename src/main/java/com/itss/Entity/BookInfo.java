@@ -1,6 +1,5 @@
 package com.itss.Entity;
 import com.itss.basic.BasicModel;
-import com.itss.exception.*;
 import com.itss.utilities.APIClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,7 +16,7 @@ import static com.itss.basic.BasicModel.getUnique;
 
 public class BookInfo implements BasicModel {
 	public BookInfo() {
-
+		valid = false;
 	}
 
 	public String getTitle() {
@@ -36,10 +35,6 @@ public class BookInfo implements BasicModel {
 		return bookID;
 	}
 
-	public String getHost() {
-		return host;
-	}
-
 	private String title;
 	private String author;
 	private String publisher;
@@ -50,6 +45,11 @@ public class BookInfo implements BasicModel {
 	}
 
 	private String isbn;
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
 	private boolean valid;
 
 	public BookInfo(String title, String author, String publisher, String isbn, String bookID) {
@@ -59,13 +59,6 @@ public class BookInfo implements BasicModel {
 		this.bookID = bookID;
 		this.isbn = isbn;
 	}
-
-	/**
-	 * Get the status of a book by book id
-	 * @param ID the id of book
-	 * @return BookInfo instance
-	 * @throws BookNotFoundException if there is no such book
-	 */
 
 	@Override
 	public void getByID(String ID) {
@@ -107,6 +100,7 @@ public class BookInfo implements BasicModel {
 			String bookID = jsonLineItem.getString("bookID");
 
 			BookInfo tmp = new BookInfo(title, author, publisher, isbn, bookID);
+			tmp.setValid(true);
 			books.add(tmp);
 		}
 		return books;
@@ -116,8 +110,12 @@ public class BookInfo implements BasicModel {
 		return dumpBooks(getAll("bookinfo"));
 	}
 
-	public static Vector<BookInfo> getUniqueBook(HashMap<String, String> dict) {
-		return dumpBooks(getUnique("bookinfo", dict));
+	public static BookInfo getUniqueBook(HashMap<String, String> dict) {
+		try {
+			return dumpBooks(getUnique("bookinfo", dict)).get(0);
+		} catch (Exception e) {
+			return new BookInfo();
+		}
 	}
 
 	@Override

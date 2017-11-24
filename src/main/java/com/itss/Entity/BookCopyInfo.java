@@ -1,10 +1,11 @@
 package com.itss.Entity;
 import com.itss.Boundary.BookCopyForm;
 import com.itss.basic.BasicModel;
-import com.itss.exception.*;
+import com.itss.utilities.APIClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.awt.print.Book;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -32,21 +33,11 @@ public class BookCopyInfo implements BasicModel {
 		return bookID;
 	}
 
-	public String getEndpoint() {
-		return endpoint;
-	}
-
-	public String getKeyLocation() {
-		return keyLocation;
-	}
-
 	private String copyID;
 	private String type;
 	private double price;
 	private String bookID;
-
-	private final String endpoint = "http://localhost/bookcopyinfo";
-	private final String keyLocation = ".keydb";
+	private boolean valid;
 
 	/**
 	 * Constructor
@@ -66,17 +57,6 @@ public class BookCopyInfo implements BasicModel {
 
 	}
 
-	/**
-	 * Insert copy information to db
-	 * @param copy copy instance which need to be added
-	 * @throws InsertDBException if there are any errors
-	 */
-	public static void insertCopy(BookCopyInfo copy) throws InsertDBException {
-		// TODO:
-		// - query to DB
-		// - throw exception if it exist
-	}
-
 	@Override
 	public boolean checkConnection() {
 		return true;
@@ -84,7 +64,25 @@ public class BookCopyInfo implements BasicModel {
 
 	@Override
 	public void getByID(String ID) {
-
+		String endpoint = "bookcopy/get.php";
+		HashMap<String, String> dict = new HashMap<>();
+		dict.put("copyID", ID);
+		try {
+			HashMap<String, Object> result = APIClient.get(BookInfo.host + endpoint, dict);
+			if ( result.get("status_code").equals("Success") ) {
+				JSONObject o = (JSONObject) result.get("result");
+				this.copyID = o.getString("copyID");
+				this.type = o.getString("type");
+				this.price = Double.parseDouble(o.getString("price"));
+				this.bookID = o.getString("bookID");
+				this.valid = true;
+			}
+			else {
+				this.valid = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	static Vector<BookCopyInfo> dumpCopy (Object lineItems) {
@@ -111,14 +109,29 @@ public class BookCopyInfo implements BasicModel {
 
 	@Override
 	public void add() {
+		HashMap<String, String> data = new HashMap<>();
+		data.put("copyID", copyID);
+		data.put("type", type);
+		data.put("price", String.valueOf(price));
+		data.put("bookID", bookID);
+
+		HashMap<String, Object> result = null;
+		String endpoint = "bookcopy/post.php";
+		try {
+			result = APIClient.post(BookCopyInfo.host + endpoint, data);
+			valid = result.get("status_code").equals("Success");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public boolean validObject() {
-		return false;
+		return valid;
 	}
 
 	public static int getSum() {
-		return 0;
+		Vector<BookCopyInfo> tmp = getAllCopy();
+		return tmp.size();
 	}
 }

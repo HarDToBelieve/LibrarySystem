@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ public class APIClient {
         for (Map.Entry<String, String> entry : param.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            tmp_url += key + "=" + value + "&";
+            tmp_url += URLEncoder.encode(key, "UTF-8") + "=" + URLEncoder.encode(value, "UTF-8") + "&";
         }
         tmp_url = tmp_url.substring(0, tmp_url.length() - 1);
         URL obj = new URL(tmp_url);
@@ -58,7 +59,7 @@ public class APIClient {
         for (Map.Entry<String, String> entry : data.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            tmp.add(key + "=" + value);
+            tmp.add(URLEncoder.encode(key, "UTF-8") + "=" + URLEncoder.encode(value, "UTF-8"));
 //            js.put(key, value);
         }
         String urlParameters = String.join("&", tmp);
