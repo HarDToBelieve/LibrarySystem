@@ -149,7 +149,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="d6bcf" class="javax.swing.JTable" binding="table1" default-binding="true">
+              <component id="d6bcf" class="javax.swing.JTable" binding="dataTable">
                 <constraints/>
                 <properties/>
               </component>

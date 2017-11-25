@@ -1,5 +1,5 @@
 package com.itss.Entity;
-import com.itss.Boundary.BookCopyForm;
+import com.itss.Boundary.Forms.BookCopyForm;
 import com.itss.basic.BasicModel;
 import com.itss.utilities.APIClient;
 import org.json.JSONArray;

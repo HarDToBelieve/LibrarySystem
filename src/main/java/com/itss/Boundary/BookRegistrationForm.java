@@ -26,7 +26,6 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JButton btnConfirm;
     private JButton btnCancel;
     private JTextField inputISBN;
-    private JTable table1;
 
     BookCopyRegistrationController bcrc;
     private BookRegistrationController brc;
