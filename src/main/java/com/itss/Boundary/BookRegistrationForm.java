@@ -1,5 +1,7 @@
 package com.itss.Boundary;
 
+import com.itss.Boundary.ComboBox.MyComboBoxEditor;
+import com.itss.Boundary.ComboBox.MyComboBoxRenderer;
 import com.itss.Boundary.Forms.BookForm;
 import com.itss.Controller.BookCopyRegistrationController;
 import com.itss.basic.BasicController;
@@ -47,9 +49,6 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         };
 
         dataTable.setModel(dtm);
-        TableColumn col = dataTable.getColumnModel().getColumn(1);
-        col.setCellEditor(new MyComboBoxEditor(listTypes));
-        col.setCellRenderer(new MyComboBoxRenderer(listTypes));
 
         dataTable.setVisible(false);
         btnConfirm.setVisible(false);

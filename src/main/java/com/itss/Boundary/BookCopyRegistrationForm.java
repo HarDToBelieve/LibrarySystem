@@ -1,5 +1,7 @@
 package com.itss.Boundary;
 
+import com.itss.Boundary.ComboBox.MyComboBoxEditor;
+import com.itss.Boundary.ComboBox.MyComboBoxRenderer;
 import com.itss.basic.BasicController;
 import com.itss.basic.BasicView;
 import com.itss.Controller.BookCopyRegistrationController;
@@ -161,27 +163,4 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     }
 }
 
-class MyComboBoxRenderer extends JComboBox implements TableCellRenderer {
-    public MyComboBoxRenderer(String[] items) {
-        super(items);
-    }
 
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-                                                   boolean hasFocus, int row, int column) {
-        if (isSelected) {
-            setForeground(table.getSelectionForeground());
-            super.setBackground(table.getSelectionBackground());
-        } else {
-            setForeground(table.getForeground());
-            setBackground(table.getBackground());
-        }
-        setSelectedItem(value);
-        return this;
-    }
-}
-
-class MyComboBoxEditor extends DefaultCellEditor {
-    public MyComboBoxEditor(String[] items) {
-        super(new JComboBox(items));
-    }
-}
