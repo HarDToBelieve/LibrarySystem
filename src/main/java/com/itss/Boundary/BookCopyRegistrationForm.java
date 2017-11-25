@@ -136,9 +136,12 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         String avgPrice = inputAvgPrice.getText();
 
         bcrc.setForm(bookID, type, avgPrice, numOfCopy);
-        if ( bcrc.getBookStatus() ) {
+        if ( bcrc.validateObject() ) {
             bcrc.genCopyCode();
             updateViewFromController();
+        }
+        else {
+            error();
         }
     }
 
@@ -150,6 +153,11 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     @Override
     public void error() {
 
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return contentPane;
     }
 }
 

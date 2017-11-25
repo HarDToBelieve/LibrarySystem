@@ -1,5 +1,6 @@
 package com.itss.Boundary;
 
+import com.itss.Boundary.Forms.BookForm;
 import com.itss.Controller.BookCopyRegistrationController;
 import com.itss.basic.BasicController;
 import com.itss.basic.BasicView;
@@ -7,6 +8,7 @@ import com.itss.Controller.BookRegistrationController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -22,12 +24,14 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JButton btnConfirm;
     private JButton btnCancel;
     private JTextField inputISBN;
+    private JTable table1;
 
     BookCopyRegistrationController bcrc;
     private BookRegistrationController brc;
     private DefaultTableModel dtm;
 
     public BookRegistrationForm() {
+
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnSubmit);
@@ -35,8 +39,18 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         bcrc = new BookCopyRegistrationController();
 
         Vector<String> colNames = new Vector<>(); colNames.add(""); colNames.add("");
-        dtm = new DefaultTableModel(colNames, 0);
+        dtm = new DefaultTableModel(colNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         dataTable.setModel(dtm);
+        TableColumn col = dataTable.getColumnModel().getColumn(1);
+        col.setCellEditor(new MyComboBoxEditor(listTypes));
+        col.setCellRenderer(new MyComboBoxRenderer(listTypes));
+
         dataTable.setVisible(false);
         btnConfirm.setVisible(false);
         btnCancel.setVisible(false);
@@ -131,9 +145,12 @@ public class BookRegistrationForm extends JDialog implements BasicView {
 
         BookForm bf = new BookForm(title, author, publisher, isbn);
         brc.setForm(bf);
-        if ( brc.getBookStatus() ) {
+        if ( brc.validateObject() ) {
             brc.genCode();
             updateViewFromController();
+        }
+        else {
+            error();
         }
     }
 
@@ -145,5 +162,10 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     @Override
     public void error() {
 
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return contentPane;
     }
 }

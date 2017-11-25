@@ -1,6 +1,6 @@
 package com.itss.Controller;
 
-import com.itss.Boundary.BookForm;
+import com.itss.Boundary.Forms.BookForm;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ public class BookRegistrationControllerWhiteBoxTest {
         BookRegistrationController brc = new BookRegistrationController();
         BookForm bf = new BookForm("arnmyr", "w[e5o7k", ";otdk", "aslf");
         brc.setForm(bf);
-        assertEquals(false, brc.getBookStatus());
+        assertEquals(false, brc.validateObject());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class BookRegistrationControllerWhiteBoxTest {
         BookRegistrationController brc = new BookRegistrationController();
         BookForm bf = new BookForm("aryh", "123 23", "adt63", "asds");
         brc.setForm(bf);
-        assertEquals(true, brc.getBookStatus());
+        assertEquals(true, brc.validateObject());
     }
 
     @Test
@@ -30,7 +30,7 @@ public class BookRegistrationControllerWhiteBoxTest {
         BookRegistrationController brc = new BookRegistrationController();
         BookForm bf = new BookForm("wlkejm6", "AStg ", "as4     ", "asdg ger5 3");
         brc.setForm(bf);
-        assertEquals(true, brc.getBookStatus());
+        assertEquals(true, brc.validateObject());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class BookRegistrationControllerWhiteBoxTest {
         BookRegistrationController brc = new BookRegistrationController();
         BookForm bf = new BookForm("a132bc", "asd_+)+_+_", "{}{}wqe$", "1323");
         brc.setForm(bf);
-        assertEquals(false, brc.getBookStatus());
+        assertEquals(false, brc.validateObject());
     }
 
     @Test
@@ -46,6 +46,6 @@ public class BookRegistrationControllerWhiteBoxTest {
         BookRegistrationController brc = new BookRegistrationController();
         BookForm bf = new BookForm("abc_ASDyy", "asasdaa3d", "wqe@%^&", "1323&AS");
         brc.setForm(bf);
-        assertEquals(false, brc.getBookStatus());
+        assertEquals(false, brc.validateObject());
     }
 }

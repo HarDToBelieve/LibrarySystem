@@ -12,34 +12,34 @@ public class BookCopyRegistrationControllerBlackBoxTest {
     public void testCase01() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
         bcrc.setForm("asda123", "Borrowable", "12.0", "12"); // Connect to db to get bookID
-        assertEquals(true, bcrc.getBookStatus());
+        assertEquals(true, bcrc.validateObject());
     }
 
     @Test
     public void testCase02() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
         bcrc.setForm("abc", "asd", "wqe", "1323");
-        assertEquals(false, bcrc.getBookStatus());
+        assertEquals(false, bcrc.validateObject());
     }
 
     @Test
     public void testCase03() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
         bcrc.setForm("abc", "asd", "wqe", "1323");
-        assertEquals(false, bcrc.getBookStatus());
+        assertEquals(false, bcrc.validateObject());
     }
 
     @Test
     public void testCase04() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
         bcrc.setForm("abc", "asd", "wqe", "1323");
-        assertEquals(false, bcrc.getBookStatus());
+        assertEquals(false, bcrc.validateObject());
     }
 
     @Test
     public void testCase05() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
         bcrc.setForm("abc", "asd", "wqe", "1323");
-        assertEquals(false, bcrc.getBookStatus());
+        assertEquals(false, bcrc.validateObject());
     }
 }

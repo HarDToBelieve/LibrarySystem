@@ -1,4 +1,4 @@
-package com.itss.Boundary;
+package com.itss.Boundary.Forms;
 
 import com.itss.basic.BasicForm;
 

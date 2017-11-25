@@ -1,5 +1,7 @@
 package com.itss.basic;
 
+import javax.swing.*;
+
 /**
  * Created by HarDToBelieve on 11/15/2017.
  */
@@ -14,4 +16,6 @@ public interface BasicView {
     void submit();
     void close();
     void error();
+
+    JPanel getMainPanel();
 }

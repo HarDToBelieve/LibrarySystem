@@ -1,5 +1,5 @@
 package com.itss.Controller;
-import com.itss.Boundary.BookCopyForm;
+import com.itss.Boundary.Forms.BookCopyForm;
 import com.itss.Entity.BookCopyInfo;
 import com.itss.Entity.BookInfo;
 import com.itss.basic.BasicController;
@@ -34,7 +34,7 @@ public class BookCopyRegistrationController implements BasicController {
 	}
 
 	@Override
-	public boolean getBookStatus() {
+	public boolean validateObject() {
 		boolean condBookID = !bcf.getBookID().isEmpty() && bcf.getBookID().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condType = !bcf.getType().isEmpty() && bcf.getType().matches("Reference|Borrowable$");
 		boolean condPrice = !bcf.getPrice().isEmpty() && bcf.getPrice().matches("^[0-9.]*$");

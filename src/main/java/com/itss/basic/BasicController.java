@@ -8,7 +8,7 @@ import java.util.Vector;
 public interface BasicController {
     Vector<Object> getModel();
 
-    boolean getBookStatus();
+    boolean validateObject();
     void updateData();
     void selectData();
 }

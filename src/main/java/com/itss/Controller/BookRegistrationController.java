@@ -3,7 +3,7 @@ import com.itss.Entity.BookCopyInfo;
 import com.itss.basic.BasicController;
 import com.itss.Entity.BookInfo;
 import com.itss.utilities.RandomString;
-import com.itss.Boundary.BookForm;
+import com.itss.Boundary.Forms.BookForm;
 
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
@@ -35,7 +35,7 @@ public class BookRegistrationController implements BasicController {
 	}
 
 	@Override
-	public boolean getBookStatus() {
+	public boolean validateObject() {
 		boolean condTitle = !bookform.getTitle().isEmpty() && bookform.getTitle().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condAuthor = !bookform.getAuthor().isEmpty() && bookform.getAuthor().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condPublisher = !bookform.getPublisher().isEmpty() && bookform.getPublisher().matches("^[a-zA-Z0-9\\s]*$");

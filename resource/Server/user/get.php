@@ -15,6 +15,11 @@
 		$bindParam->add('s', $_GET['name']);
 	}
 
+    if ( isset($_GET['password']) ) {
+        $qArray[] = 'password = ?';
+        $bindParam->add('s', $_GET['password']);
+    }
+
 	if ( isset($_GET['address']) ) {
 		$qArray[] = 'address = ?';
 		$bindParam->add('s', $_GET['address']);
@@ -39,11 +44,11 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($user_id, $name, $address, $date_of_birth, $email, $job);
+		$stmt->bind_result($user_id, $name, $password, $address, $date_of_birth, $email, $job);
 		$result = array();
 		
 		while ( $stmt->fetch() ) {
-			if ( $user_id && $name && $address && $date_of_birth && $email ) {
+			if ( $user_id && $name && $password && $address && $date_of_birth && $email ) {
 				$tmp = array('job' => $job,
 								'user_id' => $user_id,
 								'name' => $name,

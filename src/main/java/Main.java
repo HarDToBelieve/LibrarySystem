@@ -1,5 +1,6 @@
 import com.itss.Boundary.BookCopyRegistrationForm;
 import com.itss.Boundary.BookRegistrationForm;
+import com.itss.Boundary.MainWindow;
 import com.itss.utilities.APIClient;
 
 import javax.swing.*;
@@ -11,8 +12,8 @@ import java.util.Objects;
  */
 public class Main {
     public static void main (String[] args) {
-        BookCopyRegistrationForm bcrc = new BookCopyRegistrationForm();
-        bcrc.pack();
-        bcrc.setVisible(true);
+        MainWindow mw = new MainWindow();
+        mw.pack();
+        mw.setVisible(true);
     }
 }
