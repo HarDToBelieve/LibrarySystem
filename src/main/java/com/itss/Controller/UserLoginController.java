@@ -19,7 +19,7 @@ public class UserLoginController implements BasicController {
 
     @Override
     public boolean validateObject() {
-        return false;
+        return true;
     }
 
     @Override
