@@ -11,7 +11,7 @@
 		$result = array();
 		
 		while ( $stmt->fetch() ) {
-			if ( $user_id && $name && $address && $date_of_birth && $email ) {
+			if ( $user_id && $name && $address && $date_of_birth && $email && $job ) {
 				$tmp = array('job' => $job,
 								'user_id' => $user_id,
 								'name' => $name,

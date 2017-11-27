@@ -40,7 +40,7 @@ public class BookRegistrationController implements BasicController {
 		boolean condAuthor = !bookform.getAuthor().isEmpty() && bookform.getAuthor().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condPublisher = !bookform.getPublisher().isEmpty() && bookform.getPublisher().matches("^[a-zA-Z0-9\\s]*$");
 		boolean condISBN = !bookform.getIsbn().isEmpty() && bookform.getIsbn().matches("^[a-zA-Z0-9\\s]*$");
-		return condTitle && condAuthor && condPublisher && condISBN;
+		return condTitle && condAuthor && condPublisher && condISBN ;
 	}
 
 	@Override

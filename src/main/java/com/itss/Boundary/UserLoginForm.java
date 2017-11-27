@@ -80,9 +80,7 @@ public class UserLoginForm extends JDialog implements BasicView {
         ulc.setForm(lf);
         if ( ulc.validateObject() ) {
             close();
-            MainWindow mw = new MainWindow();
-            mw.pack();
-            mw.setVisible(true);
+            ulc.login();
         }
         else {
             error();
