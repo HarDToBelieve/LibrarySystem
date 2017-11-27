@@ -119,6 +119,11 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             for (Component c : dataField.getComponents()) {
                 c.setVisible(false);
             }
+            if ( dtm.getRowCount() > 0 ) {
+                for (int i = dtm.getRowCount() - 1; i >= 0; i--) {
+                    dtm.removeRow(i);
+                }
+            }
             for (Object s : data) {
                 String[] tmp = (String[])s;
                 dtm.addRow(new Object[]{tmp[0], tmp[1]});

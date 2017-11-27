@@ -65,13 +65,14 @@ public class IssueCardController implements BasicController{
         return cal.getTime().toString();
     }
     public void genACard(){
-        while(genACardNumber() == true){
-            String user_id = cardform.getUser_id();
-            String is_student = cardform.getIs_student();
-            String activate_code = getRandomString(15);
-            String expired_date = getADate(150);
-            card = new Card(user_id, "No", is_student, expired_date,activate_code,this.card_number);
+        while(genACardNumber() == false){
+            continue;
         }
+        String user_id = cardform.getUser_id();
+        String is_student = cardform.getIs_student();
+        String activate_code = getRandomString(15);
+        String expired_date = getADate(150);
+        card = new Card(user_id, "No", is_student, expired_date,activate_code,this.card_number);
     }
     public String getRandomString(int length){
         RandomString gen = new RandomString(length, ThreadLocalRandom.current());

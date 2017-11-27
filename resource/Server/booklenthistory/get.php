@@ -25,19 +25,25 @@
 		$bindParam->add('s', $_GET['date']);
 	}
 
+    if ( isset($_GET['is_returned']) ) {
+        $qArray[] = 'is_returned = ?';
+        $bindParam->add('s', $_GET['is_returned']);
+    }
+
 	$query .= implode(' AND ', $qArray);
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($id, $card_number, $copyID, $date, $user_id);
+		$stmt->bind_result($id, $card_number, $copyID, $date, $user_id, $is_returned);
 		$result = array();
 
 		while ( $stmt->fetch() ) {
-			if ( $user_id && $card_number && $copyID && $date ) {
+			if ( $user_id && $card_number && $copyID && $date && is_returned ) {
 				$tmp = array('user_id' => $user_id,
 								'card_number' => $card_number,
 								'copyID' => $copyID,
-								'date' => $date );
+								'date' => $date,
+								'is_returned' => $is_returned );
 				$result[] = $tmp;
 			}
 		}

@@ -84,6 +84,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int count = 0; count < dtm.getRowCount(); count++){
+                    System.out.println(dtm.getValueAt(count, 1).toString());
                     bcrc.modifyData(dtm.getValueAt(count, 1).toString(), dtm.getValueAt(count, 2).toString(), count);
 //                    dtm.getDataVector().elementAt(count);
                 }
@@ -114,6 +115,11 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         if ( data.size() > 0 ) {
             for (Component c : dataField.getComponents()) {
                 c.setVisible(false);
+            }
+            if ( dtm.getRowCount() > 0 ) {
+                for (int i = dtm.getRowCount() - 1; i >= 0; i--) {
+                    dtm.removeRow(i);
+                }
             }
             for (Object s : data) {
                 String[] tmp = (String[])s;

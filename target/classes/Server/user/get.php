@@ -44,7 +44,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($user_id, $name, $password, $address, $date_of_birth, $email, $job);
+		$stmt->bind_result($id, $user_id, $name, $password, $address, $date_of_birth, $email, $job);
 		$result = array();
 		
 		while ( $stmt->fetch() ) {

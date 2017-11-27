@@ -23,8 +23,11 @@ public class MainWindow extends JFrame {
         menuTabbed.add(brf.getMainPanel(), "Add new book");
         BookCopyRegistrationForm bcrf = new BookCopyRegistrationForm();
         menuTabbed.add(bcrf.getMainPanel(), "Add new copy");
+        IssueCardView icv = new IssueCardView();
+        menuTabbed.add(icv.getMainPanel(), "Issue Card");
         UserLogoutForm ulf = new UserLogoutForm();
         menuTabbed.add(ulf.getMainPanel(), "Logout");
+
 
         menuTabbed.setTabPlacement(JTabbedPane.LEFT);
     }
