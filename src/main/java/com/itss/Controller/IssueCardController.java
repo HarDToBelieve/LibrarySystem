@@ -5,6 +5,7 @@ import com.itss.Boundary.Forms.CardForm;
 import com.itss.Entity.BookCopyInfo;
 import com.itss.Entity.BookInfo;
 import com.itss.Entity.Card;
+import com.itss.Entity.User;
 import com.itss.basic.BasicController;
 import com.itss.utilities.RandomString;
 
@@ -33,7 +34,9 @@ public class IssueCardController implements BasicController{
 
     @Override
     public boolean validateObject() {
-        return true;
+        boolean check_type =  cardform.getIs_student().equals("No") || cardform.getIs_student().equals("YES");
+        boolean check_user_id = check_user_existed(cardform.getUser_id());
+        return check_type && check_user_id;
     }
 
     @Override
@@ -65,17 +68,21 @@ public class IssueCardController implements BasicController{
         return cal.getTime().toString();
     }
     public void genACard(){
-        while(genACardNumber() == true){
-            String user_id = cardform.getUser_id();
-            String is_student = cardform.getIs_student();
-            String activate_code = getRandomString(15);
-            String expired_date = getADate(150);
-            card = new Card(user_id, "No", is_student, expired_date,activate_code,this.card_number);
+        while(genACardNumber() == false){
         }
+        String user_id = cardform.getUser_id();
+        String is_student = cardform.getIs_student();
+        String activate_code = getRandomString(15);
+        String expired_date = getADate(150);
+        card = new Card(user_id, "NO", is_student, expired_date,activate_code,this.card_number);
     }
-    public String getRandomString(int length){
+    private String getRandomString(int length){
         RandomString gen = new RandomString(length, ThreadLocalRandom.current());
         String cardNumber = gen.nextString();
         return cardNumber;
     }
+    private boolean check_user_existed(String user_id){
+        return User.check_a_user_existed(user_id);
+    }
+
 }
