@@ -68,7 +68,15 @@ public class UserLoginForm extends JDialog implements BasicView {
 
     @Override
     public void updateViewFromController() {
-
+        close();
+        MainWindow mw = ulc.login();
+        if ( mw == null ) {
+            error();
+        }
+        else {
+            mw.pack();
+            mw.setVisible(true);
+        }
     }
 
     @Override
@@ -79,8 +87,7 @@ public class UserLoginForm extends JDialog implements BasicView {
         LoginForm lf = new LoginForm(username, password);
         ulc.setForm(lf);
         if ( ulc.validateObject() ) {
-            close();
-            ulc.login();
+            updateViewFromController();
         }
         else {
             error();
@@ -94,7 +101,7 @@ public class UserLoginForm extends JDialog implements BasicView {
 
     @Override
     public void error() {
-
+        JOptionPane.showMessageDialog(null, "Wrong username or password");
     }
 
     public String MD5(String md5) {

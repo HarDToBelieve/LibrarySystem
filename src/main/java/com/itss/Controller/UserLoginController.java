@@ -5,6 +5,8 @@ import com.itss.Boundary.MainWindow;
 import com.itss.Entity.UserInfo;
 import com.itss.basic.BasicController;
 
+import javax.swing.*;
+import java.util.HashMap;
 import java.util.Vector;
 
 /**
@@ -12,6 +14,7 @@ import java.util.Vector;
  */
 public class UserLoginController implements BasicController {
     UserInfo u;
+    LoginForm lf;
     @Override
     public Vector<Object> getModel() {
         return null;
@@ -19,7 +22,18 @@ public class UserLoginController implements BasicController {
 
     @Override
     public boolean validateObject() {
-        return true;
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("name", lf.getUsername());
+        dict.put("password", lf.getPassword());
+        UserInfo tmp = UserInfo.getUniqueUser(dict);
+        if ( tmp == null ) {
+            u = null;
+            return false;
+        }
+        else {
+            u = new UserInfo(tmp);
+            return true;
+        }
     }
 
     @Override
@@ -33,12 +47,16 @@ public class UserLoginController implements BasicController {
     }
 
     public void setForm(LoginForm lf) {
-
+        this.lf = lf;
     }
 
-    public void login() {
-        MainWindow mw = new MainWindow();
-        mw.pack();
-        mw.setVisible(true);
+    public MainWindow login() {
+        if ( u == null ) {
+            return null;
+        }
+        else {
+            MainWindow mw = new MainWindow(u.getJob());
+            return mw;
+        }
     }
 }
