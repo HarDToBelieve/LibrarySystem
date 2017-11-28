@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class Main {
     public static void main (String[] args) {
-        MainWindow mw = new MainWindow();
+        MainWindow mw = new MainWindow("librarian");
         mw.pack();
         mw.setVisible(true);
     }

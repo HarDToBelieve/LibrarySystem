@@ -24,6 +24,8 @@ public class MainWindow extends JFrame {
             menuTabbed.add(brf.getMainPanel(), "Add new book");
             BookCopyRegistrationForm bcrf = new BookCopyRegistrationForm();
             menuTabbed.add(bcrf.getMainPanel(), "Add new copy");
+            ReturnBookView rbv = new ReturnBookView();
+            menuTabbed.add(rbv.getMainPanel(), "Return Book");
             IssueCardView icv = new IssueCardView();
             menuTabbed.add(icv.getMainPanel(), "Issue Card");
         }

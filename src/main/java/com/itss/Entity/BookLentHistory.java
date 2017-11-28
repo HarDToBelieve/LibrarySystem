@@ -1,6 +1,20 @@
 package com.itss.Entity;
 
 import com.itss.basic.BasicModel;
+import com.itss.utilities.APIClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import static com.itss.basic.BasicModel.getUnique;
+
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
 
 
 public class BookLentHistory implements BasicModel {
@@ -8,6 +22,25 @@ public class BookLentHistory implements BasicModel {
     private String copyID;
     private String date;
     private String card_number;
+    private String is_returned;
+    private double compensation;
+    private Boolean valid;
+
+    public BookLentHistory(String user_id, String copyID, String date, String card_number, String is_returned) {
+        this.user_id = user_id;
+        this.copyID = copyID;
+        this.date = date;
+        this.card_number = card_number;
+        this.is_returned = is_returned;
+    }
+
+    public double getCompensation() {
+        return compensation;
+    }
+
+    public void setCompensation(double compensation) {
+        this.compensation = compensation;
+    }
 
     public String getUser_id() {
         return user_id;
@@ -25,6 +58,10 @@ public class BookLentHistory implements BasicModel {
         return card_number;
     }
 
+    public String getIsReturned() {
+        return is_returned;
+    }
+
     @Override
     public boolean checkConnection() {
         return true;
@@ -37,14 +74,68 @@ public class BookLentHistory implements BasicModel {
 
     @Override
     public void add() {
-
+        delete_row();
     }
 
     @Override
     public boolean validObject() {
-        return false;
+        return true;
     }
-    public void getByCardNumber(){
+
+    public static Vector<BookLentHistory> getBooksByCardNumber(String card_number_to_find){
+        Vector<BookLentHistory> bookLentHistoryVector = new Vector<>();
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("card_number", card_number_to_find);
+        String folder = "booklenthistory";
+        JSONArray array = getUnique(folder, dict);
+        for(Object o : array){
+            JSONObject jsonObject = (JSONObject) o;
+            String user_id = jsonObject.getString("user_id");
+            String copyID = jsonObject.getString("copyID");
+            String date = jsonObject.getString("date");
+            String card_number = jsonObject.getString("card_number");
+            String is_returned = jsonObject.getString("is_returned");
+            BookLentHistory tmp = new BookLentHistory(user_id, copyID,date, card_number, is_returned);
+            bookLentHistoryVector.add(tmp);
+        }
+        return bookLentHistoryVector;
+    }
+
+    public static Vector<BookLentHistory> getBooksByCopyID(String copyID_to_find){
+        Vector<BookLentHistory> bookLentHistoryVector = new Vector<>();
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("copyID", copyID_to_find);
+        String folder = "booklenthistory";
+        JSONArray array = getUnique(folder, dict);
+        for(Object o : array){
+            JSONObject jsonObject = (JSONObject) o;
+            String user_id = jsonObject.getString("user_id");
+            String copyID = jsonObject.getString("copyID");
+            String date = jsonObject.getString("date");
+            String card_number = jsonObject.getString("card_number");
+            String is_returned = jsonObject.getString("is_returned");
+            BookLentHistory tmp = new BookLentHistory(user_id, copyID,date, card_number, is_returned);
+            bookLentHistoryVector.add(tmp);
+        }
+        return bookLentHistoryVector;
+    }
+    public double calCompensation() throws ParseException {
+        Double fine_per_day = 4000.0;
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date old_date = formatter.parse(this.date);
+        System.out.println("old date " + old_date.getTime());
+        Calendar calendar = Calendar.getInstance();
+        String str_today = formatter.format(calendar.getTime());
+        Date today = formatter.parse(str_today);
+        System.out.println("today " + today.getTime());
+        long diffs = today.getTime() - old_date.getTime();
+        // cal culate the days difference and set the money
+        int days_diffs = (int) (diffs/ 86400000);
+        double fine = fine_per_day * days_diffs;
+        this.compensation = fine;
+        return fine;
+    }
+    public void delete_row(){
 
     }
 }

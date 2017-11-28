@@ -154,7 +154,7 @@ public class IssueCardView extends JDialog implements BasicView {
 
     @Override
     public void submit() {
-        CardForm cf = new CardForm("123", "YES", "YES", "123", "123");
+        CardForm cf = new CardForm("123", "YES");
         icc.setCardform(cf);
         if (icc.validateObject()) {
             icc.genACard();
