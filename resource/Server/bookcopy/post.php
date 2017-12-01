@@ -9,7 +9,7 @@
 
 		$query = 'INSERT INTO bookcopy(copyID, type, price, bookID) VALUES(?,?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
-			$stmt->bind_param('ssds', $_POST['copyID'], $_POST['type'], $_POST['price'], $_POST['bookID']);
+			$stmt->bind_param('ssss', $_POST['copyID'], $_POST['type'], $_POST['price'], $_POST['bookID']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
             			    							'result' => array()));

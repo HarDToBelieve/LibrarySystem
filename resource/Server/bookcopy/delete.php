@@ -17,7 +17,7 @@
 
 	if ( isset($_GET['price']) ) {
 		$qArray[] = 'price = ?';
-		$bindParam->add('d', $_GET['price']);
+		$bindParam->add('s', $_GET['price']);
 	}
 
 	if ( isset($_GET['bookID']) ) {

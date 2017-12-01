@@ -82,7 +82,8 @@ public class UserInfo implements BasicModel {
                 JSONObject o = (JSONObject) result.get("result");
                 this.user_id = o.getString("user_id");
                 this.name = o.getString("name");
-                this.address = o.getString("date");
+                this.address = o.getString("address");
+                this.date = o.getString("date_of_birth");
                 this.email = o.getString("email");
                 this.job = o.getString("job");
                 this.valid = true;
@@ -103,6 +104,7 @@ public class UserInfo implements BasicModel {
         data.put("address", address);
         data.put("email", email);
         data.put("job", job);
+        data.put("date_of_birth", date);
 
         HashMap<String, Object> result = null;
         String endpoint = "user/post.php";
@@ -121,7 +123,7 @@ public class UserInfo implements BasicModel {
             String user_id = jsonLineItem.getString("user_id");
             String name = jsonLineItem.getString("name");
             String address = jsonLineItem.getString("address");
-            String birth = jsonLineItem.getString("date");
+            String birth = jsonLineItem.getString("date_of_birth");
             String email = jsonLineItem.getString("email");
             String job = jsonLineItem.getString("job");
 

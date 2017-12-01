@@ -5,8 +5,12 @@ import com.itss.Entity.BookInfo;
 import com.itss.utilities.RandomString;
 import com.itss.Boundary.Forms.BookForm;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 /**
  * Created by HarDToBelieve on 10/17/2017.
@@ -17,10 +21,12 @@ public class BookRegistrationController implements BasicController {
 	private BookForm bookform;
 	private BookCopyInfo bookcopy;
 	private String bookid;
+	private Vector<BookInfo> db;
 
 	public BookRegistrationController() {
 		book = new BookInfo();
 		bookcopy = new BookCopyInfo();
+		db = BookInfo.getAllBook();
 	}
 
 	@Override
@@ -68,4 +74,28 @@ public class BookRegistrationController implements BasicController {
 	public void setForm (BookForm bf) {
 		bookform = bf;
 	}
+
+	public static ArrayList<String> getUniqueBookModel(BookInfo b) {
+		ArrayList<String> result = new ArrayList<>();
+		result.add(b.getTitle());
+		result.add(b.getAuthor());
+		result.add(b.getPublisher());
+		result.add(b.getIsbn());
+		result.add(b.getBookID());
+		return result;
+	}
+
+	public Vector<ArrayList<String>> getBook(String title) {
+		Vector<ArrayList<String>> result = new Vector<>();
+
+		for (BookInfo tmp : db) {
+			if ( tmp.getTitle().contains(title) || title.isEmpty() ) {
+				result.add(getUniqueBookModel(tmp));
+			}
+		}
+
+		return result;
+	}
+
+
 }

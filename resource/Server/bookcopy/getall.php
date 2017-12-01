@@ -7,7 +7,7 @@
 
 	if ( $stmt = $db->prepare($query) ) {
 		$stmt->execute();
-		$stmt->bind_result($id, $copyID, $bookID, $type, $price);
+		$stmt->bind_result($id, $copyID, $type, $price, $bookID);
 		$result = array();
 
 		while ( $stmt->fetch() ) {
