@@ -118,9 +118,20 @@ public class BookCopyInfo implements BasicModel {
 
 		HashMap<String, Object> result = null;
 		String endpoint = "bookcopy/post.php";
+		String endpoint_stt = "copystatus/post.php";
 		try {
 			result = APIClient.post(BookCopyInfo.host + endpoint, data);
 			valid = result.get("status_code").equals("Success");
+
+			data.clear();
+			data.put("bookID", bookID);
+			BookInfo tmp = BookInfo.getUniqueBook(data);
+
+			data.clear();
+			data.put("copyID" , copyID);
+			data.put("title", tmp.getTitle());
+			data.put("status", "AVAILABLE");
+			APIClient.post(BookCopyInfo.host + endpoint_stt, data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
