@@ -40,7 +40,7 @@
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		if ( $stmt->execute() ) {
 		    echo json_encode(array('status_code' => 'Success',
-			    							'result' => $result));
+			    							'result' => array()));
 		}
 		else {
 		    echo json_encode(array('status_code' => 'Failure',

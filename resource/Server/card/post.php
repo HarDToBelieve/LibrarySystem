@@ -12,7 +12,7 @@
 			$stmt->bind_param('ssddss', $_POST['card_number'], $_POST['user_id'], $_POST['is_active'], $_POST['is_student'], $_POST['expired_date'], $_POST['activate_code']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
-            			    							'result' => $result));
+            			    							'result' => array()));
             		}
             		else {
             		    echo json_encode(array('status_code' => 'Failure',

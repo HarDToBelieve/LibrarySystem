@@ -39,6 +39,7 @@ def user(name, password, address, date_of_birth, email, job):
     }
     endpoint = 'user/post.php'
     result = requests.post(url + endpoint, data=data)
+    print result.text
     return json.loads(result.text)['status_code']
 
 def book(title, author, publisher):

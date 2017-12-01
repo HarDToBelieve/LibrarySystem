@@ -12,7 +12,7 @@
 			$stmt->bind_param('ssssss', $_POST['copyID'], $_POST['card_number'], $_POST['lentDate'], $_POST['bookID'], $_POST['returnDate'], $_POST['user_id']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
-            			    							'result' => $result));
+            			    							'result' => array()));
             		}
             		else {
             		    echo json_encode(array('status_code' => 'Failure',

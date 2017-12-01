@@ -12,7 +12,7 @@
 			$stmt->bind_param('ssds', $_POST['copyID'], $_POST['type'], $_POST['price'], $_POST['bookID']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
-            			    							'result' => $result));
+            			    							'result' => array()));
             		}
             		else {
             		    echo json_encode(array('status_code' => 'Failure',

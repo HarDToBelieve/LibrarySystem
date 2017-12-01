@@ -12,7 +12,7 @@
 			$stmt->bind_param('sssssss', $_POST['user_id'], $_POST['name'], $_POST['password'], $_POST['address'], $_POST['date_of_birth'], $_POST['email'], $_POST['job']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
-            			    							'result' => $result));
+            			    							'result' => array()));
             		}
             		else {
             		    echo json_encode(array('status_code' => 'Failure',

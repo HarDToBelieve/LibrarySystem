@@ -12,7 +12,7 @@
 			$stmt->bind_param('sssss', $_POST['title'], $_POST['author'], $_POST['publisher'], $_POST['bookID'], $_POST['isbn']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
-            			    							'result' => $result));
+            			    							'result' => array()));
             		}
             		else {
             		    echo json_encode(array('status_code' => 'Failure',
