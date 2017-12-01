@@ -3,41 +3,35 @@
 
 	$bindParam = new BindParam();
 	$qArray = array();
-	$query = 'SELECT * FROM bookcopy WHERE '; 
+	$query = 'SELECT * FROM copystatus WHERE ';
 
 	if ( isset($_GET['copyID']) ) {
 		$qArray[] = 'copyID = ?';
 		$bindParam->add('s', $_GET['copyID']);
 	}
 
-	if ( isset($_GET['type']) ) {
-		$qArray[] = 'type = ?';
-		$bindParam->add('s', $_GET['type']);
+	if ( isset($_GET['title']) ) {
+		$qArray[] = 'title = ?';
+		$bindParam->add('s', $_GET['title']);
 	}
 
-	if ( isset($_GET['price']) ) {
-		$qArray[] = 'price = ?';
-		$bindParam->add('s', $_GET['price']);
-	}
-
-	if ( isset($_GET['bookID']) ) {
-		$qArray[] = 'bookID = ?';
-		$bindParam->add('s', $_GET['bookID']);
+	if ( isset($_GET['status']) ) {
+		$qArray[] = 'status = ?';
+		$bindParam->add('s', $_GET['status']);
 	}
 
 	$query .= implode(' AND ', $qArray);
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($id, $copyID, $type, $price, $bookID);
+		$stmt->bind_result($id, $copyID, $title, $password, $status, $date_of_birth, $email, $job);
 		$result = array();
-
+		
 		while ( $stmt->fetch() ) {
-			if ( $copyID && $type && $price && $bookID) {
-				$tmp = array('copyID' => $copyID,
-								'type' => $type,
-								'price' => $price,
-								'bookID' => $bookID );
+			if ( $copyID && $title && $status ) {
+				$tmp = array(	'copyID' => $copyID,
+								'title' => $title,
+								'status' => $status );
 				$result[] = $tmp;
 			}
 		}

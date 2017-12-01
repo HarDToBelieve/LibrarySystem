@@ -3,7 +3,7 @@
 
 	$bindParam = new BindParam();
 	$qArray = array();
-	$query = 'SELECT * FROM bookborrowhistory'; 
+	$query = 'SELECT * FROM user';
 
 	if ( $stmt = $db->prepare($query) ) {
 		$stmt->execute();

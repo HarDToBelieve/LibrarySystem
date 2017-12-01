@@ -7,6 +7,8 @@ import com.itss.basic.BasicView;
 import com.itss.Controller.BookCopyRegistrationController;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -59,13 +61,10 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
 
         Vector<ArrayList<String>> cur_db = bcrc.getCopy("");
         for (ArrayList<String> tmp : cur_db) {
-            dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4)});
+            dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3)});
         }
 
         dataTable.setModel(dtm2);
-        TableColumn col = dataTable.getColumnModel().getColumn(1);
-        col.setCellEditor(new MyComboBoxEditor(listTypes));
-        col.setCellRenderer(new MyComboBoxRenderer(listTypes));
 
         btnConfirm.setVisible(false);
         btnCancel.setVisible(false);
@@ -96,7 +95,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
                 }
                 Vector<ArrayList<String>> cur_db = bcrc.getCopy("");
                 for (ArrayList<String> tmp : cur_db) {
-                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4)});
+                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3)});
                 }
 
                 dtm2.fireTableDataChanged();
@@ -113,6 +112,36 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
                 btnConfirm.setVisible(false);
                 btnCancel.setVisible(false);
                 btnSubmit.setVisible(true);
+            }
+        });
+
+        inputBookID.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search();
+            }
+
+            public void search() {
+                if ( dtm2.getRowCount() > 0 ) {
+                    for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
+                        dtm2.removeRow(i);
+                    }
+                }
+                Vector<ArrayList<String>> cur_db = bcrc.getCopy(inputBookID.getText());
+                for (ArrayList<String> tmp : cur_db) {
+                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3)});
+                }
+                dtm2.fireTableDataChanged();
             }
         });
     }
@@ -148,6 +177,11 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             }
             dtm.fireTableDataChanged();
             dataTable.setModel(dtm);
+
+            String[] listTypes = new String[]{"Reference", "Borrowable"};
+            TableColumn col = dataTable.getColumnModel().getColumn(1);
+            col.setCellEditor(new MyComboBoxEditor(listTypes));
+            col.setCellRenderer(new MyComboBoxRenderer(listTypes));
 
             btnSubmit.setVisible(false);
             btnCancel.setVisible(true);

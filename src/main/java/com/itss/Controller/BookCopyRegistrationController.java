@@ -58,12 +58,13 @@ public class BookCopyRegistrationController implements BasicController {
 
 	}
 
-	public int getLastCopy() {
-		return BookCopyInfo.getSum();
+	public int getLastCopy(String bookid) {
+		return BookCopyInfo.getSum(bookid);
 	}
 
 	public void genCopyCode() {
-		int last = getLastCopy();
+		int last = getLastCopy(bcf.getBookID());
+		copies.clear();
 		for (int i=0; i<Integer.parseInt(bcf.getNumOfCopy()); i++) {
 			String copyID = bcf.getBookID() + "_" + String.valueOf(i + last);
 			copies.add(new BookCopyInfo(copyID, bcf.getType(),

@@ -4,12 +4,11 @@
 	$bindParam = new BindParam();
 	$qArray = array();
 
-	if ( isset($_POST['copyID']) && isset($_POST['type']) && 
-		isset($_POST['price']) && isset($_POST['bookID']) ) {
+	if ( isset($_POST['copyID']) && isset($_POST['title']) && isset($_POST['status']) ) {
 
-		$query = 'INSERT INTO bookcopy(copyID, type, price, bookID) VALUES(?,?,?,?)';
+		$query = 'INSERT INTO copystatus(copyID, title, status) VALUES(?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
-			$stmt->bind_param('ssss', $_POST['copyID'], $_POST['type'], $_POST['price'], $_POST['bookID']);
+			$stmt->bind_param('sss', $_POST['copyID'], $_POST['title'], $_POST['status']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
             			    							'result' => array()));

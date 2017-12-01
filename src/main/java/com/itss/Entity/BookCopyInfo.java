@@ -131,8 +131,13 @@ public class BookCopyInfo implements BasicModel {
 		return valid;
 	}
 
-	public static int getSum() {
+	public static int getSum(String bookid) {
 		Vector<BookCopyInfo> tmp = getAllCopy();
-		return tmp.size();
+		int count = 0;
+		for (BookCopyInfo c : tmp) {
+			if ( c.getBookID().equals(bookid) )
+				count += 1;
+		}
+		return count;
 	}
 }
