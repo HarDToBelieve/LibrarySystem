@@ -6,28 +6,14 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Vector;
+import static com.itss.basic.BasicModel.deleteUnique;
 
 import static com.itss.basic.BasicModel.getUnique;
 
 /**
  * Created by Administrator on 12/1/2017.
  */
-public class CopyInfo implements BasicModel {
-    public String getCopyID() {
-        return copyID;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getBookID() {
-        return bookID;
-    }
+public class CopyInfo extends BookCopyInfo {
 
     public String getCopyStatus() {
         return copyStatus;
@@ -37,18 +23,15 @@ public class CopyInfo implements BasicModel {
         return title;
     }
 
-    private String copyID;
-    private String type;
-    private double price;
-    private String bookID;
+
     private String copyStatus;
     private String title;
 
     public CopyInfo(String copyID, String type, double price, String bookID, String copyStatus, String title) {
-        this.copyID = copyID;
-        this.type = type;
-        this.price = price;
-        this.bookID = bookID;
+        setCopyID(copyID);
+        setType(type);
+        setPrice(price);
+        setBookID(bookID);
         this.copyStatus = copyStatus;
         this.title = title;
     }
@@ -68,7 +51,6 @@ public class CopyInfo implements BasicModel {
             String type = jsonObject.getString("type");
             String copyID = jsonObject.getString("copyID");
             String bookID = jsonObject.getString("bookID");
-            String copyStatus = jsonObject.getString("copyStatus");
             String title = jsonObject.getString("title");
             String price = jsonObject.getString("price");
             CopyInfo tmp = new CopyInfo(copyID, type, Double.parseDouble(price), bookID, copyStatus, title);
@@ -88,7 +70,6 @@ public class CopyInfo implements BasicModel {
             String type = jsonObject.getString("type");
             String copyID = jsonObject.getString("copyID");
             String bookID = jsonObject.getString("bookID");
-            String copyStatus = jsonObject.getString("copyStatus");
             String title = jsonObject.getString("title");
             String price = jsonObject.getString("price");
             CopyInfo tmp = new CopyInfo(copyID, type, Double.parseDouble(price), bookID, copyStatus, title);
@@ -97,7 +78,13 @@ public class CopyInfo implements BasicModel {
         return bookCopyVector;
     }
 
-    public void delete_row() {
+    public boolean delete_row() {
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("copyID", this.getCopyID());
+        String folder = "bookinfo";
+        return deleteUnique(folder, dict);
+    }
+    private String get_copy_status(){
 
     }
 

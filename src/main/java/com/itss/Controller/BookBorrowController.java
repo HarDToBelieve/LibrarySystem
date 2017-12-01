@@ -22,6 +22,7 @@ public class BookBorrowController implements BasicController {
     Vector<String[]> pick_from_view;
     ArrayList<CopyInfo> list_picked_rows;
     private BookLentHistory blh;
+    private Card card;
 
     public BookBorrowController() {
         this.copy_list = new ArrayList<>();
@@ -102,7 +103,7 @@ public class BookBorrowController implements BasicController {
     }
 
     public boolean checkBorrower() {
-        return Card.existCard(bookBorrowForm.getCardNumber());
+        return card.check_a_card_existed(bookBorrowForm.getCardNumber());
 
     }
 

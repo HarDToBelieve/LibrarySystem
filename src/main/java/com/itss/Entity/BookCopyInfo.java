@@ -53,6 +53,23 @@ public class BookCopyInfo implements BasicModel {
 		this.bookID = bookID;
 	}
 
+	public void setCopyID(String copyID) {
+		this.copyID = copyID;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setBookID(String bookID) {
+		this.bookID = bookID;
+	}
+
+
 	public BookCopyInfo() {
 
 	}
