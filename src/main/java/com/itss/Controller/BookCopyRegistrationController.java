@@ -64,6 +64,8 @@ public class BookCopyRegistrationController implements BasicController {
 		int last = getLastCopy();
 		for (int i=0; i<Integer.parseInt(bcf.getNumOfCopy()); i++) {
 			String copyID = bcf.getBookID() + "_" + String.valueOf(i + last);
+
+
 			copies.add(new BookCopyInfo(copyID, bcf.getType(),
 					Double.parseDouble(bcf.getPrice()), bcf.getBookID()));
 		}

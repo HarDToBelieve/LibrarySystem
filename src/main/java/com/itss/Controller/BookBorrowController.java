@@ -1,30 +1,26 @@
 package com.itss.Controller;
+
+import com.itss.Boundary.Forms.BookBorrowForm;
 import com.itss.Boundary.Forms.BookCopyForm;
 import com.itss.Entity.BookCopyInfo;
-import com.itss.Entity.BookInfo;
 import com.itss.basic.BasicController;
-import com.itss.utilities.RandomString;
-import com.itss.Boundary.BookCopyRegistrationForm;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Vector;
-import java.util.concurrent.ThreadLocalRandom;
-
 
 /**
- * Created by HDT on 11/29/2017.
+ * Created by Administrator on 12/1/2017.
  */
-public class BookDeleteController implements BasicController {
+public class BookBorrowController implements BasicController {
+
     private ArrayList<BookCopyInfo> copy_list;
-    private BookCopyForm bookcopyform;
+    private BookBorrowForm bookBorrowForm;
     Vector<String[]> pick_from_view;
     ArrayList<BookCopyInfo> list_picked_rows;
 
-    public BookDeleteController() {
+    public BookBorrowController() {
         this.copy_list = new ArrayList<>();
-        this.bookcopyform = new BookCopyForm();
         this.pick_from_view = new Vector<>();
         this.list_picked_rows = new ArrayList<>();
     }
@@ -45,12 +41,12 @@ public class BookDeleteController implements BasicController {
 
     @Override
     public boolean validateObject() {
-        return true;
+        return false;
     }
 
     @Override
     public void updateData() {
-        copy_list.forEach(BookCopyInfo::delete_row);
+
     }
 
     @Override
@@ -59,9 +55,9 @@ public class BookDeleteController implements BasicController {
     }
 
     public void getCopyByCopyID(String copyID) {
-        Vector<BookCopyInfo> deletebooks = BookCopyInfo.getCopyByID(copyID);
+        Vector<BookCopyInfo> borrowbooks = BookCopyInfo.getCopyByID(copyID);
         copy_list.clear();
-        for (BookCopyInfo copy : deletebooks) {
+        for (BookCopyInfo copy : borrowbooks) {
             BookCopyInfo tmp = new BookCopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
             copy_list.add(tmp);
         }
@@ -69,15 +65,17 @@ public class BookDeleteController implements BasicController {
     }
 
     public void getCopyByTitle(String title) {
-        Vector<BookCopyInfo> deletebooks = BookCopyInfo.getCopyByCopyTitle(title);
+        Vector<BookCopyInfo> borrowbooks = BookCopyInfo.getCopyByCopyTitle(title);
         copy_list.clear();
-        for (BookCopyInfo copy : deletebooks) {
+        for (BookCopyInfo copy : borrowbooks) {
             BookCopyInfo tmp = new BookCopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
             copy_list.add(tmp);
         }
     }
 
-    public void getPickedDeleteBook() throws ParseException { //used for displaying rows after picked
+
+
+    public void getPickedBorrowBook() throws ParseException { //used for displaying rows after picked
         // set picked rows into a class's variable
         list_picked_rows.clear();
         for (String[] a_pick : pick_from_view) {
@@ -89,15 +87,6 @@ public class BookDeleteController implements BasicController {
         }
     }
 
-    private void delete_picked_rows(){
-        // only works after calling function getPickedLentBook
-        // this function calls to model then delete the row selected in the db of booklenthistory
-        //param holds copyID and title make a unique key for a row
-        String copyStatus = "available";
-        for(BookCopyInfo copy : list_picked_rows){
-            if(copy.getCopyStatus().equals(copyStatus))
-                copy.delete_row();
-        }
-    }
+
 
 }
