@@ -3,7 +3,7 @@
 
 	$bindParam = new BindParam();
 	$qArray = array();
-	$query = 'DELETE FROM card WHERE ';
+	$query = 'DELETE FROM user WHERE ';
 
 	if ( isset($_GET['user_id']) ) {
 		$qArray[] = 'user_id = ?';

@@ -7,7 +7,7 @@
 	if ( isset($_POST['card_number']) && isset($_POST['user_id']) && 
 		isset($_POST['copyID']) && isset($_POST['date']) && isset($_POST['is_returned']) ) {
 
-		$query = 'INSERT INTO bookinfo(card_number, user_id, copyID, date, is_returned) VALUES(?,?,?,?,?)';
+		$query = 'INSERT INTO booklenthistory(card_number, user_id, copyID, date, is_returned) VALUES(?,?,?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
 			$stmt->bind_param('sssss', $_POST['card_number'], $_POST['user_id'], $_POST['copyID'], $_POST['date'], $_POST['is_returned']);
 			if ( $stmt->execute() ) {
