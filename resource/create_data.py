@@ -77,6 +77,7 @@ def card_number(userID, is_active, is_student):
     now = datetime.datetime.now()
     expired_date = randomDate(now.strftime("%d/%m/%Y"), "1/1/2039", random.random())
     data = {
+        'card_number' : card_number,
         'user_id' : userID,
         'is_active' : is_active,
         'is_student' : is_student,
@@ -123,15 +124,15 @@ for i in range(len(bookID)):
         if tmp != 'Success':
             print '[-] Failed to add copy'
 
-tmp = card_number(user_id[1], 1, 1)
+tmp = card_number(1, user_id[1], 1, 1)
 if tmp != 'Success':
     print '[-] Failed to add card_number'
 
-tmp = card_number(user_id[1], 1, 1)
+tmp = card_number(2, user_id[1], 1, 1)
 if tmp != 'Success':
     print '[-] Failed to add card_number'
 
-tmp = card_number(user_id[1], 1, 1)
+tmp = card_number(3, user_id[1], 1, 1)
 if tmp != 'Success':
     print '[-] Failed to add card_number'
 
