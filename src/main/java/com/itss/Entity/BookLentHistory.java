@@ -5,8 +5,7 @@ import com.itss.utilities.APIClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import static com.itss.basic.BasicModel.getUnique;
-
-
+import static com.itss.basic.BasicModel.deleteUnique;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -151,7 +150,31 @@ public class BookLentHistory implements BasicModel {
         this.compensation = fine;
         return fine;
     }
-    public void delete_row(){
+    public boolean delete_row(){
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("card_number", this.card_number);
+        dict.put("copyID", this.copyID);
+        String folder = "booklenthistory";
+        return deleteUnique(folder, dict);
+    }
+
+    public int countNumLentBook(String card_number_tofind) {
+        Vector<BookLentHistory> bookLentHistoryVector = new Vector<>();
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("card_number", card_number_tofind);
+        String folder = "booklenthistory";
+        JSONArray array = getUnique(folder, dict);
+        for(Object o : array){
+            JSONObject jsonObject = (JSONObject) o;
+            String user_id = jsonObject.getString("user_id");
+            String copyID = jsonObject.getString("copyID");
+            String date = jsonObject.getString("date");
+            String card_number = jsonObject.getString("card_number");
+            String is_returned = jsonObject.getString("is_returned");
+            BookLentHistory tmp = new BookLentHistory(user_id, copyID,date, card_number, is_returned);
+            bookLentHistoryVector.add(tmp);
+        }
+        return bookLentHistoryVector.size();
 
     }
 }

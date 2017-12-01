@@ -118,4 +118,5 @@ public class Card implements BasicModel {
         }
         return false;
     }
+
 }
