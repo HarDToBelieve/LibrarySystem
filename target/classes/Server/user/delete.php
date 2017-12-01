@@ -3,10 +3,10 @@
 
 	$bindParam = new BindParam();
 	$qArray = array();
-	$query = 'DELETE FROM card WHERE ';
+	$query = 'DELETE FROM user WHERE ';
 
 	if ( isset($_GET['user_id']) ) {
-		$qArray[] = 'user_id = ?';
+		$qArray[] = 'userID = ?';
 		$bindParam->add('s', $_GET['user_id']);
 	}
 
@@ -38,9 +38,14 @@
 	$query .= implode(' AND ', $qArray);
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
-		$stmt->execute();
-		echo json_encode(array('status_code' => 'Success',
-										'result' => $result));
+		if ( $stmt->execute() ) {
+        		    echo json_encode(array('status_code' => 'Success',
+        			    							'result' => array()));
+        		}
+        		else {
+        		    echo json_encode(array('status_code' => 'Failure',
+                    									'result' => array()));
+        		}
 	}
 	else {
 		echo json_encode(array('status_code' => 'Failure',

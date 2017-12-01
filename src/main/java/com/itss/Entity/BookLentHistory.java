@@ -5,8 +5,7 @@ import com.itss.utilities.APIClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import static com.itss.basic.BasicModel.getUnique;
-
-
+import static com.itss.basic.BasicModel.deleteUnique;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +24,7 @@ public class BookLentHistory implements BasicModel {
     private String is_returned;
     private double compensation;
     private Boolean valid;
+    public final int overdue_days = 100;
 
     public BookLentHistory(String user_id, String copyID, String date, String card_number, String is_returned) {
         this.user_id = user_id;
@@ -74,12 +74,25 @@ public class BookLentHistory implements BasicModel {
 
     @Override
     public void add() {
-        delete_row();
+        HashMap<String, String> data = new HashMap<>();
+        data.put("user_id", user_id);
+        data.put("copyID", copyID);
+        data.put("date", date);
+        data.put("card_number", card_number);
+        data.put("is_returned", is_returned);
+        HashMap<String, Object> result = null;
+        String endpoint = "booklenthistory/post.php";
+        try {
+            result = APIClient.post(BookLentHistory.host + endpoint, data);
+            valid = result.get("status_code").equals("Success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public boolean validObject() {
-        return true;
+        return valid;
     }
 
     public static Vector<BookLentHistory> getBooksByCardNumber(String card_number_to_find){
@@ -123,20 +136,26 @@ public class BookLentHistory implements BasicModel {
         Double fine_per_day = 4000.0;
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date old_date = formatter.parse(this.date);
-        System.out.println("old date " + old_date.getTime());
+//        System.out.println("old date " + old_date.getTime());
         Calendar calendar = Calendar.getInstance();
         String str_today = formatter.format(calendar.getTime());
         Date today = formatter.parse(str_today);
-        System.out.println("today " + today.getTime());
+//        System.out.println("today " + today.getTime());
         long diffs = today.getTime() - old_date.getTime();
         // cal culate the days difference and set the money
         int days_diffs = (int) (diffs/ 86400000);
+        if(days_diffs < overdue_days)
+            return 0.0;
         double fine = fine_per_day * days_diffs;
         this.compensation = fine;
         return fine;
     }
-    public void delete_row(){
-
+    public boolean delete_row(){
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("card_number", this.card_number);
+        dict.put("copyID", this.copyID);
+        String folder = "booklenthistory";
+        return deleteUnique(folder, dict);
     }
 
     public int countNumLentBook(String card_number_tofind) {

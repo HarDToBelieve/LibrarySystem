@@ -23,7 +23,7 @@ public class UserLoginController implements BasicController {
     @Override
     public boolean validateObject() {
         HashMap<String, String> dict = new HashMap<>();
-        dict.put("name", lf.getUsername());
+        dict.put("email", lf.getUsername());
         dict.put("password", lf.getPassword());
         UserInfo tmp = UserInfo.getUniqueUser(dict);
         if ( tmp == null ) {

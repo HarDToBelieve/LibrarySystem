@@ -23,6 +23,7 @@ public class UserLoginForm extends JDialog implements BasicView {
         setModal(true);
         getRootPane().setDefaultButton(btnLogin);
 
+        ulc = new UserLoginController();
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 submit();
@@ -82,7 +83,7 @@ public class UserLoginForm extends JDialog implements BasicView {
     @Override
     public void submit() {
         String username = inputUsername.getText();
-        String password = MD5(inputPassword.getText());
+        String password = inputPassword.getText();
 
         LoginForm lf = new LoginForm(username, password);
         ulc.setForm(lf);

@@ -10,15 +10,14 @@
 		$query = 'INSERT INTO bookinfo(title, author, publisher, bookID, isbn) VALUES(?,?,?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
 			$stmt->bind_param('sssss', $_POST['title'], $_POST['author'], $_POST['publisher'], $_POST['bookID'], $_POST['isbn']);
-			$stmt->execute();
-			if (mysqli_connect_errno()) {
-				echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-			}
-			else {
-				echo json_encode(array('status_code' => 'Success',
-									'result' => array()));
-			}
+			if ( $stmt->execute() ) {
+            		    echo json_encode(array('status_code' => 'Success',
+            			    							'result' => array()));
+            		}
+            		else {
+            		    echo json_encode(array('status_code' => 'Failure',
+                        									'result' => array()));
+            		}
 		}
 		else {
 			echo json_encode(array('status_code' => 'Failure',

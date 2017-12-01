@@ -39,7 +39,9 @@ public class ReturnBookController implements BasicController {
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
+        BookCopyInfo bookCopyInfo = new BookCopyInfo();
         for (BookLentHistory tmp : list_books) {
+            // get name of books add to result?
             result.add(new String[]{tmp.getCopyID(), tmp.getUser_id(), tmp.getDate(), tmp.getCard_number()});
         }
         return result;
@@ -63,30 +65,20 @@ public class ReturnBookController implements BasicController {
         this.form = form;
     }
     public void getLentBooksByCardNumber(String card_number){
-//        Vector<BookLentHistory> lentbooks = BookLentHistory.getBooksByCardNumber(card_number);
-//        list_books.clear();
-//        for(BookLentHistory lentbook : lentbooks){
-//            BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
-//            list_books.add(tmp);
-//        }
+        Vector<BookLentHistory> lentbooks = BookLentHistory.getBooksByCardNumber(card_number);
         list_books.clear();
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
+        for(BookLentHistory lentbook : lentbooks){
+            BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
+            list_books.add(tmp);
+        }
     }
     public void getLentBooksByCopyID(String copyID){
-//        Vector<BookLentHistory> lentbooks = BookLentHistory.getBooksByCopyID(copyID);
-//        list_books.clear();
-//        for (BookLentHistory lentbook : lentbooks){
-//            BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
-//            list_books.add(tmp);
-//        }
+        Vector<BookLentHistory> lentbooks = BookLentHistory.getBooksByCopyID(copyID);
         list_books.clear();
-        list_books.add(new BookLentHistory("!23asd", "asd123", "12/12/2012", "as1gkr", "YES"));
+        for (BookLentHistory lentbook : lentbooks){
+            BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
+            list_books.add(tmp);
+        }
     }
     public void getPickedLentBook() throws ParseException { //used for displaying rows after picked
         // set picked rows into a class's variable
@@ -104,7 +96,7 @@ public class ReturnBookController implements BasicController {
     private void delete_picked_rows(){
         // only works after calling function getPickedLentBook
         // this function calls to model then delete the row selected in the db of booklenthistory
-        //param holds user_id and copyID make a unique key for a row
+        //param holds card_number and copyID make a unique key for a row
         for(BookLentHistory a_lent : list_picked_rows){
             a_lent.delete_row();
         }

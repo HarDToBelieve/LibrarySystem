@@ -17,7 +17,7 @@
 
 	if ( isset($_GET['price']) ) {
 		$qArray[] = 'price = ?';
-		$bindParam->add('d', $_GET['price']);
+		$bindParam->add('s', $_GET['price']);
 	}
 
 	if ( isset($_GET['bookID']) ) {
@@ -29,7 +29,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($id, $copyID, $bookID, $type, $price);
+		$stmt->bind_result($id, $copyID, $type, $price, $bookID);
 		$result = array();
 
 		while ( $stmt->fetch() ) {

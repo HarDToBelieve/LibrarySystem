@@ -9,10 +9,13 @@ import com.itss.basic.BasicView;
 import com.itss.Controller.BookRegistrationController;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class BookRegistrationForm extends JDialog implements BasicView {
@@ -20,16 +23,17 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JButton btnSubmit;
     private JTextField inputTitle;
     private JTextField inputPubl;
-    private JPanel dataField;
     private JTextField inputAuthor;
     private JTable dataTable;
     private JButton btnConfirm;
     private JButton btnCancel;
     private JTextField inputISBN;
+    private JPanel dataField;
 
     BookCopyRegistrationController bcrc;
     private BookRegistrationController brc;
     private DefaultTableModel dtm;
+    private DefaultTableModel dtm2;
 
     public BookRegistrationForm() {
 
@@ -47,31 +51,28 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             }
         };
 
-        dataTable.setModel(dtm);
+        Vector<String> colNames2 = new Vector<>(); colNames2.add(""); colNames2.add(""); colNames2.add(""); colNames2.add(""); colNames2.add("");
+        dtm2 = new DefaultTableModel(colNames2, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
-        dataTable.setVisible(false);
+        Vector<ArrayList<String>> cur_db = brc.getBook("");
+        for (ArrayList<String> tmp : cur_db) {
+            dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4)});
+        }
+        dataTable.setModel(dtm2);
+
         btnConfirm.setVisible(false);
         btnCancel.setVisible(false);
+
         btnSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 submit();
             }
         });
-
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                close();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                close();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         btnConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,7 +86,61 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                close();
+                if ( dtm2.getRowCount() > 0 ) {
+                    for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
+                        dtm2.removeRow(i);
+                    }
+                }
+                Vector<ArrayList<String>> cur_db = brc.getBook("");
+                for (ArrayList<String> tmp : cur_db) {
+                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4)});
+                }
+
+                dtm2.fireTableDataChanged();
+                dataTable.setModel(dtm2);
+
+                inputTitle.setText("");
+                inputAuthor.setText("");
+                inputPubl.setText("");
+                inputISBN.setText("");
+
+                inputAuthor.setEditable(true);
+                inputISBN.setEditable(true);
+                inputPubl.setEditable(true);
+                inputTitle.setEditable(true);
+
+                btnConfirm.setVisible(false);
+                btnCancel.setVisible(false);
+                btnSubmit.setVisible(true);
+            }
+        });
+        inputTitle.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search();
+            }
+
+            public void search() {
+                if ( dtm2.getRowCount() > 0 ) {
+                    for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
+                        dtm2.removeRow(i);
+                    }
+                }
+                Vector<ArrayList<String>> cur_db = brc.getBook(inputTitle.getText());
+                for (ArrayList<String> tmp : cur_db) {
+                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4)});
+                }
+                dtm2.fireTableDataChanged();
             }
         });
     }
@@ -116,9 +171,6 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     public void updateViewFromController() {
         Vector<Object> data = brc.getModel();
         if ( data.size() > 0 ) {
-            for (Component c : dataField.getComponents()) {
-                c.setVisible(false);
-            }
             if ( dtm.getRowCount() > 0 ) {
                 for (int i = dtm.getRowCount() - 1; i >= 0; i--) {
                     dtm.removeRow(i);
@@ -129,10 +181,16 @@ public class BookRegistrationForm extends JDialog implements BasicView {
                 dtm.addRow(new Object[]{tmp[0], tmp[1]});
             }
             dtm.fireTableDataChanged();
-            dataTable.setVisible(true);
+            dataTable.setModel(dtm);
+//            dataTable.setVisible(true);
             btnSubmit.setVisible(false);
             btnCancel.setVisible(true);
             btnConfirm.setVisible(true);
+
+            inputAuthor.setEditable(false);
+            inputISBN.setEditable(false);
+            inputPubl.setEditable(false);
+            inputTitle.setEditable(false);
         }
         else {
             error();
