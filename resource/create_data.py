@@ -39,7 +39,6 @@ def user(name, password, address, date_of_birth, email, job):
     }
     endpoint = 'user/post.php'
     result = requests.post(url + endpoint, data=data)
-    print result.text
     return json.loads(result.text)['status_code']
 
 def book(title, author, publisher):
@@ -103,42 +102,40 @@ def booklenthistory(userID, copyid, cardnNumber, is_returned):
     return json.loads(result.text)['status_code']
 
 tmp = user('Nguyen Van A', '1234', 'St 312', '11/11/1971', 'haha@yopmail.com', 'librarian')
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add user'
 
 tmp = user('Nguyen Van B', '1234', 'St 313', '12/12/1982', 'hihi@yopmail.com', 'student')
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add user'
 
 tmp = book('Inferno', 'Dan Brown', 'NXB Kim Dong')
-print tmp
-sys.exit(1)
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add book'
 
 tmp = book('Sherlock Holmes', 'Conan Doyle', 'NXB Giao Duc')
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add book'
 
 for i in range(len(bookID)):
     for j in range(3):
         tmp = bookcopy(bookID[i] + '_' + str(j), bookID[i])
-        if tmp != 'success':
+        if tmp != 'Success':
             print '[-] Failed to add copy'
 
 tmp = card_number(user_id[1], 1, 1)
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add card_number'
 
 tmp = card_number(user_id[1], 1, 1)
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add card_number'
 
 tmp = card_number(user_id[1], 1, 1)
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add card_number'
 
 tmp = booklenthistory(user_id[1], copyID[2], 2, 'NO')
-if tmp != 'success':
+if tmp != 'Success':
     print '[-] Failed to add history'
 
