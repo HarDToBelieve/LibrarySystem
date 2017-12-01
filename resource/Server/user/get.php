@@ -3,7 +3,7 @@
 
 	$bindParam = new BindParam();
 	$qArray = array();
-	$query = 'SELECT * FROM card WHERE '; 
+	$query = 'SELECT * FROM user WHERE ';
 
 	if ( isset($_GET['user_id']) ) {
 		$qArray[] = 'userID = ?';

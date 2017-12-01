@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Vector;
 
+import static com.itss.basic.BasicModel.getUnique;
+
 /**
  * Created by HarDToBelieve on 11/25/2017.
  */
@@ -132,7 +134,7 @@ public class UserInfo implements BasicModel {
 
     public static UserInfo getUniqueUser(HashMap<String, String> dict) {
         try {
-            return dumpUser(UserInfo.getUniqueUser(dict)).get(0);
+            return dumpUser(getUnique("user", dict)).get(0);
         } catch (Exception e) {
             return null;
         }

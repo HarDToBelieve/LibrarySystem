@@ -72,12 +72,12 @@ def bookcopy(copyid, bookid):
     result = requests.post(url + endpoint, data=data)
     return json.loads(result.text)['status_code']
 
-def card_number(userID, is_active, is_student):
+def card_number(cardNumber, userID, is_active, is_student):
     activate_code = randomString(5)
     now = datetime.datetime.now()
     expired_date = randomDate(now.strftime("%d/%m/%Y"), "1/1/2039", random.random())
     data = {
-        'card_number' : card_number,
+        'card_number' : cardNumber,
         'user_id' : userID,
         'is_active' : is_active,
         'is_student' : is_student,
