@@ -24,7 +24,7 @@
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
 		$stmt->execute();
-		$stmt->bind_result($id, $copyID, $title, $password, $status, $date_of_birth, $email, $job);
+		$stmt->bind_result($id, $copyID, $title, $status);
 		$result = array();
 		
 		while ( $stmt->fetch() ) {
