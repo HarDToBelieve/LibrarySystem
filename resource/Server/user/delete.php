@@ -6,7 +6,7 @@
 	$query = 'DELETE FROM user WHERE ';
 
 	if ( isset($_GET['user_id']) ) {
-		$qArray[] = 'user_id = ?';
+		$qArray[] = 'userID = ?';
 		$bindParam->add('s', $_GET['user_id']);
 	}
 
