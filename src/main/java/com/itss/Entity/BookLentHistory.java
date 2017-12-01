@@ -138,4 +138,24 @@ public class BookLentHistory implements BasicModel {
     public void delete_row(){
 
     }
+
+    public int countNumLentBook(String card_number_tofind) {
+        Vector<BookLentHistory> bookLentHistoryVector = new Vector<>();
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("card_number", card_number_tofind);
+        String folder = "booklenthistory";
+        JSONArray array = getUnique(folder, dict);
+        for(Object o : array){
+            JSONObject jsonObject = (JSONObject) o;
+            String user_id = jsonObject.getString("user_id");
+            String copyID = jsonObject.getString("copyID");
+            String date = jsonObject.getString("date");
+            String card_number = jsonObject.getString("card_number");
+            String is_returned = jsonObject.getString("is_returned");
+            BookLentHistory tmp = new BookLentHistory(user_id, copyID,date, card_number, is_returned);
+            bookLentHistoryVector.add(tmp);
+        }
+        return bookLentHistoryVector.size();
+
+    }
 }

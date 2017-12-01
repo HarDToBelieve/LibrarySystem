@@ -110,4 +110,6 @@ public class Card implements BasicModel {
         return dumpCards(getAll("card"));
     }
 
+
+
 }

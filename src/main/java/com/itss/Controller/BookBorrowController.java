@@ -3,6 +3,9 @@ package com.itss.Controller;
 import com.itss.Boundary.Forms.BookBorrowForm;
 import com.itss.Boundary.Forms.BookCopyForm;
 import com.itss.Entity.BookCopyInfo;
+import com.itss.Entity.BookLentHistory;
+import com.itss.Entity.Card;
+import com.itss.Entity.CopyInfo;
 import com.itss.basic.BasicController;
 
 import java.text.ParseException;
@@ -14,10 +17,11 @@ import java.util.Vector;
  */
 public class BookBorrowController implements BasicController {
 
-    private ArrayList<BookCopyInfo> copy_list;
+    private ArrayList<CopyInfo> copy_list;
     private BookBorrowForm bookBorrowForm;
     Vector<String[]> pick_from_view;
-    ArrayList<BookCopyInfo> list_picked_rows;
+    ArrayList<CopyInfo> list_picked_rows;
+    private BookLentHistory blh;
 
     public BookBorrowController() {
         this.copy_list = new ArrayList<>();
@@ -33,7 +37,7 @@ public class BookBorrowController implements BasicController {
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
-        for (BookCopyInfo tmp : copy_list) {
+        for (CopyInfo tmp : copy_list) {
             result.add(new String[]{tmp.getCopyID(), tmp.getType(), String.valueOf(tmp.getPrice()), tmp.getBookID(), tmp.getCopyStatus(), tmp.getTitle()});
         }
         return result;
@@ -55,20 +59,20 @@ public class BookBorrowController implements BasicController {
     }
 
     public void getCopyByCopyID(String copyID) {
-        Vector<BookCopyInfo> borrowbooks = BookCopyInfo.getCopyByID(copyID);
+        Vector<CopyInfo> borrowbooks = CopyInfo.getCopyByID(copyID);
         copy_list.clear();
-        for (BookCopyInfo copy : borrowbooks) {
-            BookCopyInfo tmp = new BookCopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
+        for (CopyInfo copy : borrowbooks) {
+            CopyInfo tmp = new CopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
             copy_list.add(tmp);
         }
 
     }
 
     public void getCopyByTitle(String title) {
-        Vector<BookCopyInfo> borrowbooks = BookCopyInfo.getCopyByCopyTitle(title);
+        Vector<CopyInfo> borrowbooks = CopyInfo.getCopyByCopyTitle(title);
         copy_list.clear();
-        for (BookCopyInfo copy : borrowbooks) {
-            BookCopyInfo tmp = new BookCopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
+        for (CopyInfo copy : borrowbooks) {
+            CopyInfo tmp = new CopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
             copy_list.add(tmp);
         }
     }
@@ -80,12 +84,38 @@ public class BookBorrowController implements BasicController {
         list_picked_rows.clear();
         for (String[] a_pick : pick_from_view) {
             String copyID = a_pick[0];
-            for (BookCopyInfo copy : copy_list) {
+            for (CopyInfo copy : copy_list) {
                 if (copy.getCopyID().equals(copyID))
                     list_picked_rows.add(copy);
             }
         }
     }
+
+    public boolean checkCopyStatus() {
+        boolean check = false;
+        String status = "available";
+        for (CopyInfo copy : list_picked_rows) {
+            if (copy.getCopyStatus().equals(status))
+                check = true;
+        }
+        return check;
+    }
+
+    public boolean checkBorrower() {
+        return Card.existCard(bookBorrowForm.getCardNumber());
+
+    }
+
+    public boolean checkNumLentBook() {
+        boolean check = true;
+        if ((blh.countNumLentBook(bookBorrowForm.getCardNumber()) + list_picked_rows.size()) > 5) {
+            check = false;
+        }
+        return check;
+
+    }
+
+
 
 
 

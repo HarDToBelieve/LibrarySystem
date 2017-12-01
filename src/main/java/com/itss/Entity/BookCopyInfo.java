@@ -33,20 +33,10 @@ public class BookCopyInfo implements BasicModel {
 		return bookID;
 	}
 
-	public String getCopyStatus() {
-		return copyStatus;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
 	private String copyID;
 	private String type;
 	private double price;
 	private String bookID;
-	private String copyStatus;
-	private String title;
 	private boolean valid;
 
 	/**
@@ -56,13 +46,11 @@ public class BookCopyInfo implements BasicModel {
 	 * @param price price of copy
 	 * @param bookID orginal book id of copy
 	 */
-	public BookCopyInfo(String copyID, String type, double price, String bookID, String copyStatus, String title) {
+	public BookCopyInfo(String copyID, String type, double price, String bookID) {
 		this.copyID = copyID;
 		this.type = type;
 		this.price = price;
 		this.bookID = bookID;
-		this.copyStatus = copyStatus;
-		this.title = title;
 	}
 
 	public BookCopyInfo() {
@@ -105,53 +93,11 @@ public class BookCopyInfo implements BasicModel {
 			String price = jsonLineItem.getString("price");
 			String copyID = jsonLineItem.getString("copyID");
 			String bookID = jsonLineItem.getString("bookID");
-			String copyStatus = jsonLineItem.getString("copyStatus");
-			String title = jsonLineItem.getString("title");
 
-			BookCopyInfo tmp = new BookCopyInfo(copyID, type, Double.parseDouble(price), bookID, copyStatus, title);
+			BookCopyInfo tmp = new BookCopyInfo(copyID, type, Double.parseDouble(price), bookID);
 			books.add(tmp);
 		}
 		return books;
-	}
-
-	public static Vector<BookCopyInfo> getCopyByID(String copyID_to_find){
-		Vector<BookCopyInfo> bookCopyVector = new Vector<>();
-		HashMap<String, String> dict = new HashMap<>();
-		dict.put("copyID", copyID_to_find);
-		String folder = "bookcopyinfo";
-		JSONArray array = getUnique(folder, dict);
-		for(Object o : array){
-			JSONObject jsonObject = (JSONObject) o;
-			String type = jsonObject.getString("type");
-			String copyID = jsonObject.getString("copyID");
-			String bookID = jsonObject.getString("bookID");
-			String copyStatus = jsonObject.getString("copyStatus");
-			String title = jsonObject.getString("title");
-			String price = jsonObject.getString("price");
-			BookCopyInfo tmp = new BookCopyInfo(copyID, type, Double.parseDouble(price), bookID, copyStatus, title);
-			bookCopyVector.add(tmp);
-		}
-		return bookCopyVector;
-	}
-
-	public static Vector<BookCopyInfo> getCopyByCopyTitle(String title_to_find){
-		Vector<BookCopyInfo> bookCopyVector = new Vector<>();
-		HashMap<String, String> dict = new HashMap<>();
-		dict.put("title", title_to_find);
-		String folder = "bookcopyinfo";
-		JSONArray array = getUnique(folder, dict);
-		for(Object o : array){
-			JSONObject jsonObject = (JSONObject) o;
-			String type = jsonObject.getString("type");
-			String copyID = jsonObject.getString("copyID");
-			String bookID = jsonObject.getString("bookID");
-			String copyStatus = jsonObject.getString("copyStatus");
-			String title = jsonObject.getString("title");
-			String price = jsonObject.getString("price");
-			BookCopyInfo tmp = new BookCopyInfo(copyID, type, Double.parseDouble(price), bookID, copyStatus, title);
-			bookCopyVector.add(tmp);
-		}
-		return bookCopyVector;
 	}
 
 	public static Vector<BookCopyInfo> getAllCopy() {
@@ -178,10 +124,6 @@ public class BookCopyInfo implements BasicModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void delete_row() {
-
 	}
 
 	@Override
