@@ -96,7 +96,7 @@ public class ReturnBookController implements BasicController {
     private void delete_picked_rows(){
         // only works after calling function getPickedLentBook
         // this function calls to model then delete the row selected in the db of booklenthistory
-        //param holds user_id and copyID make a unique key for a row
+        //param holds card_number and copyID make a unique key for a row
         for(BookLentHistory a_lent : list_picked_rows){
             a_lent.delete_row();
         }

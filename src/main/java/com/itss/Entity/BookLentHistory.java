@@ -5,8 +5,7 @@ import com.itss.utilities.APIClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import static com.itss.basic.BasicModel.getUnique;
-
-
+import static com.itss.basic.BasicModel.deleteUnique;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -151,7 +150,11 @@ public class BookLentHistory implements BasicModel {
         this.compensation = fine;
         return fine;
     }
-    public void delete_row(){
-
+    public boolean delete_row(){
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("card_number", this.card_number);
+        dict.put("copyID", this.copyID);
+        String folder = "booklenthistory";
+        return deleteUnique(folder, dict);
     }
 }
