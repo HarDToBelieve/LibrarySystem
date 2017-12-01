@@ -4,6 +4,7 @@ import time
 import datetime
 import string
 import json
+import sys
 
 url = 'http://2flf3l7wp7.hardtobelieve.me/'
 
@@ -109,6 +110,8 @@ if tmp != 'success':
     print '[-] Failed to add user'
 
 tmp = book('Inferno', 'Dan Brown', 'NXB Kim Dong')
+print tmp
+sys.exit(1)
 if tmp != 'success':
     print '[-] Failed to add book'
 

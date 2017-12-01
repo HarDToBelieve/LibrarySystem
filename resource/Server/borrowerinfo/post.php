@@ -10,7 +10,7 @@
 		$query = 'INSERT INTO bookinfo(card_number, user_id, compensation) VALUES(?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
 			$stmt->bind_param('sss', $_POST['card_number'], $_POST['user_id'], $_POST['compensation']);
-			if ( !$stmt->execute() ) {
+			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
             			    							'result' => $result));
             		}

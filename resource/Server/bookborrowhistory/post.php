@@ -10,7 +10,7 @@
 		$query = 'INSERT INTO bookborrowhistory(copyID, card_number, lentDate, bookID, returnDate, user_id) VALUES(?,?,?,?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
 			$stmt->bind_param('ssssss', $_POST['copyID'], $_POST['card_number'], $_POST['lentDate'], $_POST['bookID'], $_POST['returnDate'], $_POST['user_id']);
-			if ( !$stmt->execute() ) {
+			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
             			    							'result' => $result));
             		}

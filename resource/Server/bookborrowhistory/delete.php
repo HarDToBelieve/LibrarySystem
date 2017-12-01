@@ -38,7 +38,7 @@
 	$query .= implode(' AND ', $qArray);
 	if ( $stmt = $db->prepare($query) ) {
 		call_user_func_array( array($stmt, 'bind_param'), $bindParam->get());
-		if ( !$stmt->execute() ) {
+		if ( $stmt->execute() ) {
 		    echo json_encode(array('status_code' => 'Success',
 			    							'result' => $result));
 		}

@@ -10,7 +10,7 @@
 		$query = 'INSERT INTO bookinfo(title, author, publisher, bookID, isbn) VALUES(?,?,?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
 			$stmt->bind_param('sssss', $_POST['title'], $_POST['author'], $_POST['publisher'], $_POST['bookID'], $_POST['isbn']);
-			if ( !$stmt->execute() ) {
+			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
             			    							'result' => $result));
             		}
