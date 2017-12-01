@@ -19,6 +19,8 @@ public class Card implements BasicModel {
         this.activate_code = activate_code;
         this.card_number = card_number;
     }
+    public Card(){
+    }
 
     public String getUser_id() {
         return user_id;
@@ -117,6 +119,15 @@ public class Card implements BasicModel {
                 return true;
         }
         return false;
+    }
+    public static String getUserIdByCardNumber(String card_number){
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("card_number", card_number);
+        Vector<Card> cards = dumpCards(getUnique("card", dict));
+        if(cards.size() == 0)
+            return null;
+        else
+            return  cards.get(0).getUser_id();
     }
 
 }

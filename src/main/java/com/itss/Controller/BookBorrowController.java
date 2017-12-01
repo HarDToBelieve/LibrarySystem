@@ -1,12 +1,14 @@
 package com.itss.Controller;
 
 import com.itss.Boundary.Forms.BookBorrowForm;
+import com.itss.Entity.BookCopyInfo;
 import com.itss.Entity.BookLentHistory;
 import com.itss.Entity.Card;
 import com.itss.basic.BasicController;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 
 /**
@@ -14,12 +16,10 @@ import java.util.Vector;
  */
 public class BookBorrowController implements BasicController {
 
-    private ArrayList<CopyInfo> copy_list;
+    private ArrayList<BookCopyInfo> copy_list;
     private BookBorrowForm bookBorrowForm;
     Vector<String[]> pick_from_view;
-    ArrayList<CopyInfo> list_picked_rows;
-    private BookLentHistory blh;
-    private Card card;
+    ArrayList<BookCopyInfo> list_picked_rows;
 
     public BookBorrowController() {
         this.copy_list = new ArrayList<>();
@@ -35,20 +35,26 @@ public class BookBorrowController implements BasicController {
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
-        for (CopyInfo tmp : copy_list) {
-            result.add(new String[]{tmp.getCopyID(), tmp.getType(), String.valueOf(tmp.getPrice()), tmp.getBookID(), tmp.getCopyStatus(), tmp.getTitle()});
+        for (BookCopyInfo tmp : copy_list) {
+            result.add(new String[]{tmp.getCopyID(), tmp.getType(), String.valueOf(tmp.getPrice()), tmp.getBookID(), tmp.getStatus(), tmp.getTitle()});
         }
         return result;
     }
 
     @Override
     public boolean validateObject() {
-        return false;
+        return checkCopyStatus()&check_card_existed()&checkNumLentBookUnder5();
     }
 
     @Override
-    public void updateData() {
-
+    public void updateData() throws Exception {
+        // do 2 things, change status of the current book, add a new row to booklenthistoy
+        String card_number = bookBorrowForm.getCardNumber();
+        for(BookCopyInfo copy : list_picked_rows){
+            String user_id = Card.getUserIdByCardNumber(card_number);
+            BookLentHistory bookLentHistory = new BookLentHistory(user_id, copy.getCopyID(), BookLentHistory.getToday(), card_number, "NO");
+            copy.changeStatusOfACopy("BORROWED");
+        }
     }
 
     @Override
@@ -56,62 +62,53 @@ public class BookBorrowController implements BasicController {
 
     }
 
-    public void getCopyByCopyID(String copyID) {
-        Vector<CopyInfo> borrowbooks = CopyInfo.getCopyByID(copyID);
+    public void getCopiesByBookId(String bookID) {
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("bookID", bookID);
+        Vector<BookCopyInfo> borrowbooks = BookCopyInfo.getUniqueCopy(dict);
         copy_list.clear();
-        for (CopyInfo copy : borrowbooks) {
-            CopyInfo tmp = new CopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
-            copy_list.add(tmp);
-        }
-
-    }
-
-    public void getCopyByTitle(String title) {
-        Vector<CopyInfo> borrowbooks = CopyInfo.getCopyByCopyTitle(title);
-        copy_list.clear();
-        for (CopyInfo copy : borrowbooks) {
-            CopyInfo tmp = new CopyInfo(copy.getCopyID(), copy.getType(), copy.getPrice(), copy.getBookID(), copy.getCopyStatus(), copy.getTitle());
-            copy_list.add(tmp);
+        for (BookCopyInfo copy : borrowbooks) {
+            copy.updateStatusAndTitle();
+            copy_list.add(copy);
         }
     }
-
-
 
     public void getPickedBorrowBook() throws ParseException { //used for displaying rows after picked
         // set picked rows into a class's variable
         list_picked_rows.clear();
         for (String[] a_pick : pick_from_view) {
             String copyID = a_pick[0];
-            for (CopyInfo copy : copy_list) {
+            for (BookCopyInfo copy : copy_list) {
                 if (copy.getCopyID().equals(copyID))
                     list_picked_rows.add(copy);
             }
         }
     }
 
-    public boolean checkCopyStatus() {
-        boolean check = false;
-        String status = "available";
-        for (CopyInfo copy : list_picked_rows) {
-            if (copy.getCopyStatus().equals(status))
-                check = true;
+    private boolean checkCopyStatus() {
+        String status = "AVAILABLE";
+        for (BookCopyInfo copy : list_picked_rows) {
+            if (!copy.getStatus().equals(status))
+                return false;
         }
-        return check;
+        return true;
     }
 
-    public boolean checkBorrower() {
+    public boolean check_card_existed() {
+        Card card = new Card();
         return card.check_a_card_existed(bookBorrowForm.getCardNumber());
 
     }
 
-    public boolean checkNumLentBook() {
-        boolean check = true;
-        if ((blh.countNumLentBook(bookBorrowForm.getCardNumber()) + list_picked_rows.size()) > 5) {
-            check = false;
+    public boolean checkNumLentBookUnder5() {
+        if ((BookLentHistory.countNumLentBook(bookBorrowForm.getCardNumber()) + list_picked_rows.size()) > 5) {
+            return false;
         }
-        return check;
+        return true;
 
     }
+
+
 
 
 
