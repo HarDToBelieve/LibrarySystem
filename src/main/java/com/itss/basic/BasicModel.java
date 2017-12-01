@@ -57,4 +57,15 @@ public interface BasicModel {
         }
         return false;
     }
+
+    static boolean updateUnique(String folder, HashMap<String, String> dict) {
+        String endpoint = folder + "/update.php";
+        try {
+            HashMap<String, Object> result = APIClient.post(host + endpoint, dict);
+            return result.get("status_code").equals("Success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
