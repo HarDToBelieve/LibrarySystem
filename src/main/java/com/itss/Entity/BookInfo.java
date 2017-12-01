@@ -126,7 +126,6 @@ public class BookInfo implements BasicModel {
 		data.put("publisher", publisher);
 		data.put("isbn", isbn);
 		data.put("bookID", bookID);
-
 		HashMap<String, Object> result = null;
 		String endpoint = "bookinfo/post.php";
 		try {

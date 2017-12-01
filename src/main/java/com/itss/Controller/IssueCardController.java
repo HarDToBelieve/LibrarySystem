@@ -5,6 +5,7 @@ import com.itss.Boundary.Forms.CardForm;
 import com.itss.Entity.BookCopyInfo;
 import com.itss.Entity.BookInfo;
 import com.itss.Entity.Card;
+import com.itss.Entity.User;
 import com.itss.basic.BasicController;
 import com.itss.utilities.RandomString;
 
@@ -20,6 +21,8 @@ public class IssueCardController implements BasicController{
     private CardForm cardform;
     private Card card;
     private String card_number;
+    private final int card_length = 10;
+    private final int code_length = 15;
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
@@ -33,7 +36,10 @@ public class IssueCardController implements BasicController{
 
     @Override
     public boolean validateObject() {
-        return true;
+        User user = new User();
+        if(user.check_a_user_existed(cardform.getUser_id()))
+            return true;
+        return false;
     }
 
     @Override
@@ -51,7 +57,7 @@ public class IssueCardController implements BasicController{
     }
     private boolean genACardNumber(){
         boolean is_ok = true;
-        card_number = getRandomString(10);
+        card_number = getRandomString(this.card_length);
         Vector<Card> existedCard = card.getAllCards();
         for(int index = 0; index < existedCard.size(); index++){
             if(card_number.equals(existedCard.get(index).getCard_number()))
@@ -70,9 +76,9 @@ public class IssueCardController implements BasicController{
         }
         String user_id = cardform.getUser_id();
         String is_student = cardform.getIs_student();
-        String activate_code = getRandomString(15);
+        String activate_code = getRandomString(this.code_length);
         String expired_date = getADate(150);
-        card = new Card(user_id, "No", is_student, expired_date,activate_code,this.card_number);
+        card = new Card(user_id, "NO", is_student, expired_date,activate_code,this.card_number);
     }
     public String getRandomString(int length){
         RandomString gen = new RandomString(length, ThreadLocalRandom.current());

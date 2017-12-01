@@ -110,4 +110,12 @@ public class Card implements BasicModel {
         return dumpCards(getAll("card"));
     }
 
+    public boolean check_a_card_existed(String card_number){
+        Vector<Card> all_cards = getAllCards();
+        for(Card a_card : all_cards){
+            if(a_card.getCard_number().equals(card_number))
+                return true;
+        }
+        return false;
+    }
 }

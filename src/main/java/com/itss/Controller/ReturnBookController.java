@@ -39,7 +39,9 @@ public class ReturnBookController implements BasicController {
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
+        BookCopyInfo bookCopyInfo = new BookCopyInfo();
         for (BookLentHistory tmp : list_books) {
+            // get name of books add to result?
             result.add(new String[]{tmp.getCopyID(), tmp.getUser_id(), tmp.getDate(), tmp.getCard_number()});
         }
         return result;

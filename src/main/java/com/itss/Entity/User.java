@@ -35,6 +35,9 @@ public class User {
         this.job = job;
         this.address = address;
     }
+    public User(){
+
+    }
 
     static Vector<User> dumpUsers (Object lineItems) {
         Vector<User> users = new Vector<>();
@@ -55,7 +58,7 @@ public class User {
     public static Vector<User> getAllUsers() {
         return dumpUsers(getAll("user"));
     }
-    public static boolean check_a_user_existed(String user_id){
+    public boolean check_a_user_existed(String user_id){
         Vector<User> all_users = getAllUsers();
         for(User a_user : all_users){
             if(a_user.getUser_id().equals(user_id))
