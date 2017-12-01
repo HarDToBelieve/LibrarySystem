@@ -10,15 +10,14 @@
 		$query = 'INSERT INTO bookcopyinfo(copyID, type, price, bookID) VALUES(?,?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
 			$stmt->bind_param('ssds', $_POST['copyID'], $_POST['type'], $_POST['price'], $_POST['bookID']);
-			$stmt->execute();
-			if (mysqli_connect_errno()) {
-				echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-			}
-			else {
-            			    echo json_encode(array('status_code' => 'Success',
-                            						'result' => array()));
-            			}
+			if ( !$stmt->execute() ) {
+            		    echo json_encode(array('status_code' => 'Success',
+            			    							'result' => $result));
+            		}
+            		else {
+            		    echo json_encode(array('status_code' => 'Failure',
+                        									'result' => array()));
+            		}
 		}
 		else {
 			echo json_encode(array('status_code' => 'Failure',

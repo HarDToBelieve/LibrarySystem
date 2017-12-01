@@ -10,15 +10,14 @@
 		$query = 'INSERT INTO bookinfo(card_number, user_id, compensation) VALUES(?,?,?)';
 		if ( $stmt = $db->prepare($query) ) {
 			$stmt->bind_param('sss', $_POST['card_number'], $_POST['user_id'], $_POST['compensation']);
-			$stmt->execute();
-			if (mysqli_connect_errno()) {
-				echo json_encode(array('status_code' => 'Failure',
-									'result' => array()));
-			}
-			else {
-				echo json_encode(array('status_code' => 'Success',
-									'result' => array()));
-			}
+			if ( !$stmt->execute() ) {
+            		    echo json_encode(array('status_code' => 'Success',
+            			    							'result' => $result));
+            		}
+            		else {
+            		    echo json_encode(array('status_code' => 'Failure',
+                        									'result' => array()));
+            		}
 		}
 		else {
 			echo json_encode(array('status_code' => 'Failure',
