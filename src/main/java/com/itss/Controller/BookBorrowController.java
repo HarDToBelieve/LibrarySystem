@@ -1,11 +1,8 @@
 package com.itss.Controller;
 
 import com.itss.Boundary.Forms.BookBorrowForm;
-import com.itss.Boundary.Forms.BookCopyForm;
-import com.itss.Entity.BookCopyInfo;
 import com.itss.Entity.BookLentHistory;
 import com.itss.Entity.Card;
-import com.itss.Entity.CopyInfo;
 import com.itss.basic.BasicController;
 
 import java.text.ParseException;
