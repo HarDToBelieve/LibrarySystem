@@ -247,4 +247,5 @@ public class BookCopyInfo implements BasicModel {
 		String folder = "bookinfo";
 		return deleteUnique(folder, dict);
 	}
+
 }

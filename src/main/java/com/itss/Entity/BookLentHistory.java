@@ -6,14 +6,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import static com.itss.basic.BasicModel.getUnique;
 import static com.itss.basic.BasicModel.deleteUnique;
+
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Vector;
+import java.util.*;
 
 
 public class BookLentHistory implements BasicModel {
@@ -33,6 +32,7 @@ public class BookLentHistory implements BasicModel {
         this.card_number = card_number;
         this.is_returned = is_returned;
     }
+    public BookLentHistory(){};
 
     public double getCompensation() {
         return compensation;
@@ -158,23 +158,13 @@ public class BookLentHistory implements BasicModel {
         return deleteUnique(folder, dict);
     }
 
-    public int countNumLentBook(String card_number_tofind) {
-        Vector<BookLentHistory> bookLentHistoryVector = new Vector<>();
-        HashMap<String, String> dict = new HashMap<>();
-        dict.put("card_number", card_number_tofind);
-        String folder = "booklenthistory";
-        JSONArray array = getUnique(folder, dict);
-        for(Object o : array){
-            JSONObject jsonObject = (JSONObject) o;
-            String user_id = jsonObject.getString("user_id");
-            String copyID = jsonObject.getString("copyID");
-            String date = jsonObject.getString("date");
-            String card_number = jsonObject.getString("card_number");
-            String is_returned = jsonObject.getString("is_returned");
-            BookLentHistory tmp = new BookLentHistory(user_id, copyID,date, card_number, is_returned);
-            bookLentHistoryVector.add(tmp);
-        }
-        return bookLentHistoryVector.size();
-
+    public static int countNumLentBook(String card_number_tofind) {
+        Vector<BookLentHistory> list = getBooksByCardNumber(card_number_tofind);
+        return list.size();
+    }
+    public static String getToday(){
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
     }
 }

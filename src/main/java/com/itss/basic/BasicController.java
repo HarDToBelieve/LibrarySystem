@@ -9,6 +9,6 @@ public interface BasicController {
     Vector<Object> getModel();
 
     boolean validateObject();
-    void updateData();
+    void updateData() throws Exception;
     void selectData();
 }
