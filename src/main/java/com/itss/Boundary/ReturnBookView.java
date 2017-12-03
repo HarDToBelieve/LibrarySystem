@@ -50,7 +50,7 @@ public class ReturnBookView extends JDialog implements BasicView {
 
             @Override
             public Class<?> getColumnClass(int columnIndex) {
-                Class clazz = String.class;
+                Class clazz;
                 switch (columnIndex) {
                     case 0:
                         clazz = Boolean.class;
@@ -63,8 +63,6 @@ public class ReturnBookView extends JDialog implements BasicView {
             }
 
         };
-
-        dataTable.setModel(dtm);
 
         Vector<String> colResult = new Vector<>();
         colResult.add(""); colResult.add(""); colResult.add(""); colResult.add("");
@@ -80,25 +78,14 @@ public class ReturnBookView extends JDialog implements BasicView {
         resultField.setVisible(false);
         finishField.setVisible(false);
 
-        btnSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                preSubmit();
-                preUpdateView();
-            }
+        btnSearch.addActionListener(e -> {
+            preSubmit();
+            preUpdateView();
         });
-        btnProcess.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                preSubmit2();
-            }
-        });
-        btnFinish.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                submit();
-                updateModel();
-            }
+        btnProcess.addActionListener(e -> preSubmit2());
+        btnFinish.addActionListener(e -> {
+            submit();
+            updateModel();
         });
     }
 
@@ -125,7 +112,13 @@ public class ReturnBookView extends JDialog implements BasicView {
                     fee = Double.parseDouble(inputFee.getText());
                 }
 
-                ftm.fireTableDataChanged();
+                if ( ftm.getRowCount() > 0 ) {
+                    for (int i = ftm.getRowCount() - 1; i>=0; i--)
+                        ftm.removeRow(i);
+                }
+                for (int i=0; i<tmp.size(); ++i)
+                    ftm.addRow(tmp.get(i));
+                dataTable.setModel(ftm);
                 resultField.setVisible(false);
                 finishField.setVisible(true);
 
@@ -176,6 +169,7 @@ public class ReturnBookView extends JDialog implements BasicView {
                 String[] tmp = (String[])s;
                 dtm.addRow(new Object[]{false, tmp[0], tmp[1], tmp[2], tmp[3]});
             }
+            dataTable.setModel(dtm);
             dtm.fireTableDataChanged();
             searchField.setVisible(false);
             resultField.setVisible(true);

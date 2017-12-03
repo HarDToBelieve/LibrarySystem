@@ -28,7 +28,6 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JButton btnConfirm;
     private JButton btnCancel;
     private JTextField inputISBN;
-    private JPanel dataField;
 
     BookCopyRegistrationController bcrc;
     private BookRegistrationController brc;
@@ -43,7 +42,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         brc = new BookRegistrationController();
         bcrc = new BookCopyRegistrationController();
 
-        Vector<String> colNames = new Vector<>(); colNames.add(""); colNames.add("");
+        Vector<String> colNames = new Vector<>(); colNames.add("Information"); colNames.add("");
         dtm = new DefaultTableModel(colNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -51,7 +50,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             }
         };
 
-        Vector<String> colNames2 = new Vector<>(); colNames2.add(""); colNames2.add(""); colNames2.add(""); colNames2.add(""); colNames2.add("");
+        Vector<String> colNames2 = new Vector<>(); colNames2.add("Title"); colNames2.add("Author"); colNames2.add("Publisher"); colNames2.add("ISBN"); colNames2.add("BookID");
         dtm2 = new DefaultTableModel(colNames2, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -68,51 +67,42 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         btnConfirm.setVisible(false);
         btnCancel.setVisible(false);
 
-        btnSubmit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                submit();
+        btnSubmit.addActionListener(e -> submit());
+        btnConfirm.addActionListener(e -> {
+            try {
+                updateModel();
+                brc.setDb();
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
         });
-        btnConfirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    updateModel();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+        btnCancel.addActionListener(e -> {
+            if ( dtm2.getRowCount() > 0 ) {
+                for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
+                    dtm2.removeRow(i);
                 }
             }
-        });
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if ( dtm2.getRowCount() > 0 ) {
-                    for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
-                        dtm2.removeRow(i);
-                    }
-                }
-                Vector<ArrayList<String>> cur_db = brc.getBook("");
-                for (ArrayList<String> tmp : cur_db) {
-                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4)});
-                }
-
-                dtm2.fireTableDataChanged();
-                dataTable.setModel(dtm2);
-
-                inputTitle.setText("");
-                inputAuthor.setText("");
-                inputPubl.setText("");
-                inputISBN.setText("");
-
-                inputAuthor.setEditable(true);
-                inputISBN.setEditable(true);
-                inputPubl.setEditable(true);
-                inputTitle.setEditable(true);
-
-                btnConfirm.setVisible(false);
-                btnCancel.setVisible(false);
-                btnSubmit.setVisible(true);
+            Vector<ArrayList<String>> cur_db1 = brc.getBook("");
+            for (ArrayList<String> tmp : cur_db1) {
+                dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4)});
             }
+
+            dtm2.fireTableDataChanged();
+            dataTable.setModel(dtm2);
+
+            inputTitle.setText("");
+            inputAuthor.setText("");
+            inputPubl.setText("");
+            inputISBN.setText("");
+
+            inputAuthor.setEditable(true);
+            inputISBN.setEditable(true);
+            inputPubl.setEditable(true);
+            inputTitle.setEditable(true);
+
+            btnConfirm.setVisible(false);
+            btnCancel.setVisible(false);
+            btnSubmit.setVisible(true);
         });
         inputTitle.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -158,13 +148,13 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     @Override
     public void updateModel() {
         brc.updateData();
-        int opt =JOptionPane.showConfirmDialog(this,"Do you want to add a copy?");
-        if ( opt == JOptionPane.YES_OPTION) {
-            String type = JOptionPane.showInputDialog(this,"Enter type");
-            String price = JOptionPane.showInputDialog(this,"Enter price");
-            brc.addSample(Double.parseDouble(price), type);
-        }
-        close();
+//        int opt =JOptionPane.showConfirmDialog(this,"Do you want to add a copy?");
+//        if ( opt == JOptionPane.YES_OPTION) {
+//            String type = JOptionPane.showInputDialog(this,"Enter type");
+//            String price = JOptionPane.showInputDialog(this,"Enter price");
+//            brc.addSample(Double.parseDouble(price), type);
+//        }
+//        close();
     }
 
     @Override

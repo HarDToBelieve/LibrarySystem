@@ -21,6 +21,11 @@ public class BookRegistrationController implements BasicController {
 	private BookForm bookform;
 	private BookCopyInfo bookcopy;
 	private String bookid;
+
+	public void setDb() {
+		db = BookInfo.getAllBook();
+	}
+
 	private Vector<BookInfo> db;
 
 	public BookRegistrationController() {

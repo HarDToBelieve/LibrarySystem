@@ -61,6 +61,7 @@ public class BookCopyInfo implements BasicModel {
 		this.price = price;
 		this.bookID = bookID;
 	}
+
 //	public BookCopyInfo(String copyID, String type, double price, String bookID, String status, String title){
 //		this.copyID = copyID;
 //		this.type = type;
@@ -186,7 +187,7 @@ public class BookCopyInfo implements BasicModel {
 		return count;
 	}
 
-	private String[] getStatusOfACopy(){
+	public String[] getStatusOfACopy(){
 		// return status and title of a copy from copystatus table
 		String data_return[] = new String[2];
 		String endpoint = "copystatus/get.php";
@@ -195,9 +196,9 @@ public class BookCopyInfo implements BasicModel {
 		try {
 			HashMap<String, Object> result = APIClient.get(BookCopyInfo.host + endpoint, dict);
 			if ( result.get("status_code").equals("Success") ) {
-				JSONObject o = (JSONObject) result.get("result");
-				data_return[0] = o.getString("status");
-				data_return[1] = o.getString("title");
+				JSONObject jsonLineItem = (JSONObject) ( (JSONArray) result.get("result") ).get(0);
+				data_return[0] = jsonLineItem.getString("status");
+				data_return[1] = jsonLineItem.getString("title");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -244,7 +245,7 @@ public class BookCopyInfo implements BasicModel {
 	public boolean delete_row() {
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("copyID", this.getCopyID());
-		String folder = "bookinfo";
+		String folder = "bookcopy";
 		return deleteUnique(folder, dict);
 	}
 

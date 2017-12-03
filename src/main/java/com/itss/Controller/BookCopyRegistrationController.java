@@ -18,12 +18,23 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BookCopyRegistrationController implements BasicController {
 	private ArrayList<BookCopyInfo> copies;
 	private BookCopyForm bcf;
+
+	public void setDb() {
+		db = BookCopyInfo.getAllCopy();
+		for (BookCopyInfo tmp : db) {
+			tmp.updateStatusAndTitle();
+		}
+	}
+
 	private Vector<BookCopyInfo> db;
 
     public BookCopyRegistrationController() {
 		copies = new ArrayList<>();
 		bcf = new BookCopyForm();
 		db = BookCopyInfo.getAllCopy();
+		for (BookCopyInfo tmp : db) {
+			tmp.updateStatusAndTitle();
+		}
     }
 
 	@Override
@@ -65,6 +76,7 @@ public class BookCopyRegistrationController implements BasicController {
 	public void genCopyCode() {
 		int last = getLastCopy(bcf.getBookID());
 		copies.clear();
+
 		for (int i=0; i<Integer.parseInt(bcf.getNumOfCopy()); i++) {
 			String copyID = bcf.getBookID() + "_" + String.valueOf(i + last);
 
@@ -89,6 +101,8 @@ public class BookCopyRegistrationController implements BasicController {
 		result.add(b.getType());
 		result.add(String.valueOf(b.getPrice()));
 		result.add(b.getBookID());
+		result.add(b.getTitle());
+		result.add(b.getStatus());
 		return result;
 	}
 

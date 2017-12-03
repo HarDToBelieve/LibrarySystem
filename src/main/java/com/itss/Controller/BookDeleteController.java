@@ -35,7 +35,7 @@ public class BookDeleteController implements BasicController {
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
         for (BookCopyInfo tmp : copy_list) {
-            result.add(new String[]{tmp.getCopyID(), tmp.getType(), String.valueOf(tmp.getPrice()), tmp.getBookID(), tmp.getStatus(), tmp.getTitle()});
+            result.add(new String[]{tmp.getCopyID(), tmp.getType(), String.valueOf(tmp.getPrice()), tmp.getBookID(), tmp.getTitle(), tmp.getStatus()});
         }
         return result;
     }

@@ -42,7 +42,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         combType.addItem(listTypes[1]);
 
         Vector<String> colNames = new Vector<>();
-        colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add("");
+        colNames.add("CopyID"); colNames.add("Type"); colNames.add("Price"); colNames.add("BookID");
         dtm = new DefaultTableModel(colNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -51,7 +51,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         };
 
         Vector<String> colNames2 = new Vector<>();
-        colNames2.add(""); colNames2.add(""); colNames2.add(""); colNames2.add(""); colNames2.add("");
+        colNames2.add("CopyID"); colNames2.add("Type"); colNames2.add("Price"); colNames2.add("BookID"); colNames2.add("Title"); colNames2.add("Status");
         dtm2 = new DefaultTableModel(colNames2, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -61,59 +61,26 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
 
         Vector<ArrayList<String>> cur_db = bcrc.getCopy("");
         for (ArrayList<String> tmp : cur_db) {
-            dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3)});
+            dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4), tmp.get(5)});
         }
 
         dataTable.setModel(dtm2);
 
         btnConfirm.setVisible(false);
         btnCancel.setVisible(false);
-        btnSubmit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                submit();
-            }
-        });
+        btnSubmit.addActionListener(e -> submit());
 
-        btnConfirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (int count = 0; count < dtm.getRowCount(); count++){
-                    System.out.println(dtm.getValueAt(count, 1).toString());
-                    bcrc.modifyData(dtm.getValueAt(count, 1).toString(), dtm.getValueAt(count, 2).toString(), count);
+        btnConfirm.addActionListener(e -> {
+            for (int count = 0; count < dtm.getRowCount(); count++){
+//                    System.out.println(dtm.getValueAt(count, 1).toString());
+                bcrc.modifyData(dtm.getValueAt(count, 1).toString(), dtm.getValueAt(count, 2).toString(), count);
 //                    dtm.getDataVector().elementAt(count);
-                }
-                updateModel();
             }
+            updateModel();
+            bcrc.setDb();
+            initState();
         });
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if ( dtm2.getRowCount() > 0 ) {
-                    for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
-                        dtm2.removeRow(i);
-                    }
-                }
-                Vector<ArrayList<String>> cur_db = bcrc.getCopy("");
-                for (ArrayList<String> tmp : cur_db) {
-                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3)});
-                }
-
-                dtm2.fireTableDataChanged();
-                dataTable.setModel(dtm2);
-
-                inputBookID.setText("");
-                inputNumCopy.setText("");
-                inputAvgPrice.setText("");
-
-                inputBookID.setEditable(true);
-                inputAvgPrice.setEditable(true);
-                inputNumCopy.setEditable(true);
-
-                btnConfirm.setVisible(false);
-                btnCancel.setVisible(false);
-                btnSubmit.setVisible(true);
-            }
-        });
+        btnCancel.addActionListener(e -> initState());
 
         inputBookID.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -139,11 +106,39 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
                 }
                 Vector<ArrayList<String>> cur_db = bcrc.getCopy(inputBookID.getText());
                 for (ArrayList<String> tmp : cur_db) {
-                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3)});
+                    dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4), tmp.get(5)});
                 }
                 dtm2.fireTableDataChanged();
             }
         });
+    }
+
+    private void initState() {
+        if ( dtm2.getRowCount() > 0 ) {
+            for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
+                dtm2.removeRow(i);
+            }
+        }
+        Vector<ArrayList<String>> cur_db = bcrc.getCopy("");
+        for (ArrayList<String> tmp : cur_db) {
+            dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4), tmp.get(5)});
+        }
+
+        dtm2.fireTableDataChanged();
+        dataTable.setModel(dtm2);
+
+        inputBookID.setText("");
+        inputNumCopy.setText("");
+        inputAvgPrice.setText("");
+
+        inputBookID.setEditable(true);
+        inputAvgPrice.setEditable(true);
+        inputNumCopy.setEditable(true);
+        combType.setEditable(true);
+
+        btnConfirm.setVisible(false);
+        btnCancel.setVisible(false);
+        btnSubmit.setVisible(true);
     }
 
     @Override
@@ -171,6 +166,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
                     dtm.removeRow(i);
                 }
             }
+
             for (Object s : data) {
                 String[] tmp = (String[])s;
                 dtm.addRow(new Object[]{tmp[0], tmp[1], tmp[2], tmp[3]});
@@ -190,7 +186,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             inputBookID.setEditable(false);
             inputAvgPrice.setEditable(false);
             inputNumCopy.setEditable(false);
-
+            combType.setEditable(false);
         }
         else {
             error();
