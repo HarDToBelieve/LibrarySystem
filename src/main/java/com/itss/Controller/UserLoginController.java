@@ -2,10 +2,9 @@ package com.itss.Controller;
 
 import com.itss.Boundary.Forms.LoginForm;
 import com.itss.Boundary.MainWindow;
-import com.itss.Entity.UserInfo;
+import com.itss.Entity.User;
 import com.itss.basic.BasicController;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -13,7 +12,7 @@ import java.util.Vector;
  * Created by HarDToBelieve on 11/25/2017.
  */
 public class UserLoginController implements BasicController {
-    UserInfo u;
+    User u;
     LoginForm lf;
     @Override
     public Vector<Object> getModel() {
@@ -25,13 +24,13 @@ public class UserLoginController implements BasicController {
         HashMap<String, String> dict = new HashMap<>();
         dict.put("email", lf.getUsername());
         dict.put("password", lf.getPassword());
-        UserInfo tmp = UserInfo.getUniqueUser(dict);
+        User tmp = User.getUniqueUser(dict);
         if ( tmp == null ) {
             u = null;
             return false;
         }
         else {
-            u = new UserInfo(tmp);
+            u = new User(tmp);
             return true;
         }
     }
