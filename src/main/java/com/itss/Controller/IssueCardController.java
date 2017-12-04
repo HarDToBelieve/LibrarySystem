@@ -6,6 +6,8 @@ import com.itss.Entity.User;
 import com.itss.basic.BasicController;
 import com.itss.utilities.RandomString;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
@@ -62,9 +64,11 @@ public class IssueCardController implements BasicController{
         return is_ok;
     }
     private String getADate(int days_after){
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, days_after);
-        return cal.getTime().toString();
+        String str_date = formatter.format(cal.getTime()); // date after today days_after days
+        return str_date;
     }
     public void genACard(){
         while(genACardNumber() == false){

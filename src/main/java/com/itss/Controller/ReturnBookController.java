@@ -65,21 +65,23 @@ public class ReturnBookController implements BasicController {
     public void setForm(BookLentForm form){
         this.form = form;
     }
-    public void getLentBooksByCardNumber(String card_number){
+    public void getLentBooksByCardNumber(String card_number) throws ParseException {
         Vector<BookLentHistory> lentbooks = BookLentHistory.getBooksByCardNumber(card_number);
         list_books.clear();
         for(BookLentHistory lentbook : lentbooks){
             BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
             tmp.set_title_and_name_fromDB();
+            cal_compensation_for_all_found_rows();
             list_books.add(tmp);
         }
     }
-    public void getLentBooksByCopyID(String copyID){
+    public void getLentBooksByCopyID(String copyID) throws ParseException {
         Vector<BookLentHistory> lentbooks = BookLentHistory.getBooksByCopyID(copyID);
         list_books.clear();
         for (BookLentHistory lentbook : lentbooks){
             BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
             tmp.set_title_and_name_fromDB();
+            cal_compensation_for_all_found_rows();
             list_books.add(tmp);
         }
     }
@@ -94,7 +96,6 @@ public class ReturnBookController implements BasicController {
                     list_picked_rows.add(a_lent);
             }
         }
-        cal_compensation_for_all_picked_rows();
     }
     private void delete_picked_rows(){
         // only works after calling function getPickedLentBook
@@ -104,9 +105,8 @@ public class ReturnBookController implements BasicController {
             a_lent.delete_row();
         }
     }
-    private void cal_compensation_for_all_picked_rows() throws ParseException {
-        total_compensation = 0;
-        for (BookLentHistory a_lent : list_picked_rows){
+    private void cal_compensation_for_all_found_rows() throws ParseException {
+        for (BookLentHistory a_lent : list_books){
             total_compensation += a_lent.calCompensation();
         }
     }
