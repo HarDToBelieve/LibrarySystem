@@ -25,6 +25,7 @@ public class ReturnBookView extends JDialog implements BasicView {
     private JTextField inputFee;
     private JButton btnFinish;
     private JLabel labelCost;
+    private JButton btnBack;
 
     ReturnBookController rbc;
     DefaultTableModel dtm, ftm;
@@ -87,6 +88,14 @@ public class ReturnBookView extends JDialog implements BasicView {
             submit();
             updateModel();
         });
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dataTable.setModel(dtm);
+                resultField.setVisible(true);
+                finishField.setVisible(false);
+            }
+        });
     }
 
     private void preSubmit2() {
@@ -108,9 +117,6 @@ public class ReturnBookView extends JDialog implements BasicView {
                 }
                 for (int i=0; i<tmp.size(); ++i)
                     ftm.addRow(tmp.get(i));
-                if ( !inputFee.getText().isEmpty() ) {
-                    fee = Double.parseDouble(inputFee.getText());
-                }
 
                 if ( ftm.getRowCount() > 0 ) {
                     for (int i = ftm.getRowCount() - 1; i>=0; i--)
@@ -145,6 +151,9 @@ public class ReturnBookView extends JDialog implements BasicView {
 
     @Override
     public void updateViewFromController() {
+        if ( !inputFee.getText().isEmpty() ) {
+            fee = Double.parseDouble(inputFee.getText());
+        }
         labelCost.setText("Total: " + String.valueOf(fee + rbc.getTotal_compensation()));
     }
 
@@ -191,7 +200,7 @@ public class ReturnBookView extends JDialog implements BasicView {
 
     @Override
     public void error() {
-
+        JOptionPane.showMessageDialog(this, "Something's wrong");
     }
 
     @Override
