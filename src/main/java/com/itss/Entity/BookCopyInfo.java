@@ -248,5 +248,12 @@ public class BookCopyInfo implements BasicModel {
 		String folder = "bookcopy";
 		return deleteUnique(folder, dict);
 	}
+	public static BookCopyInfo getOneBookCopyInfo(HashMap<String, String> dict) {
+		try {
+			return dumpCopy(getUnique("bookinfo", dict)).get(0);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 }

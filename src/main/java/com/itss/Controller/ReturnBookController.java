@@ -42,7 +42,7 @@ public class ReturnBookController implements BasicController {
         BookCopyInfo bookCopyInfo = new BookCopyInfo();
         for (BookLentHistory tmp : list_books) {
             // get name of books add to result?
-            result.add(new String[]{tmp.getCopyID(), tmp.getUser_id(), tmp.getDate(), tmp.getCard_number()});
+            result.add(new String[]{tmp.getUser_name(), tmp.getTitle(), tmp.getCopyID(), tmp.getUser_id(), tmp.getDate(), tmp.getCard_number(), String.valueOf(tmp.getCompensation())});
         }
         return result;
     }
@@ -53,7 +53,8 @@ public class ReturnBookController implements BasicController {
     }
 
     @Override
-    public void updateData() {
+    public void updateData() throws Exception {
+        change_status_of_books();
         delete_picked_rows();
     }
 
@@ -69,6 +70,7 @@ public class ReturnBookController implements BasicController {
         list_books.clear();
         for(BookLentHistory lentbook : lentbooks){
             BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
+            tmp.set_title_and_name_fromDB();
             list_books.add(tmp);
         }
     }
@@ -77,6 +79,7 @@ public class ReturnBookController implements BasicController {
         list_books.clear();
         for (BookLentHistory lentbook : lentbooks){
             BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
+            tmp.set_title_and_name_fromDB();
             list_books.add(tmp);
         }
     }
@@ -107,5 +110,12 @@ public class ReturnBookController implements BasicController {
             total_compensation += a_lent.calCompensation();
         }
     }
-
+    private void change_status_of_books() throws Exception {
+        //change status from BORROWED to AVAILABLE of a copy
+        BookCopyInfo bookCopyInfo = new BookCopyInfo();
+        for(BookLentHistory a_lent : list_picked_rows){
+            bookCopyInfo.setCopyID(a_lent.getCopyID());
+            bookCopyInfo.changeStatusOfACopy("AVAILABLE");
+        }
+    }
 }
