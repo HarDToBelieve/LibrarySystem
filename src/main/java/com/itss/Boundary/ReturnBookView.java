@@ -43,7 +43,7 @@ public class ReturnBookView extends JDialog implements BasicView {
         comboType.addItem(listTypes[1]);
 
         Vector<String> colNames = new Vector<>();
-        colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add("");
+        colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add("");
         dtm = new DefaultTableModel(colNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -67,7 +67,7 @@ public class ReturnBookView extends JDialog implements BasicView {
         };
 
         Vector<String> colResult = new Vector<>();
-        colResult.add(""); colResult.add(""); colResult.add(""); colResult.add("");
+        colResult.add(""); colResult.add(""); colResult.add(""); colResult.add(""); colResult.add(""); colResult.add("");
         ftm = new DefaultTableModel(colResult, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -88,6 +88,7 @@ public class ReturnBookView extends JDialog implements BasicView {
         btnFinish.addActionListener(e -> {
             submit();
             updateModel();
+
         });
         btnCancel.addActionListener(e -> {
             dataTable.setModel(dtm);
@@ -107,7 +108,7 @@ public class ReturnBookView extends JDialog implements BasicView {
             for (int i = dtm.getRowCount() - 1; i>=0; i--) {
                 if ( (Boolean)dtm.getValueAt(i, 0) == true ) {
                     tmp.add(new String[]{dtm.getValueAt(i, 1).toString(), dtm.getValueAt(i, 2).toString(),
-                                        dtm.getValueAt(i, 3).toString(), dtm.getValueAt(i, 4).toString()});
+                                        dtm.getValueAt(i, 3).toString(), dtm.getValueAt(i, 4).toString(), dtm.getValueAt(i, 5).toString(), dtm.getValueAt(i, 6).toString()});
                 }
             }
 
@@ -149,7 +150,11 @@ public class ReturnBookView extends JDialog implements BasicView {
 
     @Override
     public void updateModel() {
-        rbc.updateData();
+        try {
+            rbc.updateData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -179,7 +184,7 @@ public class ReturnBookView extends JDialog implements BasicView {
             }
             for (Object s : data) {
                 String[] tmp = (String[])s;
-                dtm.addRow(new Object[]{false, tmp[0], tmp[1], tmp[2], tmp[3]});
+                dtm.addRow(new Object[]{false, tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5]});
             }
             dataTable.setModel(dtm);
             dtm.fireTableDataChanged();
