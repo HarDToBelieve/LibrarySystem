@@ -35,7 +35,7 @@ public class IssueCardController implements BasicController{
     }
 
     @Override
-    public boolean validateObject() {
+    public boolean validateObject() { // validate card form khop voi db
         User user = new User();
         if(user.check_a_user_existed(cardform.getUser_id()))
             return true;
@@ -74,7 +74,7 @@ public class IssueCardController implements BasicController{
         while(genACardNumber() == false){
             continue;
         }
-        String user_id = cardform.getUser_id();
+        String user_id = cardform.getUser_id();    // User_id ko phai la ma so sinh vien
         String is_student = cardform.getIs_student();
         String activate_code = getRandomString(this.code_length);
         String expired_date = getADate(150);
@@ -84,5 +84,8 @@ public class IssueCardController implements BasicController{
         RandomString gen = new RandomString(length, ThreadLocalRandom.current());
         String cardNumber = gen.nextString();
         return cardNumber;
+    }
+    public boolean isAddCardSuccess(){
+        return card.getValid();
     }
 }

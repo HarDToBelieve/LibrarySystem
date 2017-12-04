@@ -36,7 +36,7 @@ public class BorrowBookView extends JDialog implements BasicView {
 
         bbc = new BookBorrowController();
         Vector<String> colNames = new Vector<>();
-        colNames.add(""); colNames.add("BookID"); colNames.add("CopyID"); colNames.add("Title"); colNames.add("Author"); colNames.add("Price"); colNames.add("Status");
+        colNames.add(""); colNames.add("BookID"); colNames.add("CopyID"); colNames.add("Title"); colNames.add("Type"); colNames.add("Price"); colNames.add("Status");
         dtm = new DefaultTableModel(colNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -60,7 +60,7 @@ public class BorrowBookView extends JDialog implements BasicView {
         };
 
         Vector<String> colNames2 = new Vector<>();
-        colNames2.add("BookID"); colNames2.add("CopyID"); colNames2.add("Title"); colNames2.add("Author"); colNames2.add("Price"); colNames2.add("Status");
+        colNames2.add("BookID"); colNames2.add("CopyID"); colNames2.add("Title"); colNames2.add("Type"); colNames2.add("Price"); colNames2.add("Status");
         ftm = new DefaultTableModel(colNames2, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {

@@ -36,7 +36,7 @@ public class Card implements BasicModel {
 
     public String getExpired_date() {
         return expired_date;
-    }
+    } // Fix date
 
     public String getActivate_code() {
         return activate_code;
@@ -44,6 +44,10 @@ public class Card implements BasicModel {
 
     public String getCard_number() {
         return card_number;
+    }
+
+    public Boolean getValid() {
+        return valid;
     }
 
     private String card_number;

@@ -23,6 +23,8 @@ public class BookDeleteView extends JDialog implements BasicView {
     private JButton btnNo;
     private JPanel stage1;
     private JPanel stage2;
+    private JPanel stage3;
+    private JButton btnBack2;
     private JButton buttonOK;
 
     BookDeleteController bdc;
@@ -71,6 +73,7 @@ public class BookDeleteView extends JDialog implements BasicView {
         lablStatus.setVisible(true);
         stage1.setVisible(false);
         stage2.setVisible(false);
+        stage3.setVisible(false);
 
         btnFind.addActionListener(e -> {
             updateViewFromController();
@@ -85,8 +88,14 @@ public class BookDeleteView extends JDialog implements BasicView {
             updateModel();
             lablStatus.setText("Successfully");
             lablStatus.setVisible(true);
+            stage1.setVisible(false);
+            stage2.setVisible(false);
+            stage3.setVisible(true);
         });
         btnNo.addActionListener(e -> initState());
+        btnBack2.addActionListener(e -> {
+            initState();
+        });
     }
 
     private void pickItems() {
@@ -129,6 +138,7 @@ public class BookDeleteView extends JDialog implements BasicView {
         dataTable.setModel(dtm);
         stage1.setVisible(false);
         stage2.setVisible(false);
+        stage3.setVisible(false);
         inputFind.setText("");
     }
 

@@ -1,6 +1,7 @@
 package com.itss.Boundary;
 
 import com.itss.Controller.BookCopyRegistrationController;
+import com.itss.Entity.UserInfo;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -32,6 +33,8 @@ public class MainWindow extends JFrame {
             BookCopyRegistrationForm bcrf = new BookCopyRegistrationForm();
             menuTabbed.add(bcrf.getMainPanel(), "Add new copy");
 
+            BorrowBookView bbv = new BorrowBookView(new UserInfo());
+            menuTabbed.add(bbv.getMainPanel(), "Borrow Book");
             BookDeleteView bdv = new BookDeleteView();
             menuTabbed.add(bdv.getMainPanel(), "Delete book");
             ReturnBookView rbv = new ReturnBookView();

@@ -18,6 +18,10 @@ public class UserInfo implements BasicModel {
     private String user_id;
     private String name;
 
+    public UserInfo() {
+
+    }
+
     public String getJob() {
         return job;
     }
