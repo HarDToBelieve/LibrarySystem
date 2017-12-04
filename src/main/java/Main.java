@@ -17,7 +17,7 @@ public class Main {
 //        ulf.pack();
 //        ulf.setVisible(true);
 
-        MainWindow mw = new MainWindow("librarian");
+        MainWindow mw = new MainWindow("Nguyen Van A", "librarian", "1");
         mw.pack();
         mw.setVisible(true);
     }

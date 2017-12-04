@@ -2,6 +2,7 @@ package com.itss.Controller;
 
 import com.itss.Boundary.Forms.LoginForm;
 import com.itss.Boundary.MainWindow;
+import com.itss.Entity.Card;
 import com.itss.Entity.User;
 import com.itss.basic.BasicController;
 
@@ -54,7 +55,7 @@ public class UserLoginController implements BasicController {
             return null;
         }
         else {
-            MainWindow mw = new MainWindow(u.getJob());
+            MainWindow mw = new MainWindow(u.getName(), u.getJob(), Card.getCardNumberByUserID(u.getUser_id()));
             return mw;
         }
     }

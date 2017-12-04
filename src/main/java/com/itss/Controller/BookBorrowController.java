@@ -20,11 +20,13 @@ public class BookBorrowController implements BasicController {
     private BookBorrowForm bookBorrowForm;
     Vector<String[]> pick_from_view;
     ArrayList<BookCopyInfo> list_picked_rows;
+    private String cardNo;
 
-    public BookBorrowController() {
+    public BookBorrowController(String cardNo) {
         this.copy_list = new ArrayList<>();
         this.pick_from_view = new Vector<>();
         this.list_picked_rows = new ArrayList<>();
+        this.cardNo = cardNo;
     }
 
     public void setPick_from_view(Vector<String[]> pick_from_view) {
@@ -49,7 +51,7 @@ public class BookBorrowController implements BasicController {
     @Override
     public void updateData() throws Exception {
         // do 2 things, change status of the current book, add a new row to booklenthistoy
-        String card_number = bookBorrowForm.getCardNumber();
+        String card_number = cardNo;
         for(BookCopyInfo copy : list_picked_rows){
             String user_id = Card.getUserIdByCardNumber(card_number);
             BookLentHistory bookLentHistory = new BookLentHistory(user_id, copy.getCopyID(), BookLentHistory.getToday(), card_number, "NO");
@@ -77,7 +79,7 @@ public class BookBorrowController implements BasicController {
         // set picked rows into a class's variable
         list_picked_rows.clear();
         for (String[] a_pick : pick_from_view) {
-            String copyID = a_pick[0];
+            String copyID = a_pick[1];
             for (BookCopyInfo copy : copy_list) {
                 if (copy.getCopyID().equals(copyID))
                     list_picked_rows.add(copy);
@@ -107,11 +109,5 @@ public class BookBorrowController implements BasicController {
         return true;
 
     }
-
-
-
-
-
-
 
 }

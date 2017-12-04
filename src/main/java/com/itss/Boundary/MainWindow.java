@@ -1,8 +1,6 @@
 package com.itss.Boundary;
 
 import com.itss.Controller.BookCopyRegistrationController;
-import com.itss.Entity.UserInfo;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -20,7 +18,7 @@ import java.util.Vector;
 public class MainWindow extends JFrame {
     private JTabbedPane menuTabbed;
 
-    public MainWindow(String job) {
+    public MainWindow(String username, String job, String cardno) {
         super("Library System");
         getContentPane().add(menuTabbed);
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -33,7 +31,7 @@ public class MainWindow extends JFrame {
             BookCopyRegistrationForm bcrf = new BookCopyRegistrationForm();
             menuTabbed.add(bcrf.getMainPanel(), "Add new copy");
 
-            BorrowBookView bbv = new BorrowBookView(new UserInfo());
+            BorrowBookView bbv = new BorrowBookView(username, cardno);
             menuTabbed.add(bbv.getMainPanel(), "Borrow Book");
             BookDeleteView bdv = new BookDeleteView();
             menuTabbed.add(bdv.getMainPanel(), "Delete book");

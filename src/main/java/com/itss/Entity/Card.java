@@ -135,4 +135,14 @@ public class Card implements BasicModel {
             return  cards.get(0).getUser_id();
     }
 
+
+    public static String getCardNumberByUserID(String userid) {
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("user_id", userid);
+        Vector<Card> cards = dumpCards(getUnique("card", dict));
+        if (cards.size() == 0)
+            return "";
+        else
+            return cards.get(0).getCard_number();
+    }
 }

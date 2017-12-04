@@ -7,6 +7,8 @@ import com.itss.basic.BasicView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Vector;
 
@@ -26,12 +28,12 @@ public class BorrowBookView extends JDialog implements BasicView {
     BookBorrowController bbc;
     DefaultTableModel dtm, ftm;
 
-    public BorrowBookView(User u) {
+    public BorrowBookView(String username, String cardno) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnBack);
 
-        bbc = new BookBorrowController();
+        bbc = new BookBorrowController(cardno);
         Vector<String> colNames = new Vector<>();
         colNames.add(""); colNames.add("BookID"); colNames.add("CopyID"); colNames.add("Title"); colNames.add("Type"); colNames.add("Price"); colNames.add("Status");
         dtm = new DefaultTableModel(colNames, 0) {
@@ -82,9 +84,11 @@ public class BorrowBookView extends JDialog implements BasicView {
         });
         btnYes.addActionListener(e -> {
             updateModel();
-            lablStatus.setText("Finished");
+            lablStatus.setText("User: " + username + " Card Number: " + cardno + " ---- Successfully");
             lablStatus.setVisible(true);
         });
+
+        btnNo.addActionListener(e -> initState());
     }
 
     private void findCopy() {
@@ -101,7 +105,15 @@ public class BorrowBookView extends JDialog implements BasicView {
                 dtm.addRow(new Object[]{false, tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5]});
             }
             dtm.fireTableDataChanged();
+            dataTable.setModel(dtm);
             stage1.setVisible(true);
+        }
+        else {
+            if ( dtm.getRowCount() > 0 ) {
+                for (int i = dtm.getRowCount() - 1; i >= 0; i--) {
+                    dtm.removeRow(i);
+                }
+            }
         }
     }
 
@@ -115,6 +127,7 @@ public class BorrowBookView extends JDialog implements BasicView {
         dataTable.setModel(dtm);
         stage1.setVisible(false);
         stage2.setVisible(false);
+        lablStatus.setVisible(false);
         inputFind.setText("");
     }
 

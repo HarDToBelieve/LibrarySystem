@@ -8,7 +8,7 @@
 
 		$query = 'UPDATE copystatus SET status=? WHERE copyID=?';
 		if ( $stmt = $db->prepare($query) ) {
-			$stmt->bind_param('ss', $_POST['copyID'], $_POST['status']);
+			$stmt->bind_param('ss', $_POST['status'], $_POST['copyID']);
 			if ( $stmt->execute() ) {
             		    echo json_encode(array('status_code' => 'Success',
             			    							'result' => array()));
