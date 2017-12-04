@@ -166,11 +166,14 @@ public class ReturnBookView extends JDialog implements BasicView {
     }
 
     public void preSubmit() {
-        if ( comboType.getSelectedIndex() == 0 ) {
-            rbc.getLentBooksByCardNumber(inputSearch.getText());
-        }
-        else {
-            rbc.getLentBooksByCopyID(inputSearch.getText());
+        try {
+            if (comboType.getSelectedIndex() == 0) {
+                rbc.getLentBooksByCardNumber(inputSearch.getText());
+            } else {
+                rbc.getLentBooksByCopyID(inputSearch.getText());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -184,7 +187,7 @@ public class ReturnBookView extends JDialog implements BasicView {
             }
             for (Object s : data) {
                 String[] tmp = (String[])s;
-                dtm.addRow(new Object[]{false, tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5]});
+                dtm.addRow(new Object[]{false, tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6]});
             }
             dataTable.setModel(dtm);
             dtm.fireTableDataChanged();

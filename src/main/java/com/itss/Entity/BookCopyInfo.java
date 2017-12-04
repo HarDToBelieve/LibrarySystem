@@ -250,7 +250,7 @@ public class BookCopyInfo implements BasicModel {
 	}
 	public static BookCopyInfo getOneBookCopyInfo(HashMap<String, String> dict) {
 		try {
-			return dumpCopy(getUnique("bookinfo", dict)).get(0);
+			return dumpCopy(getUnique("bookcopy", dict)).get(0);
 		} catch (Exception e) {
 			return null;
 		}
