@@ -2,14 +2,11 @@ package com.itss.Boundary;
 
 import com.itss.Controller.BookBorrowController;
 import com.itss.Entity.User;
-import com.itss.Entity.UserInfo;
 import com.itss.basic.BasicController;
 import com.itss.basic.BasicView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Vector;
 
@@ -29,7 +26,7 @@ public class BorrowBookView extends JDialog implements BasicView {
     BookBorrowController bbc;
     DefaultTableModel dtm, ftm;
 
-    public BorrowBookView(UserInfo u) {
+    public BorrowBookView(User u) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnBack);
