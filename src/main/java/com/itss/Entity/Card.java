@@ -46,6 +46,10 @@ public class Card implements BasicModel {
         return card_number;
     }
 
+    public Boolean getValid() {
+        return valid;
+    }
+
     private String card_number;
     private String user_id;
     private String is_active;
@@ -77,7 +81,7 @@ public class Card implements BasicModel {
         data.put("is_student", is_student);
         data.put("expired_date", expired_date);
         data.put("activate_code", activate_code);
-
+        data.put("card_number", card_number);
         HashMap<String, Object> result = null;
         String endpoint = "card/post.php";
         try {
@@ -90,7 +94,7 @@ public class Card implements BasicModel {
 
     @Override
     public boolean validObject() {
-        return false;
+        return valid;
     }
     static Vector<Card> dumpCards (Object lineItems) {
         Vector<Card> cards = new Vector<>();

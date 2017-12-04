@@ -38,7 +38,7 @@
 		$result = array();
 
 		while ( $stmt->fetch() ) {
-			if ( $user_id && $card_number && $copyID && $date && is_returned ) {
+			if ( $user_id && $card_number && $copyID && $date && $is_returned ) {
 				$tmp = array('user_id' => $user_id,
 								'card_number' => $card_number,
 								'copyID' => $copyID,

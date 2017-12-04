@@ -85,4 +85,7 @@ public class IssueCardController implements BasicController{
         String cardNumber = gen.nextString();
         return cardNumber;
     }
+    public boolean isAddCardSuccess(){
+        return card.getValid();
+    }
 }
