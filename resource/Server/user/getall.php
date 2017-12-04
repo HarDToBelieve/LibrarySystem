@@ -7,7 +7,7 @@
 
 	if ( $stmt = $db->prepare($query) ) {
 		$stmt->execute();
-		$stmt->bind_result($user_id, $name, $address, $date_of_birth, $email, $job);
+		$stmt->bind_result($id, $user_id, $name, $password, $address, $date_of_birth, $email, $job);
 		$result = array();
 		
 		while ( $stmt->fetch() ) {

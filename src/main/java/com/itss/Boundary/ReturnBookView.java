@@ -25,6 +25,7 @@ public class ReturnBookView extends JDialog implements BasicView {
     private JTextField inputFee;
     private JButton btnFinish;
     private JLabel labelCost;
+    private JButton btnCancel;
     private JButton btnBack;
 
     ReturnBookController rbc;
@@ -88,13 +89,15 @@ public class ReturnBookView extends JDialog implements BasicView {
             submit();
             updateModel();
         });
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dataTable.setModel(dtm);
-                resultField.setVisible(true);
-                finishField.setVisible(false);
-            }
+        btnCancel.addActionListener(e -> {
+            dataTable.setModel(dtm);
+            resultField.setVisible(true);
+            finishField.setVisible(false);
+        });
+        btnBack.addActionListener(e -> {
+            searchField.setVisible(true);
+            resultField.setVisible(false);
+            finishField.setVisible(false);
         });
     }
 

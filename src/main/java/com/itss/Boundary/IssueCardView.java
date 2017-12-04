@@ -154,7 +154,8 @@ public class IssueCardView extends JDialog implements BasicView {
 
     @Override
     public void submit() {
-        CardForm cf = new CardForm("123", "YES");
+        String cond = comboType.getSelectedIndex() == 1 ? "YES" : "NO";
+        CardForm cf = new CardForm(inputStdCard.getText(), cond);
         icc.setCardform(cf);
         if (icc.validateObject()) {
             icc.genACard();
