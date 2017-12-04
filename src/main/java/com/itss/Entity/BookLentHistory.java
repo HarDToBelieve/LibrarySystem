@@ -22,6 +22,9 @@ public class BookLentHistory implements BasicModel {
     private String card_number;
     private String is_returned;
     private double compensation;
+    private String title;
+    private String user_name;
+
     private Boolean valid;
     public final int overdue_days = 100;
 
@@ -40,6 +43,22 @@ public class BookLentHistory implements BasicModel {
 
     public void setCompensation(double compensation) {
         this.compensation = compensation;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getUser_id() {
@@ -166,5 +185,18 @@ public class BookLentHistory implements BasicModel {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
+    }
+    public void set_title_and_name_fromDB(){
+        //this function workds after the user_id and copyID is updated.
+        HashMap<String, String> dict = new HashMap<>();
+        //set name
+        dict.put("user_id", this.user_id);
+        User user = User.getUniqueUser(dict);
+        this.setUser_name(user.getName());
+        //set title
+        dict.clear();
+        dict.put("copyID", this.copyID);
+        BookCopyInfo bookCopyInfo = BookCopyInfo.getOneBookCopyInfo(dict);
+        this.setTitle(bookCopyInfo.getTitle());
     }
 }
