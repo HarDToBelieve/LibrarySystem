@@ -36,7 +36,7 @@ public class Card implements BasicModel {
 
     public String getExpired_date() {
         return expired_date;
-    }
+    } // Fix date
 
     public String getActivate_code() {
         return activate_code;
@@ -82,6 +82,7 @@ public class Card implements BasicModel {
         data.put("expired_date", expired_date);
         data.put("activate_code", activate_code);
         data.put("card_number", card_number);
+
         HashMap<String, Object> result = null;
         String endpoint = "card/post.php";
         try {
@@ -94,7 +95,7 @@ public class Card implements BasicModel {
 
     @Override
     public boolean validObject() {
-        return valid;
+        return false;
     }
     static Vector<Card> dumpCards (Object lineItems) {
         Vector<Card> cards = new Vector<>();
@@ -134,4 +135,14 @@ public class Card implements BasicModel {
             return  cards.get(0).getUser_id();
     }
 
+
+    public static String getCardNumberByUserID(String userid) {
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("user_id", userid);
+        Vector<Card> cards = dumpCards(getUnique("card", dict));
+        if (cards.size() == 0)
+            return "";
+        else
+            return cards.get(0).getCard_number();
+    }
 }

@@ -6,6 +6,8 @@ import com.itss.Entity.User;
 import com.itss.basic.BasicController;
 import com.itss.utilities.RandomString;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +33,7 @@ public class IssueCardController implements BasicController{
     }
 
     @Override
-    public boolean validateObject() {
+    public boolean validateObject() { // validate card form khop voi db
         User user = new User();
         if(user.check_a_user_existed(cardform.getUser_id()))
             return true;
@@ -62,15 +64,17 @@ public class IssueCardController implements BasicController{
         return is_ok;
     }
     private String getADate(int days_after){
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, days_after);
-        return cal.getTime().toString();
+        String str_date = formatter.format(cal.getTime()); // date after today days_after days
+        return str_date;
     }
     public void genACard(){
         while(genACardNumber() == false){
             continue;
         }
-        String user_id = cardform.getUser_id();
+        String user_id = cardform.getUser_id();    // User_id ko phai la ma so sinh vien
         String is_student = cardform.getIs_student();
         String activate_code = getRandomString(this.code_length);
         String expired_date = getADate(150);

@@ -3,21 +3,11 @@
 
 	$bindParam = new BindParam();
 	$qArray = array();
-	$query = DELETE FROM borrowerinfo WHERE ';
+	$query = 'DELETE FROM copystatus WHERE ';
 
-	if ( isset($_GET['card_number']) ) {
-		$qArray[] = 'card_number = ?';
-		$bindParam->add('s', $_GET['card_number']);
-	}
-
-	if ( isset($_GET['compensation']) ) {
-		$qArray[] = 'compensation = ?';
-		$bindParam->add('s', $_GET['compensation']);
-	}
-
-	if ( isset($_GET['user_id']) ) {
-		$qArray[] = 'user_id = ?';
-		$bindParam->add('s', $_GET['user_id']);
+	if ( isset($_GET['copyID']) ) {
+		$qArray[] = 'copyID = ?';
+		$bindParam->add('s', $_GET['copyID']);
 	}
 
 	$query .= implode(' AND ', $qArray);
