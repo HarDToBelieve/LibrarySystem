@@ -71,11 +71,6 @@ public class BookRegistrationController implements BasicController {
 				bookform.getIsbn(), bookid);
 	}
 
-	public void addSample(double price, String type) {
-		bookcopy = new BookCopyInfo(bookid + "_00", type, price, bookid);
-		bookcopy.add();
-	}
-
 	public void setForm (BookForm bf) {
 		bookform = bf;
 	}

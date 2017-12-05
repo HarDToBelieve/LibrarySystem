@@ -202,6 +202,11 @@ public class BorrowBookView extends JDialog implements BasicView {
     }
 
     @Override
+    public void refresh() {
+
+    }
+
+    @Override
     public JPanel getMainPanel() {
         return contentPane;
     }

@@ -73,6 +73,11 @@ public class UserLogoutForm extends JDialog implements BasicView {
     }
 
     @Override
+    public void refresh() {
+
+    }
+
+    @Override
     public JPanel getMainPanel() {
         return contentPane;
     }

@@ -43,7 +43,8 @@ public class ReturnBookView extends JDialog implements BasicView {
         comboType.addItem(listTypes[1]);
 
         Vector<String> colNames = new Vector<>();
-        colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add(""); colNames.add("");
+        colNames.add(""); colNames.add("Username"); colNames.add("Title"); colNames.add("CopyID");
+        colNames.add("UserID"); colNames.add("Date"); colNames.add("CardNumber"); colNames.add("Fee");
         dtm = new DefaultTableModel(colNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -67,7 +68,8 @@ public class ReturnBookView extends JDialog implements BasicView {
         };
 
         Vector<String> colResult = new Vector<>();
-        colResult.add(""); colResult.add(""); colResult.add(""); colResult.add(""); colResult.add(""); colResult.add("");
+        colResult.add("Username"); colResult.add("Title");colResult.add("CopyID");
+        colResult.add("UserID"); colResult.add("Date"); colResult.add("CardNumber"); colResult.add("Fee");
         ftm = new DefaultTableModel(colResult, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -212,6 +214,11 @@ public class ReturnBookView extends JDialog implements BasicView {
     @Override
     public void error() {
         JOptionPane.showMessageDialog(this, "Something's wrong");
+    }
+
+    @Override
+    public void refresh() {
+
     }
 
     @Override

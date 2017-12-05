@@ -17,5 +17,6 @@ public interface BasicView {
     void close();
     void error();
 
+    void refresh();
     JPanel getMainPanel();
 }

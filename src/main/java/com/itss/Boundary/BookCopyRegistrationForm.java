@@ -21,7 +21,6 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     private JPanel contentPane;
     private JButton btnSubmit;
     private JButton btnCancel;
-    private JPanel dataField;
     private JTextField inputBookID;
     private JTextField inputNumCopy;
     private JTextField inputAvgPrice;
@@ -32,6 +31,9 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     private DefaultTableModel dtm;
     private DefaultTableModel dtm2;
 
+    /**
+     * Initialize all components and listeners
+     */
     public BookCopyRegistrationForm() {
         setContentPane(contentPane);
         setModal(true);
@@ -77,10 +79,12 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
 //                    dtm.getDataVector().elementAt(count);
             }
             updateModel();
-            bcrc.setDb();
             initState();
         });
-        btnCancel.addActionListener(e -> initState());
+        btnCancel.addActionListener(e -> {
+            initState();
+            close();
+        });
 
         inputBookID.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -111,9 +115,21 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
                 dtm2.fireTableDataChanged();
             }
         });
+
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                close();
+            }
+        });
+        contentPane.registerKeyboardAction(e -> close(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * Return to beginning state
+     */
     private void initState() {
+        bcrc.setDb();
         if ( dtm2.getRowCount() > 0 ) {
             for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
                 dtm2.removeRow(i);
@@ -151,12 +167,18 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         this.bcrc = (BookCopyRegistrationController) bc;
     }
 
+    /**
+     * Finish the work by calling method updateData of controller
+     */
     @Override
     public void updateModel() {
         bcrc.updateData();
         close();
     }
 
+    /**
+     * Get the correct information from controller to update the view
+     */
     @Override
     public void updateViewFromController() {
         Vector<Object> data = bcrc.getModel();
@@ -193,6 +215,9 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         }
     }
 
+    /**
+     * Submit all information from the form to controller
+     */
     @Override
     public void submit() {
         String bookID = inputBookID.getText();
@@ -218,6 +243,11 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     @Override
     public void error() {
 
+    }
+
+    @Override
+    public void refresh() {
+        initState();
     }
 
     @Override
