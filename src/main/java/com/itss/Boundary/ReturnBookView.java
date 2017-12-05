@@ -90,6 +90,7 @@ public class ReturnBookView extends JDialog implements BasicView {
         btnFinish.addActionListener(e -> {
             updateModel();
             submit();
+            JOptionPane.showMessageDialog(this, "Successfully");
         });
         btnCancel.addActionListener(e -> {
             dataTable.setModel(dtm);
@@ -203,7 +204,7 @@ public class ReturnBookView extends JDialog implements BasicView {
             resultField.setVisible(true);
         }
         else {
-            error();
+            JOptionPane.showMessageDialog(this, "Can't find any matches in the Database");
         }
     }
 
