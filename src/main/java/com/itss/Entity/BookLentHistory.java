@@ -97,6 +97,18 @@ public class BookLentHistory implements BasicModel {
         this.card_number = card_number;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getIs_returned() {
+        return is_returned;
+    }
+
+    public void setIs_returned(String is_returned) {
+        this.is_returned = is_returned;
+    }
+
     @Override
     public boolean checkConnection() {
         return true;

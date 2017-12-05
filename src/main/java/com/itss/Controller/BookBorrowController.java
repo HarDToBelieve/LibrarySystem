@@ -45,7 +45,7 @@ public class BookBorrowController implements BasicController {
 
     @Override
     public boolean validateObject() {
-        return checkCopyStatus()&check_card_existed()&checkNumLentBookUnder5();
+        return checkCopyStatus()&&check_card_existed()&&checkNumLentBookUnder5();
     }
 
     @Override
@@ -55,6 +55,7 @@ public class BookBorrowController implements BasicController {
         for(BookCopyInfo copy : list_picked_rows){
             String user_id = Card.getUserIdByCardNumber(card_number);
             BookLentHistory bookLentHistory = new BookLentHistory(user_id, copy.getCopyID(), BookLentHistory.getToday(), card_number, "NO");
+            bookLentHistory.add();
             copy.changeStatusOfACopy("BORROWED");
         }
     }
@@ -74,6 +75,14 @@ public class BookBorrowController implements BasicController {
             copy_list.add(copy);
         }
     }
+    public void getCopiesByTitle(String title){
+        Vector<BookCopyInfo> bookCopyInfoVector = BookCopyInfo.getBookCopiesByTitle(title);
+        copy_list.clear();
+        for (BookCopyInfo copy : bookCopyInfoVector) {
+            copy.updateStatusAndTitle();
+            copy_list.add(copy);
+        }
+    }
 
     public void getPickedBorrowBook() throws ParseException { //used for displaying rows after picked
         // set picked rows into a class's variable
@@ -89,8 +98,9 @@ public class BookBorrowController implements BasicController {
 
     private boolean checkCopyStatus() {
         String status = "AVAILABLE";
+        String type = "BORROWABLE";
         for (BookCopyInfo copy : list_picked_rows) {
-            if (!copy.getStatus().equals(status))
+            if (!copy.getStatus().equals(status) || !copy.getType().equals(type))
                 return false;
         }
         return true;
@@ -99,7 +109,6 @@ public class BookBorrowController implements BasicController {
     public boolean check_card_existed() {
         Card card = new Card();
         return card.check_a_card_existed(bookBorrowForm.getCardNumber());
-
     }
 
     public boolean checkNumLentBookUnder5() {
