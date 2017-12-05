@@ -50,7 +50,7 @@ public class IssueCardController implements BasicController{
                 int days_diff = DateHandling.get_days_diff_with_today(a_card.getExpired_date());
                 days_diff = (-1) * days_diff;
                 System.out.println("days_diff: " + days_diff);
-                if(days_diff <= DateHandling.card_expired_period) // if card is still in valid expired time
+                if(days_diff > 0) // if card is still in valid expired time
                     is_valid = false;
             }
         }
