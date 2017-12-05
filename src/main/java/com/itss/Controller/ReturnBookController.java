@@ -89,8 +89,14 @@ public class ReturnBookController implements BasicController {
         // set picked rows into a class's variable
         list_picked_rows.clear();
         for(String[] a_pick : pick_from_view){
-            String card_number = a_pick[3];
-            String copyID = a_pick[0];
+//            for(int i = 0; i < a_pick.length; i++){
+//                System.out.print(a_pick[i] + " ");
+//            }
+            String card_number = a_pick[5];
+//            System.out.println("Card number " + card_number);
+            String copyID = a_pick[2];
+//            System.out.println("Copy ID " + copyID);
+            total_compensation = 0;
             for(BookLentHistory a_lent : list_books){
                 if (a_lent.getCard_number().equals(card_number) && a_lent.getCopyID().equals(copyID))
                     list_picked_rows.add(a_lent);
