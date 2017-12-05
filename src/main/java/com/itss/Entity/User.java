@@ -167,5 +167,11 @@ public class User implements BasicModel {
         }
         return false;
     }
+    public static String getJobOfAUser(String user_id){
+        HashMap<String, String> dict=  new HashMap<>();
+        dict.put("user_id", user_id);
+        User a_user =  getUniqueUser(dict);
+        return a_user.getJob();
+    }
 
 }

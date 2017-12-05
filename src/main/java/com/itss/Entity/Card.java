@@ -145,4 +145,11 @@ public class Card implements BasicModel {
         else
             return cards.get(0).getCard_number();
     }
+
+    public boolean findTypeOfGuest(){
+        // find that userID enter is correct or not, and find guest is student ?
+        
+    }
+
+
 }
