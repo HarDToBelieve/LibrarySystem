@@ -158,6 +158,9 @@ public class BookDeleteView extends JDialog implements BasicView {
             dtm.fireTableDataChanged();
             stage1.setVisible(true);
         }
+        else {
+            JOptionPane.showMessageDialog(this, "Cannot find such copy id");
+        }
     }
 
     @Override

@@ -110,32 +110,39 @@ public class ReturnBookView extends JDialog implements BasicView {
             for (int i = dtm.getRowCount() - 1; i>=0; i--) {
                 if ( (Boolean)dtm.getValueAt(i, 0) == true ) {
                     tmp.add(new String[]{dtm.getValueAt(i, 1).toString(), dtm.getValueAt(i, 2).toString(),
-                                        dtm.getValueAt(i, 3).toString(), dtm.getValueAt(i, 4).toString(), dtm.getValueAt(i, 5).toString(), dtm.getValueAt(i, 6).toString()});
+                                        dtm.getValueAt(i, 3).toString(), dtm.getValueAt(i, 4).toString(),
+                                        dtm.getValueAt(i, 5).toString(), dtm.getValueAt(i, 6).toString(),
+                                        dtm.getValueAt(i, 7).toString()});
                 }
             }
 
-            rbc.setPick_from_view(tmp);
-            try {
-                rbc.getPickedLentBook();
-                if ( ftm.getRowCount() > 0 ) {
-                    for (int i = ftm.getRowCount() - 1; i>=0; i--)
-                        ftm.removeRow(i);
-                }
-                for (int i=0; i<tmp.size(); ++i)
-                    ftm.addRow(tmp.get(i));
+            if ( tmp.size() > 0 ) {
+                rbc.setPick_from_view(tmp);
+                try {
+                    rbc.getPickedLentBook();
+                    if (ftm.getRowCount() > 0) {
+                        for (int i = ftm.getRowCount() - 1; i >= 0; i--)
+                            ftm.removeRow(i);
+                    }
+                    for (int i = 0; i < tmp.size(); ++i)
+                        ftm.addRow(tmp.get(i));
 
-                if ( ftm.getRowCount() > 0 ) {
-                    for (int i = ftm.getRowCount() - 1; i>=0; i--)
-                        ftm.removeRow(i);
-                }
-                for (int i=0; i<tmp.size(); ++i)
-                    ftm.addRow(tmp.get(i));
-                dataTable.setModel(ftm);
-                resultField.setVisible(false);
-                finishField.setVisible(true);
+                    if (ftm.getRowCount() > 0) {
+                        for (int i = ftm.getRowCount() - 1; i >= 0; i--)
+                            ftm.removeRow(i);
+                    }
+                    for (int i = 0; i < tmp.size(); ++i)
+                        ftm.addRow(tmp.get(i));
+                    dataTable.setModel(ftm);
+                    resultField.setVisible(false);
+                    finishField.setVisible(true);
 
-            } catch (ParseException e) {
-                error();
+                } catch (ParseException e) {
+                    error();
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "pick a book to return");
             }
         }
     }
