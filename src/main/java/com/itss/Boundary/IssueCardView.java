@@ -157,7 +157,7 @@ public class IssueCardView extends JDialog implements BasicView {
                 JOptionPane.showMessageDialog(null, "Guest who is not a HUST student needs to pay a deposit of 15000.");
             }
             try {
-                if (icc.checkValidToGetANewCard()) {
+                if (!icc.checkValidToGetANewCard()) {
                     icc.genACard();
                     updateViewFromController();
                 }
