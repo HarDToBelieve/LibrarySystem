@@ -63,11 +63,6 @@ public class ReturnBookController implements BasicController {
 
     }
 
-    @Override
-    public void refresh() {
-
-    }
-
     public void setForm(BookLentForm form){
         this.form = form;
     }

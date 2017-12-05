@@ -9,11 +9,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.ParseException;
 import java.util.Vector;
 
 public class IssueCardView extends JDialog implements BasicView {
     private JPanel contentPane;
-    private JTextField inputStdCard;
     private JButton btnNext;
     private JButton btnConfirm;
     private JComboBox comboType;
@@ -31,12 +31,8 @@ public class IssueCardView extends JDialog implements BasicView {
         setContentPane(contentPane);
         setModal(true);
         icc = new IssueCardController();
-        String[] listTypes = new String[]{"Select", "Guest is HUST student", "Guest is not HUST student"};
-        comboType.addItem(listTypes[0]);
-        comboType.addItem(listTypes[1]);
-        comboType.addItem(listTypes[2]);
-        guestField.setVisible(false);
-        studentField.setVisible(false);
+
+        guestField.setVisible(true);
         dataField.setVisible(false);
 
         Vector<String> colNames = new Vector<>(); colNames.add(""); colNames.add("");
@@ -64,32 +60,28 @@ public class IssueCardView extends JDialog implements BasicView {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        comboType.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if ( comboType.getSelectedItem().equals("Guest is HUST student") ) {
-                    studentField.setVisible(true);
-                    guestField.setVisible(false);
-                    dataField.setVisible(false);
-                }
-                else if ( comboType.getSelectedItem().equals("Guest is not HUST student") ) {
-                    studentField.setVisible(false);
-                    guestField.setVisible(true);
-                    dataField.setVisible(false);
-                }
-                else {
-                    studentField.setVisible(false);
-                    guestField.setVisible(false);
-                    dataField.setVisible(false);
-                }
-            }
-        });
-        btnNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                submit();
-            }
-        });
+
+//        comboType.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if ( comboType.getSelectedItem().equals("Guest is HUST student") ) {
+//                    studentField.setVisible(true);
+//                    guestField.setVisible(false);
+//                    dataField.setVisible(false);
+//                }
+//                else if ( comboType.getSelectedItem().equals("Guest is not HUST student") ) {
+//                    studentField.setVisible(false);
+//                    guestField.setVisible(true);
+//                    dataField.setVisible(false);
+//                }
+//                else {
+//                    studentField.setVisible(false);
+//                    guestField.setVisible(false);
+//                    dataField.setVisible(false);
+//                }
+//            }
+//        });
+
         btnDone.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,8 +89,7 @@ public class IssueCardView extends JDialog implements BasicView {
                 if ( !icc.isAddCardSuccess() )
                     JOptionPane.showMessageDialog(null, "Something's wrong");
                 dataField.setVisible(false);
-                studentField.setVisible(false);
-                guestField.setVisible(false);
+                guestField.setVisible(true);
             }
         });
 
@@ -146,7 +137,6 @@ public class IssueCardView extends JDialog implements BasicView {
             }
             dtm.fireTableDataChanged();
             dataField.setVisible(true);
-            studentField.setVisible(false);
             guestField.setVisible(false);
             dataTable.setVisible(true);
 //            btnNext.setVisible(false);
@@ -160,14 +150,24 @@ public class IssueCardView extends JDialog implements BasicView {
 
     @Override
     public void submit() {
-//        String cond = comboType.getSelectedIndex() == 1 ? "YES" : "NO";
-//        String id = comboType.getSelectedIndex() == 1 ? inputStdCard.getText() : inputGuest.getText();
-//        CardForm cf = new CardForm(inputStdCard.getText(), cond);
-//        icc.setCardform(cf);
-//        if (icc.validateObject()) {
-//            icc.genACard();
-//            updateViewFromController();
-//        }
+        CardForm cf = new CardForm(inputGuest.getText());
+        icc.setCardform(cf);
+        if (icc.validateObject()) {
+            if ( icc.getTypeOfGuest().equals("guest") ) {
+                JOptionPane.showMessageDialog(null, "Guest who is not a HUST student needs to pay a deposit of 15000.");
+            }
+            try {
+                if (icc.checkValidToGetANewCard()) {
+                    icc.genACard();
+                    updateViewFromController();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "You are not allowed to get a new card");
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -177,7 +177,7 @@ public class IssueCardView extends JDialog implements BasicView {
 
     @Override
     public void error() {
-
+        JOptionPane.showMessageDialog(this, "Something's wrong");
     }
 
     @Override

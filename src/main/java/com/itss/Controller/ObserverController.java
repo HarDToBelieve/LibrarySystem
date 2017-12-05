@@ -7,7 +7,7 @@ import java.util.Vector;
 public class ObserverController {
     public static Vector<BasicView> controllers;
 
-    public static void setClasses(Vector<BasicView> tmp) {
+    public static void setViews(Vector<BasicView> tmp) {
         controllers = tmp;
     }
 
