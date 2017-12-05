@@ -1,16 +1,11 @@
 package com.itss.Controller;
-
 import com.itss.Boundary.Forms.CardForm;
 import com.itss.Entity.Card;
 import com.itss.Entity.User;
 import com.itss.basic.BasicController;
 import com.itss.utilities.DateHandling;
 import com.itss.utilities.RandomString;
-
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -44,7 +39,9 @@ public class IssueCardController implements BasicController{
         return job;
     }
 
-    public boolean checkValidToGetANewCard() throws ParseException {
+    public boolean isValidToGetANewCard() throws ParseException {
+        boolean is_valid = true;
+        System.out.println("user_id " + cardform.getUser_id());
         // if return false, the user_id card is not expired yet.
         // else if it is true, user_id is legal to have a new card.
         Vector<Card> all_cards = Card.getAllCards();
@@ -53,11 +50,12 @@ public class IssueCardController implements BasicController{
                 int days_diff = DateHandling.get_days_diff_with_today(a_card.getExpired_date());
                 days_diff = (-1) * days_diff;
                 System.out.println("days_diff: " + days_diff);
-                if(days_diff < DateHandling.card_expired_period)
-                    return false;
+                if(days_diff <= DateHandling.card_expired_period) // if card is still in valid expired time
+                    is_valid = false;
             }
         }
-        return true;
+        System.out.println("is_valid = " + is_valid);
+        return is_valid;
     }
 
     @Override

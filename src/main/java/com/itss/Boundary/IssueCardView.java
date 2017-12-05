@@ -157,16 +157,19 @@ public class IssueCardView extends JDialog implements BasicView {
                 JOptionPane.showMessageDialog(null, "Guest who is not a HUST student needs to pay a deposit of 15000.");
             }
             try {
-                if (!icc.checkValidToGetANewCard()) {
+                if (icc.isValidToGetANewCard()) {
                     icc.genACard();
                     updateViewFromController();
                 }
-                else {
+                else  {
                     JOptionPane.showMessageDialog(null, "You are not allowed to get a new card");
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Cannot find such userID");
         }
     }
 

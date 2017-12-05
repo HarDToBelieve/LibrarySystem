@@ -11,8 +11,8 @@ public class BookCopyRegistrationControllerBlackBoxTest {
     @Test
     public void testCase01() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
-        bcrc.setForm("asda123", "Borrowable", "12.0", "12"); // Connect to db to get bookID
-        assertEquals(true, bcrc.validateObject());
+        bcrc.setForm("asda123", "Borrowable", "12.0", "12");
+        assertEquals(false, bcrc.validateObject());
     }
 
     @Test

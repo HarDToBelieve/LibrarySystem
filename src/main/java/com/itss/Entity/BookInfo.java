@@ -140,4 +140,17 @@ public class BookInfo implements BasicModel {
 	public boolean validObject() {
 		return valid;
 	}
+
+	public static int getSum(String type) {
+		Vector<BookInfo> tmp = getAllBook();
+		int result = 0;
+
+		for (BookInfo b : tmp) {
+			if ( b.getBookID().substring(0, 2).equals(type) ) {
+				result += 1;
+			}
+		}
+
+		return result;
+	}
 }

@@ -29,7 +29,7 @@ public class BookLentHistory implements BasicModel {
 
     private Boolean valid;
     public final int overdue_days = 100;
-    public final double fine_per_day = 2000.0;
+    public final double fine_per_day = 0.03; //if book is overdue charge 0.03*1000 VND per day
 
 
     public BookLentHistory(String user_id, String copyID, String date, String card_number, String is_returned) {
