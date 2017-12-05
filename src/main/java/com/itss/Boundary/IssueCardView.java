@@ -160,14 +160,14 @@ public class IssueCardView extends JDialog implements BasicView {
 
     @Override
     public void submit() {
-        String cond = comboType.getSelectedIndex() == 1 ? "YES" : "NO";
-        String id = comboType.getSelectedIndex() == 1 ? inputStdCard.getText() : inputGuest.getText();
-        CardForm cf = new CardForm(inputStdCard.getText(), cond);
-        icc.setCardform(cf);
-        if (icc.validateObject()) {
-            icc.genACard();
-            updateViewFromController();
-        }
+//        String cond = comboType.getSelectedIndex() == 1 ? "YES" : "NO";
+//        String id = comboType.getSelectedIndex() == 1 ? inputStdCard.getText() : inputGuest.getText();
+//        CardForm cf = new CardForm(inputStdCard.getText(), cond);
+//        icc.setCardform(cf);
+//        if (icc.validateObject()) {
+//            icc.genACard();
+//            updateViewFromController();
+//        }
     }
 
     @Override

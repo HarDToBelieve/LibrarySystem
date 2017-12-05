@@ -2,11 +2,13 @@ package com.itss.Entity;
 
 import com.itss.basic.BasicModel;
 import com.itss.utilities.APIClient;
+import com.itss.utilities.DateHandling;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import static com.itss.basic.BasicModel.getUnique;
 import static com.itss.basic.BasicModel.deleteUnique;
 
+import java.awt.print.Book;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -27,6 +29,8 @@ public class BookLentHistory implements BasicModel {
 
     private Boolean valid;
     public final int overdue_days = 100;
+    public final double fine_per_day = 2000.0;
+
 
     public BookLentHistory(String user_id, String copyID, String date, String card_number, String is_returned) {
         this.user_id = user_id;
@@ -79,6 +83,14 @@ public class BookLentHistory implements BasicModel {
 
     public String getIsReturned() {
         return is_returned;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public void setCopyID(String copyID) {
+        this.copyID = copyID;
     }
 
     @Override
@@ -152,17 +164,7 @@ public class BookLentHistory implements BasicModel {
         return bookLentHistoryVector;
     }
     public double calCompensation() throws ParseException {
-        Double fine_per_day = 4000.0;
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date old_date = formatter.parse(this.date);
-//        System.out.println("old date " + old_date.getTime());
-        Calendar calendar = Calendar.getInstance();
-        String str_today = formatter.format(calendar.getTime());
-        Date today = formatter.parse(str_today);
-//        System.out.println("today " + today.getTime());
-        long diffs = today.getTime() - old_date.getTime();
-        // cal culate the days difference and set the money
-        int days_diffs = (int) (diffs/ 86400000);
+        int days_diffs = DateHandling.get_days_diff_with_today(this.date);
         if(days_diffs < overdue_days)
             return 0.0;
         double fine = fine_per_day * days_diffs;
@@ -194,9 +196,15 @@ public class BookLentHistory implements BasicModel {
         User user = User.getUniqueUser(dict);
         this.setUser_name(user.getName());
         //set title
+         //find bookID in BookCopy table
         dict.clear();
         dict.put("copyID", this.copyID);
         BookCopyInfo bookCopyInfo = BookCopyInfo.getOneBookCopyInfo(dict);
-        this.setTitle(bookCopyInfo.getTitle());
+        String bookID = bookCopyInfo.getBookID();
+         // use bookID to find title of book in BookInfo table
+        dict.clear();
+        dict.put("bookID", bookID);
+        BookInfo bookInfo = BookInfo.getUniqueBook(dict);
+        this.setTitle(bookInfo.getTitle());
     }
 }

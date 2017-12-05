@@ -159,7 +159,7 @@ public class User implements BasicModel {
     public static Vector<User> getAllUsers() {
         return dumpUser(getAll("user"));
     }
-    public boolean check_a_user_existed(String user_id){
+    public static boolean check_a_user_existed(String user_id){
         Vector<User> all_users = getAllUsers();
         for(User a_user : all_users){
             if(a_user.getUser_id().equals(user_id))
