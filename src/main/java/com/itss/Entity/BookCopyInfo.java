@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -254,6 +255,19 @@ public class BookCopyInfo implements BasicModel {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public static Vector<BookCopyInfo> getBookCopiesByTitle(String title){
+		//get bookID by title first
+		HashMap<String, String> dict = new HashMap<>();
+		dict.put("title", title);
+		BookInfo bookInfo = BookInfo.getUniqueBook(dict);
+		String bookID = bookInfo.getBookID();
+		//use that bookID to get rows in bookCopy
+		dict.clear();
+		dict.put("bookID", bookID);
+		return getUniqueCopy(dict);
+
 	}
 	public void delete_copyStatus(){
 		HashMap<String, String> dict = new HashMap<>();
