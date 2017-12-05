@@ -5,16 +5,11 @@ package com.itss.Boundary.Forms;
  */
 public class CardForm {
     private String user_id;
-    private String is_student;
 
-    public CardForm(String user_id, String is_student) {
+    public CardForm(String user_id) {
         this.user_id = user_id;
-        this.is_student = is_student;
     }
     public String getUser_id() {
         return user_id;
-    }
-    public String getIs_student() {
-        return is_student;
     }
 }
