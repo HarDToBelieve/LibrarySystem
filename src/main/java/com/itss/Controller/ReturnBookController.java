@@ -19,12 +19,6 @@ public class ReturnBookController implements BasicController {
     static ArrayList<BookLentHistory> list_books;
     ArrayList<BookLentHistory> list_picked_rows;
 
-    public double getTotal_compensation() {
-        return total_compensation;
-    }
-
-    double total_compensation;
-
     public void setPick_from_view(Vector<String[]> pick_from_view) {
         this.pick_from_view = pick_from_view;
     }
@@ -107,7 +101,7 @@ public class ReturnBookController implements BasicController {
     }
     private void cal_compensation_for_all_found_rows() throws ParseException {
         for (BookLentHistory a_lent : list_books){
-            total_compensation += a_lent.calCompensation();
+            a_lent.calCompensation();
         }
     }
     private void change_status_of_books() throws Exception {
