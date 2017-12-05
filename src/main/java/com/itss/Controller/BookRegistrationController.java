@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 public class BookRegistrationController implements BasicController {
 	private BookInfo book;
 	private BookForm bookform;
-	private BookCopyInfo bookcopy;
-	private String bookid;
 
 	public void setDb() {
 		db = BookInfo.getAllBook();
@@ -30,10 +28,13 @@ public class BookRegistrationController implements BasicController {
 
 	public BookRegistrationController() {
 		book = new BookInfo();
-		bookcopy = new BookCopyInfo();
 		db = BookInfo.getAllBook();
 	}
 
+	/**
+	 * Retrieve copy information as vector of strings to put into table
+	 * @return Vector of strings of information
+	 */
 	@Override
 	public Vector<Object> getModel() {
 		Vector<Object> result = new Vector<>();
@@ -45,6 +46,10 @@ public class BookRegistrationController implements BasicController {
 		return result;
 	}
 
+	/**
+	 * Check whether the form was filled with specific condition or not
+	 * @return True of False
+	 */
 	@Override
 	public boolean validateObject() {
 		boolean condTitle = !bookform.getTitle().isEmpty() && bookform.getTitle().matches("^[a-zA-Z0-9\\s]*$");
@@ -64,17 +69,25 @@ public class BookRegistrationController implements BasicController {
 
 	}
 
-	public void genCode() {
-		RandomString gen = new RandomString(8, ThreadLocalRandom.current());
-        bookid = gen.nextString();
+	/**
+	 * Generate bookID based on its category
+	 * @param type the book's category
+	 */
+	public void genCode(String type) {
+		int last = BookInfo.getSum(type);
 		book = new BookInfo(bookform.getTitle(), bookform.getAuthor(), bookform.getPublisher(),
-				bookform.getIsbn(), bookid);
+				bookform.getIsbn(), type + String.valueOf(last));
 	}
 
 	public void setForm (BookForm bf) {
 		bookform = bf;
 	}
 
+	/**
+	 * Find a specific book on the remote database
+	 * @param b an object BookInfo
+	 * @return Informations of that book as a list of String
+	 */
 	public static ArrayList<String> getUniqueBookModel(BookInfo b) {
 		ArrayList<String> result = new ArrayList<>();
 		result.add(b.getTitle());
@@ -85,6 +98,11 @@ public class BookRegistrationController implements BasicController {
 		return result;
 	}
 
+	/**
+	 * Retrieve a list of copy which have a similar title
+	 * @param title title of the book
+	 * @return
+	 */
 	public Vector<ArrayList<String>> getBook(String title) {
 		Vector<ArrayList<String>> result = new Vector<>();
 

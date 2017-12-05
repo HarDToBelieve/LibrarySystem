@@ -29,6 +29,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JButton btnConfirm;
     private JButton btnCancel;
     private JTextField inputISBN;
+    private JComboBox comboType;
 
     BookCopyRegistrationController bcrc;
     private BookRegistrationController brc;
@@ -45,6 +46,30 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         getRootPane().setDefaultButton(btnSubmit);
         brc = new BookRegistrationController();
         bcrc = new BookCopyRegistrationController();
+
+        String[] listTypes = new String[] {
+                "GW - General Works",
+                "PP - Philosophy, Psychology, Religion",
+                "WH - World History",
+                "GA - Geography, Anthropology, Recreation",
+                "SS - Social Sciences",
+                "PS - Political Science",
+                "LA - LAW",
+                "ED - Education",
+                "MU - Music",
+                "LL - Language and Literature",
+                "SC - Science",
+                "ME - Medicine",
+                "AG - Agriculture",
+                "TE - Technology",
+                "MS - Military Science",
+                "NS - Naval Science",
+                "BL - Bibliography, Library Science"
+        };
+        for (String s : listTypes) {
+            comboType.addItem(s);
+        }
+
 
         Vector<String> colNames = new Vector<>(); colNames.add("Information"); colNames.add("");
         dtm = new DefaultTableModel(colNames, 0) {
@@ -140,6 +165,9 @@ public class BookRegistrationForm extends JDialog implements BasicView {
 //        close();
     }
 
+    /**
+     * Return to beginning state
+     */
     public void initState() {
         brc.setDb();
         if ( dtm2.getRowCount() > 0 ) {
@@ -200,11 +228,12 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         String author = inputAuthor.getText();
         String publisher = inputPubl.getText();
         String isbn = inputISBN.getText();
+        String type = (String) comboType.getSelectedItem();
 
         BookForm bf = new BookForm(title, author, publisher, isbn);
         brc.setForm(bf);
         if ( brc.validateObject() ) {
-            brc.genCode();
+            brc.genCode(type.substring(0, 2));
             updateViewFromController();
         }
         else {

@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 /**
  * Created by HarDToBelieve on 11/21/2017.
  */
-public class BookRegistrationControllerWhiteBoxTest {
+public class BookRegistrationControllerBlackBoxTest {
     @Test
     public void testCase01() {
         BookRegistrationController brc = new BookRegistrationController();

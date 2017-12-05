@@ -168,6 +168,9 @@ public class IssueCardView extends JDialog implements BasicView {
                 e.printStackTrace();
             }
         }
+        else {
+            JOptionPane.showMessageDialog(null, "Cannot find such userID");
+        }
     }
 
     @Override
