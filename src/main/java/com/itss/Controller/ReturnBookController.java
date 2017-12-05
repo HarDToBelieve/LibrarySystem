@@ -62,6 +62,12 @@ public class ReturnBookController implements BasicController {
     public void selectData() {
 
     }
+
+    @Override
+    public void refresh() {
+
+    }
+
     public void setForm(BookLentForm form){
         this.form = form;
     }

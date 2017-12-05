@@ -79,7 +79,6 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
 //                    dtm.getDataVector().elementAt(count);
             }
             updateModel();
-            bcrc.setDb();
             initState();
         });
         btnCancel.addActionListener(e -> {
@@ -130,6 +129,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
      * Return to beginning state
      */
     private void initState() {
+        bcrc.setDb();
         if ( dtm2.getRowCount() > 0 ) {
             for (int i = dtm2.getRowCount() - 1; i >= 0; i--) {
                 dtm2.removeRow(i);
@@ -243,6 +243,11 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     @Override
     public void error() {
 
+    }
+
+    @Override
+    public void refresh() {
+        initState();
     }
 
     @Override

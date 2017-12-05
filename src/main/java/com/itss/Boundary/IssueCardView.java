@@ -180,6 +180,11 @@ public class IssueCardView extends JDialog implements BasicView {
 
     }
 
+    @Override
+    public void refresh() {
+
+    }
+
     public JPanel getMainPanel() {
         return contentPane;
     }

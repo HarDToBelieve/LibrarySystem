@@ -4,6 +4,7 @@ import com.itss.Boundary.ComboBox.MyComboBoxEditor;
 import com.itss.Boundary.ComboBox.MyComboBoxRenderer;
 import com.itss.Boundary.Forms.BookForm;
 import com.itss.Controller.BookCopyRegistrationController;
+import com.itss.Controller.ObserverController;
 import com.itss.basic.BasicController;
 import com.itss.basic.BasicView;
 import com.itss.Controller.BookRegistrationController;
@@ -73,7 +74,6 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         btnConfirm.addActionListener(e -> {
             try {
                 updateModel();
-                brc.setDb();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -136,6 +136,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             tmp_bcrf.setVisible(true);
         }
         initState();
+        ObserverController.notify(1);
 //        close();
     }
 
@@ -219,6 +220,11 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     @Override
     public void error() {
         JOptionPane.showMessageDialog(this, "Something's wrong");
+    }
+
+    @Override
+    public void refresh() {
+        initState();
     }
 
     @Override

@@ -105,6 +105,11 @@ public class UserLoginForm extends JDialog implements BasicView {
         JOptionPane.showMessageDialog(null, "Wrong username or password");
     }
 
+    @Override
+    public void refresh() {
+
+    }
+
     public String MD5(String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
