@@ -93,6 +93,10 @@ public class BookLentHistory implements BasicModel {
         this.copyID = copyID;
     }
 
+    public void setCard_number(String card_number) {
+        this.card_number = card_number;
+    }
+
     @Override
     public boolean checkConnection() {
         return true;

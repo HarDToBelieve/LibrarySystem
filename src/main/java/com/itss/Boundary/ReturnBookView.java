@@ -88,9 +88,8 @@ public class ReturnBookView extends JDialog implements BasicView {
         });
         btnProcess.addActionListener(e -> preSubmit2());
         btnFinish.addActionListener(e -> {
-            submit();
             updateModel();
-
+            submit();
         });
         btnCancel.addActionListener(e -> {
             dataTable.setModel(dtm);

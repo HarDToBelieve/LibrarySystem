@@ -103,7 +103,7 @@ public class ReturnBookController implements BasicController {
         // this function calls to model then delete the row selected in the db of booklenthistory
         //param holds card_number and copyID make a unique key for a row
         for(BookLentHistory a_lent : list_picked_rows){
-            System.out.println("delete : " + a_lent.delete_row());
+            a_lent.delete_row();
         }
     }
     private void cal_compensation_for_all_found_rows() throws ParseException {
