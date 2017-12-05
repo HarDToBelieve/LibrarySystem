@@ -48,8 +48,9 @@ public class MainWindow extends JFrame {
         menuTabbed.setTabPlacement(JTabbedPane.LEFT);
 
 //        menuTabbed.addChangeListener(e -> {
-//            if ( menuTabbed.getSelectedIndex() == 0 )
+//            if ( menuTabbed.getSelectedIndex() == 0 ) {
 //                menuTabbed.setComponentAt(0, new BookRegistrationForm().getMainPanel());
+//            }
 //            else if ( menuTabbed.getSelectedIndex() == 1 )
 //                menuTabbed.setComponentAt(1, new BookCopyRegistrationForm().getMainPanel());
 //            else if ( menuTabbed.getSelectedIndex() == 2 )
