@@ -72,9 +72,9 @@ public class ReturnBookController implements BasicController {
         for(BookLentHistory lentbook : lentbooks){
             BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
             tmp.set_title_and_name_fromDB();
-            cal_compensation_for_all_found_rows();
             list_books.add(tmp);
         }
+        cal_compensation_for_all_found_rows();
     }
     public void getLentBooksByCopyID(String copyID) throws ParseException {
         Vector<BookLentHistory> lentbooks = BookLentHistory.getBooksByCopyID(copyID);
@@ -82,9 +82,9 @@ public class ReturnBookController implements BasicController {
         for (BookLentHistory lentbook : lentbooks){
             BookLentHistory tmp = new BookLentHistory(lentbook.getUser_id(), lentbook.getCopyID(), lentbook.getDate(), lentbook.getCard_number(),lentbook.getIsReturned());
             tmp.set_title_and_name_fromDB();
-            cal_compensation_for_all_found_rows();
             list_books.add(tmp);
         }
+        cal_compensation_for_all_found_rows();
     }
     public void getPickedLentBook() throws ParseException { //used for displaying rows after picked
         // set picked rows into a class's variable
