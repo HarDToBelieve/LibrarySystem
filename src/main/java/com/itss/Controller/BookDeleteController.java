@@ -18,12 +18,24 @@ public class BookDeleteController implements BasicController {
     Vector<String[]> pick_from_view;
     ArrayList<BookCopyInfo> list_picked_rows;
     private final String STATUS_AVAILABLE = "AVAILABLE";
+    private final String STATUS_BORROWED = "BORROWED";
+
 
     public BookDeleteController() {
         this.copy_list = new ArrayList<>();
         this.bookcopyform = new BookCopyForm();
         this.pick_from_view = new Vector<>();
         this.list_picked_rows = new ArrayList<>();
+    }
+
+    public boolean isPickedRowsIsDeletable(){
+        //if one row in picked rows is BORROWED => return false, notify "There're books is BORROWED"
+        // else return true
+        for(BookCopyInfo bookCopyInfo : list_picked_rows){
+            if (bookCopyInfo.getStatus().equals(this.STATUS_BORROWED))
+                return false;
+        }
+        return true;
     }
 
     public void setPick_from_view(Vector<String[]> pick_from_view) {
@@ -85,7 +97,9 @@ public class BookDeleteController implements BasicController {
         for(BookCopyInfo copy : list_picked_rows){
             if(copy.getStatus().equals(this.STATUS_AVAILABLE))
                 copy.delete_row();
+                copy.delete_copyStatus();
         }
     }
+
 
 }

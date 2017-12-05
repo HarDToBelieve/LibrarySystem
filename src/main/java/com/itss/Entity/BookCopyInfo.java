@@ -255,5 +255,11 @@ public class BookCopyInfo implements BasicModel {
 			return null;
 		}
 	}
+	public void delete_copyStatus(){
+		HashMap<String, String> dict = new HashMap<>();
+		dict.put("copyID", this.copyID);
+		String folder = "copystatus";
+		deleteUnique(folder, dict);
+	}
 
 }
