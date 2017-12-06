@@ -31,7 +31,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
     private JTextField inputISBN;
     private JComboBox comboType;
 
-    BookCopyRegistrationController bcrc;
+    private BookCopyRegistrationController bcrc;
     private BookRegistrationController brc;
     private DefaultTableModel dtm;
     private DefaultTableModel dtm2;
