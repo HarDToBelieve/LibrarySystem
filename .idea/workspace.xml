@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resource/logo.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Main.class" afterPath="$PROJECT_DIR$/target/classes/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$1.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$2.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$3.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$4.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/MainWindow.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/MainWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Controller/BookBorrowController.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Controller/BookBorrowController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Controller/BookCopyRegistrationController.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Controller/BookCopyRegistrationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Controller/BookRegistrationController.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Controller/BookRegistrationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Controller/IssueCardController.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Controller/IssueCardController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Controller/ReturnBookController.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Controller/ReturnBookController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Entity/BookLentHistory.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Entity/BookLentHistory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Entity/Card.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Entity/Card.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Entity/User.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Entity/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/utilities/DateHandling.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/utilities/DateHandling.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/com/itss/Controller/BookCopyRegistrationControllerBlackBoxTest.class" afterPath="$PROJECT_DIR$/target/test-classes/com/itss/Controller/BookCopyRegistrationControllerBlackBoxTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.form" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,7 +25,7 @@
       <file leaf-file-name="BookRegistrationForm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookRegistrationForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="663">
               <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
               <folding />
             </state>
@@ -69,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+              <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -82,7 +62,7 @@
       <file leaf-file-name="BookCopyRegistrationForm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookCopyRegistrationForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
+            <state relative-caret-position="-697">
               <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding />
             </state>
@@ -92,12 +72,19 @@
       <file leaf-file-name="BookRegistrationController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
+            <state relative-caret-position="480">
               <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
-              <folding>
-                <element signature="e#3357#3358#0" expanded="true" />
-                <element signature="e#3377#3378#0" expanded="true" />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookCopyRegistrationController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="64" column="98" selection-start-line="64" selection-start-column="98" selection-end-line="64" selection-end-column="98" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,7 +122,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookRegistrationControllerWhiteBoxTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookRegistrationControllerBlackBoxTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/utilities/Num2Str.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookCopyRegistrationControllerBlackBoxTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookCopyRegistrationControllerWhiteBoxTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookCopyRegistrationForm.java" />
@@ -144,6 +130,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.form" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" />
       </list>
     </option>
   </component>
@@ -1302,7 +1289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512574659782</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;">
+      <created>1512574820999</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1512574820999</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1418,10 +1412,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1105">
           <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
-          <folding>
-            <element signature="e#3357#3358#0" expanded="true" />
-            <element signature="e#3377#3378#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1616,41 +1607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="150" column="37" selection-start-line="150" selection-start-column="37" selection-end-line="150" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
-          <folding>
-            <element signature="e#3357#3358#0" expanded="true" />
-            <element signature="e#3377#3378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookCopyRegistrationForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookRegistrationForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1667,7 +1623,39 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+          <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookRegistrationForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookCopyRegistrationForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="64" column="98" selection-start-line="64" selection-start-column="98" selection-end-line="64" selection-end-column="98" />
           <folding />
         </state>
       </provider>
