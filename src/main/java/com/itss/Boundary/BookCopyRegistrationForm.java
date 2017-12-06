@@ -5,6 +5,7 @@ import com.itss.Boundary.ComboBox.MyComboBoxRenderer;
 import com.itss.basic.BasicController;
 import com.itss.basic.BasicView;
 import com.itss.Controller.BookCopyRegistrationController;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -173,6 +174,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     @Override
     public void updateModel() {
         bcrc.updateData();
+        JOptionPane.showMessageDialog(this, "Successfully");
         close();
     }
 
@@ -231,7 +233,8 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             updateViewFromController();
         }
         else {
-            error();
+            JOptionPane.showMessageDialog(this, "Cannot find that book");
+            initState();
         }
     }
 
@@ -242,7 +245,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
 
     @Override
     public void error() {
-
+        JOptionPane.showMessageDialog(this, "Something's wrong");
     }
 
     @Override

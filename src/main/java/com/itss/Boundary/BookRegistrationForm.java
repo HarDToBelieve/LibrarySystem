@@ -238,6 +238,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         }
         else {
             error();
+            initState();
         }
     }
 
