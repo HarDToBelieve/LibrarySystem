@@ -24,6 +24,8 @@ public class BorrowBookView extends JDialog implements BasicView {
     private JButton btnYes;
     private JButton btnNo;
     private JPanel stage2;
+    private JPanel stage3;
+    private JButton btnBack2;
 
     BookBorrowController bbc;
     DefaultTableModel dtm, ftm;
@@ -89,6 +91,9 @@ public class BorrowBookView extends JDialog implements BasicView {
         });
 
         btnNo.addActionListener(e -> initState());
+        btnBack2.addActionListener(e -> {
+            initState();
+        });
     }
 
     private void findCopy() {
@@ -127,6 +132,7 @@ public class BorrowBookView extends JDialog implements BasicView {
         dataTable.setModel(dtm);
         stage1.setVisible(false);
         stage2.setVisible(false);
+        stage3.setVisible(false);
         lablStatus.setVisible(false);
         inputFind.setText("");
     }
@@ -175,6 +181,7 @@ public class BorrowBookView extends JDialog implements BasicView {
     public void updateModel() {
         try {
             bbc.updateData();
+            stage3.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }

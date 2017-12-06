@@ -176,6 +176,13 @@ public class BookDeleteView extends JDialog implements BasicView {
     @Override
     public void updateModel() {
         bdc.updateData();
+        if ( !bdc.isPickedRowsIsDeletable() ) {
+            JOptionPane.showMessageDialog(this, "There're books is BORROWED");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Successfully");
+        }
+        initState();
     }
 
     @Override
