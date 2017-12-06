@@ -5,6 +5,7 @@ import com.itss.Entity.BookCopyInfo;
 import com.itss.Entity.BookLentHistory;
 import com.itss.Entity.Card;
 import com.itss.basic.BasicController;
+import com.itss.utilities.DateHandling;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class BookBorrowController implements BasicController {
         String card_number = cardNo;
         for(BookCopyInfo copy : list_picked_rows){
             String user_id = Card.getUserIdByCardNumber(card_number);
-            BookLentHistory bookLentHistory = new BookLentHistory(user_id, copy.getCopyID(), BookLentHistory.getToday(), card_number, "NO");
+            BookLentHistory bookLentHistory = new BookLentHistory(user_id, copy.getCopyID(), DateHandling.getToday(), card_number, "NO");
             bookLentHistory.add();
             copy.changeStatusOfACopy("BORROWED");
         }

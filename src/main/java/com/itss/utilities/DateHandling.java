@@ -19,6 +19,11 @@ public class DateHandling {
         String str_date = formatter.format(cal.getTime()); // date after today days_after days
         return str_date;
     }
+    public static String getToday(){
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
 
     public static int get_days_diff_with_today(String date) throws ParseException {
         // get num of day diffs with today

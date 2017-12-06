@@ -119,6 +119,9 @@ public class BookLentHistory implements BasicModel {
 
     }
 
+    /**
+     * add a new row (book is borrowed) to the database on remote (this context)
+     */
     @Override
     public void add() {
         HashMap<String, String> data = new HashMap<>();
@@ -142,6 +145,11 @@ public class BookLentHistory implements BasicModel {
         return valid;
     }
 
+    /**
+     * get all the current lent books with needed information
+     * @param card_number_to_find a string that indicates the card_number of user that borrows books
+     * @return Vector of BookLentHistory of lent books by the card number in parameter
+     */
     public static Vector<BookLentHistory> getBooksByCardNumber(String card_number_to_find){
         Vector<BookLentHistory> bookLentHistoryVector = new Vector<>();
         HashMap<String, String> dict = new HashMap<>();
@@ -160,7 +168,11 @@ public class BookLentHistory implements BasicModel {
         }
         return bookLentHistoryVector;
     }
-
+    /**
+     * get all the current lent books with needed information
+     * @param copyID_to_find a string that indicates the copyID of user that borrows books
+     * @return Vector of BookLentHistory of lent books by the copyID in parameter
+     */
     public static Vector<BookLentHistory> getBooksByCopyID(String copyID_to_find){
         Vector<BookLentHistory> bookLentHistoryVector = new Vector<>();
         HashMap<String, String> dict = new HashMap<>();
@@ -179,6 +191,12 @@ public class BookLentHistory implements BasicModel {
         }
         return bookLentHistoryVector;
     }
+
+    /**
+     * calculate the overdue fee for a book lent
+     * @return  the amount of charge
+     * @throws ParseException
+     */
     public double calCompensation() throws ParseException {
         int days_diffs = DateHandling.get_days_diff_with_today(this.date);
         if(days_diffs < overdue_days)
@@ -187,6 +205,11 @@ public class BookLentHistory implements BasicModel {
         this.compensation = fine;
         return fine;
     }
+
+    /**
+     * delete a row in booklenthistory on remote (this context)
+     * @return
+     */
     public boolean delete_row(){
         HashMap<String, String> dict = new HashMap<>();
         dict.put("card_number", this.card_number);
@@ -195,15 +218,20 @@ public class BookLentHistory implements BasicModel {
         return deleteUnique(folder, dict);
     }
 
+    /**
+     *
+     * @param card_number_tofind
+     * @return number of books that cardnumber borrows
+     */
     public static int countNumLentBook(String card_number_tofind) {
         Vector<BookLentHistory> list = getBooksByCardNumber(card_number_tofind);
         return list.size();
     }
-    public static String getToday(){
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar calendar = Calendar.getInstance();
-        return formatter.format(calendar.getTime());
-    }
+
+    /**
+     * find the extra information to display on view for a book lent row is title of book
+     * and name of the borrower.
+     */
     public void set_title_and_name_fromDB(){
         //this function workds after the user_id and copyID is updated.
         HashMap<String, String> dict = new HashMap<>();
