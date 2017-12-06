@@ -175,7 +175,7 @@ public class BorrowBookForm extends JDialog implements BasicView {
                     lablStatus.setVisible(true);
                 }
                 else {
-                    JOptionPane.showMessageDialog(this, "Cannot choose those copies");
+                    JOptionPane.showMessageDialog(this, "Borrow fail! Invalid copy status or type, or total number of borrowed book more than 5");
                 }
             } catch (ParseException e) {
                 error();
