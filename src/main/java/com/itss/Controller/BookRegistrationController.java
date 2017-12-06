@@ -78,7 +78,7 @@ public class BookRegistrationController implements BasicController {
 	public void genCode(String type) {
 		int last = BookInfo.getSum(type);
 		book = new BookInfo(bookform.getTitle(), bookform.getAuthor(), bookform.getPublisher(),
-				bookform.getIsbn(), type + Num2Str.convert4Num(last));
+				bookform.getIsbn(), type + Num2Str.convert4Num(last + 1));
 		bookid = type + Num2Str.convert4Num(last);
 	}
 
