@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Vector;
 
-public class BorrowBookView extends JDialog implements BasicView {
+public class BorrowBookForm extends JDialog implements BasicView {
     private JPanel contentPane;
     private JButton btnBack;
     private JButton btnBorrow;
@@ -30,7 +30,7 @@ public class BorrowBookView extends JDialog implements BasicView {
     BookBorrowController bbc;
     DefaultTableModel dtm, ftm;
 
-    public BorrowBookView(String username, String cardno) {
+    public BorrowBookForm(String username, String cardno) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnBack);

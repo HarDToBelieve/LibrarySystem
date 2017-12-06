@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Vector;
 
-public class ReturnBookView extends JDialog implements BasicView {
+public class ReturnBookForm extends JDialog implements BasicView {
     private JPanel contentPane;
     private JComboBox comboType;
     private JTextField inputSearch;
@@ -32,7 +32,7 @@ public class ReturnBookView extends JDialog implements BasicView {
     DefaultTableModel dtm, ftm;
     double fee;
 
-    public ReturnBookView() {
+    public ReturnBookForm() {
         setContentPane(contentPane);
         setModal(true);
 

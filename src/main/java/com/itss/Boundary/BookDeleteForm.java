@@ -10,7 +10,7 @@ import java.awt.event.*;
 import java.text.ParseException;
 import java.util.Vector;
 
-public class BookDeleteView extends JDialog implements BasicView {
+public class BookDeleteForm extends JDialog implements BasicView {
     private JPanel contentPane;
     private JTextField inputFind;
     private JButton btnFind;
@@ -30,7 +30,7 @@ public class BookDeleteView extends JDialog implements BasicView {
     BookDeleteController bdc;
     DefaultTableModel dtm, ftm;
 
-    public BookDeleteView() {
+    public BookDeleteForm() {
         setContentPane(contentPane);
         setModal(true);
 

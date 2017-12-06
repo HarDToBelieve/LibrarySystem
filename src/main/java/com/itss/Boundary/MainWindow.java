@@ -29,19 +29,19 @@ public class MainWindow extends JFrame {
             menuTabbed.add(bcrf.getMainPanel(), "Add new copy");
             tmp.add(bcrf);
 
-            BorrowBookView bbv = new BorrowBookView(username, cardno);
+            BorrowBookForm bbv = new BorrowBookForm(username, cardno);
             menuTabbed.add(bbv.getMainPanel(), "Borrow Book");
             tmp.add(bbv);
 
-            BookDeleteView bdv = new BookDeleteView();
+            BookDeleteForm bdv = new BookDeleteForm();
             menuTabbed.add(bdv.getMainPanel(), "Delete book");
             tmp.add(bdv);
 
-            ReturnBookView rbv = new ReturnBookView();
+            ReturnBookForm rbv = new ReturnBookForm();
             menuTabbed.add(rbv.getMainPanel(), "Return Book");
             tmp.add(rbv);
 
-            IssueCardView icv = new IssueCardView();
+            IssueCardForm icv = new IssueCardForm();
             menuTabbed.add(icv.getMainPanel(), "Issue Card");
             tmp.add(icv);
         }
@@ -60,11 +60,11 @@ public class MainWindow extends JFrame {
 //            else if ( menuTabbed.getSelectedIndex() == 1 )
 //                menuTabbed.setComponentAt(1, new BookCopyRegistrationForm().getMainPanel());
 //            else if ( menuTabbed.getSelectedIndex() == 2 )
-//                menuTabbed.setComponentAt(2, new BookDeleteView().getMainPanel());
+//                menuTabbed.setComponentAt(2, new BookDeleteForm().getMainPanel());
 //            else if ( menuTabbed.getSelectedIndex() == 3 )
-//                menuTabbed.setComponentAt(3, new ReturnBookView().getMainPanel());
+//                menuTabbed.setComponentAt(3, new ReturnBookForm().getMainPanel());
 //            else if ( menuTabbed.getSelectedIndex() == 4 )
-//                menuTabbed.setComponentAt(4, new IssueCardView().getMainPanel());
+//                menuTabbed.setComponentAt(4, new IssueCardForm().getMainPanel());
 //        });
     }
 }

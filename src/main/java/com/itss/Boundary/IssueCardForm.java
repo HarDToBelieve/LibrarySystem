@@ -12,7 +12,7 @@ import java.awt.event.*;
 import java.text.ParseException;
 import java.util.Vector;
 
-public class IssueCardView extends JDialog implements BasicView {
+public class IssueCardForm extends JDialog implements BasicView {
     private JPanel contentPane;
     private JButton btnNext;
     private JButton btnConfirm;
@@ -27,7 +27,7 @@ public class IssueCardView extends JDialog implements BasicView {
     IssueCardController icc;
     private DefaultTableModel dtm;
 
-    public IssueCardView() {
+    public IssueCardForm() {
         setContentPane(contentPane);
         setModal(true);
         icc = new IssueCardController();
