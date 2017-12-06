@@ -201,7 +201,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             dtm.fireTableDataChanged();
             dataTable.setModel(dtm);
 
-            String[] listTypes = new String[]{"Reference", "Borrowable"};
+            String[] listTypes = new String[]{"REFERENCE", "BORROWABLE"};
             TableColumn col = dataTable.getColumnModel().getColumn(1);
             col.setCellEditor(new MyComboBoxEditor(listTypes));
             col.setCellRenderer(new MyComboBoxRenderer(listTypes));
