@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java" />
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,9 +40,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookRegistrationController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BookRegistrationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="336">
               <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
               <folding />
@@ -81,6 +86,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-716">
               <caret line="56" column="105" lean-forward="false" selection-start-line="56" selection-start-column="105" selection-end-line="56" selection-end-column="105" />
+=======
+            <state relative-caret-position="340">
+              <caret line="81" column="52" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
               <folding />
             </state>
           </provider>
@@ -89,6 +98,7 @@
       <file leaf-file-name="BookCopyRegistrationController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="803">
               <caret line="64" column="43" lean-forward="false" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
               <folding>
@@ -117,6 +127,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="84">
               <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+=======
+            <state relative-caret-position="1445">
+              <caret line="99" column="79" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="79" />
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
               <folding />
             </state>
           </provider>
@@ -124,6 +138,52 @@
       </file>
     </leaf>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Entity/BookCopyInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/IssueCardController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookDeleteView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookView.form" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.form" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookDeleteForm.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookRegistrationControllerWhiteBoxTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookRegistrationControllerBlackBoxTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/utilities/Num2Str.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookCopyRegistrationControllerBlackBoxTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/itss/Controller/BookCopyRegistrationControllerWhiteBoxTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookCopyRegistrationForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookRegistrationForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.form" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java" />
+      </list>
+    </option>
+  </component>
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -915,6 +975,116 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
+<<<<<<< HEAD
+=======
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="" />
+      <created>1512517608718</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1512517608718</updated>
+      <workItem from="1512517616372" duration="343000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix view">
+      <created>1512550679838</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1512550679838</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactor name">
+      <created>1512550840269</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1512550840269</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix borrow">
+      <created>1512553419397</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1512553419397</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix borrow">
+      <created>1512553695769</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1512553695769</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix borrow">
+      <created>1512554015727</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1512554015727</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix borrow">
+      <created>1512554315767</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1512554315767</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix borrow">
+      <created>1512555890099</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1512555890099</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix borrow">
+      <created>1512556788205</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1512556788205</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix borrow">
+      <created>1512558017443</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1512558017443</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;">
+      <created>1512574659782</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1512574659782</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;">
+      <created>1512574820999</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1512574820999</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;fix constraint">
+      <created>1512577806830</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1512577806830</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Add image">
+      <created>1512578950965</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1512578951006</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Fix index of book and copy">
+      <created>1512579364116</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1512579364116</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -977,6 +1147,33 @@
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix view" />
+    <MESSAGE value="refactor name" />
+    <MESSAGE value="fix borrow" />
+    <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;" />
+    <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;fix constraint" />
+    <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Add image" />
+    <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Fix index of book and copy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Fix index of book and copy" />
+  </component>
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="10" />
@@ -1390,18 +1587,32 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="99" column="79" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="79" />
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/ReturnBookController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="81" column="52" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
+>>>>>>> 456fe5f18b7e708b161f9606888b4cf952c0a509
           <folding />
         </state>
       </provider>
