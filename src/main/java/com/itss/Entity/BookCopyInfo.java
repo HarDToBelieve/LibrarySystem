@@ -97,6 +97,10 @@ public class BookCopyInfo implements BasicModel {
 		return true;
 	}
 
+	/**
+	 * Get the copy on remote server by copyID and set to the current object
+	 * @param ID copyID
+	 */
 	@Override
 	public void getByID(String ID) {
 		String endpoint = "bookcopy/get.php";
@@ -120,6 +124,11 @@ public class BookCopyInfo implements BasicModel {
 		}
 	}
 
+	/**
+	 * Extract information of bookcopy from json
+	 * @param lineItems json string
+	 * @return list of book copy
+	 */
 	static Vector<BookCopyInfo> dumpCopy (Object lineItems) {
 		Vector<BookCopyInfo> books = new Vector<>();
 		for (Object o : (JSONArray) lineItems) {
@@ -135,14 +144,26 @@ public class BookCopyInfo implements BasicModel {
 		return books;
 	}
 
+	/**
+	 * Retrieve all book copy
+	 * @return list of book copy
+	 */
 	public static Vector<BookCopyInfo> getAllCopy() {
 		return dumpCopy(getAll("bookcopy"));
 	}
 
+	/**
+	 * Retrieve list of book copy which are satisfied some conditions
+	 * @param dict map of conditions
+	 * @return list of book copy
+	 */
 	public static Vector<BookCopyInfo> getUniqueCopy(HashMap<String, String> dict) {
 		return dumpCopy(getUnique("bookcopy", dict));
 	}
 
+	/**
+	 * Add current book copy object and its status to remote database
+	 */
 	@Override
 	public void add() {
 		HashMap<String, String> data = new HashMap<>();
@@ -172,11 +193,20 @@ public class BookCopyInfo implements BasicModel {
 		}
 	}
 
+	/**
+	 * Check if current book copy object is valid or not
+	 * @return true or false
+	 */
 	@Override
 	public boolean validObject() {
 		return valid;
 	}
 
+	/**
+	 * Return the last bookid index of book copy on remote database
+	 * @param bookid bookID of the copy
+	 * @return last index
+	 */
 	public static int getSum(String bookid) {
 		Vector<BookCopyInfo> tmp = getAllCopy();
 		int count = 0;
@@ -187,8 +217,11 @@ public class BookCopyInfo implements BasicModel {
 		return count;
 	}
 
+	/**
+	 * Return status and title of a copy from copystatus table
+	 * @return Available or Borrowed
+	 */
 	public String[] getStatusOfACopy(){
-		// return status and title of a copy from copystatus table
 		String data_return[] = new String[2];
 		String endpoint = "copystatus/get.php";
 		HashMap<String, String> dict = new HashMap<>();
@@ -205,6 +238,12 @@ public class BookCopyInfo implements BasicModel {
 		}
 		return data_return;
 	}
+
+	/**
+	 * Change the status of a copy
+	 * @param desire_status status
+	 * @throws Exception
+	 */
 	public void changeStatusOfACopy(String desire_status) throws Exception {
 		String endpoint_stt = "copystatus/update.php";
 		HashMap<String, String> data = new HashMap<>();
@@ -237,17 +276,32 @@ public class BookCopyInfo implements BasicModel {
 //			e.printStackTrace();
 //		}
 //	}
+
+	/**
+	 * Update status and title to current object
+	 */
 	public void updateStatusAndTitle(){
 		String data[] = this.getStatusOfACopy();
 		this.status = data[0];
 		this.title = data[1];
 	}
+
+	/**
+	 * Delete a record of book copy on remote database
+	 * @return success or not
+	 */
 	public boolean delete_row() {
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("copyID", this.getCopyID());
 		String folder = "bookcopy";
 		return deleteUnique(folder, dict);
 	}
+
+	/**
+	 * Retrieve the first row on remote database of book copy
+	 * @param dict condition
+	 * @return
+	 */
 	public static BookCopyInfo getOneBookCopyInfo(HashMap<String, String> dict) {
 		try {
 			return dumpCopy(getUnique("bookcopy", dict)).get(0);
@@ -255,6 +309,10 @@ public class BookCopyInfo implements BasicModel {
 			return null;
 		}
 	}
+
+	/**
+	 * Delete the status of copyt on the remote database
+	 */
 	public void delete_copyStatus(){
 		HashMap<String, String> dict = new HashMap<>();
 		dict.put("copyID", this.copyID);

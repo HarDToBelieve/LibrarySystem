@@ -52,6 +52,14 @@ public class BookInfo implements BasicModel {
 
 	private boolean valid;
 
+	/**
+	 * Constructor
+	 * @param title title of the book
+	 * @param author author of the book
+	 * @param publisher publisher of the book
+	 * @param isbn isbn code of the book
+	 * @param bookID bookID of the book
+	 */
 	public BookInfo(String title, String author, String publisher, String isbn, String bookID) {
 		this.title = title;
 		this.author = author;
@@ -60,6 +68,10 @@ public class BookInfo implements BasicModel {
 		this.isbn = isbn;
 	}
 
+	/**
+	 * Get the book on remote server by bookID and set to the current object
+	 * @param ID bookID
+	 */
 	@Override
 	public void getByID(String ID) {
 		String endpoint = "bookinfo/get.php";
@@ -89,6 +101,11 @@ public class BookInfo implements BasicModel {
 		return true;
 	}
 
+	/**
+	 * Extract information of book from json
+	 * @param lineItems json string
+	 * @return list of book
+	 */
 	static Vector<BookInfo> dumpBooks (Object lineItems) {
 		Vector<BookInfo> books = new Vector<>();
 		for (Object o : (JSONArray) lineItems) {
@@ -106,10 +123,19 @@ public class BookInfo implements BasicModel {
 		return books;
 	}
 
+	/**
+	 * Retrieve all book
+	 * @return list of book
+	 */
 	public static Vector<BookInfo> getAllBook() {
 		return dumpBooks(getAll("bookinfo"));
 	}
 
+	/**
+	 * Retrieve list of book which are satisfied some conditions
+	 * @param dict map of conditions
+	 * @return list of book
+	 */
 	public static BookInfo getUniqueBook(HashMap<String, String> dict) {
 		try {
 			return dumpBooks(getUnique("bookinfo", dict)).get(0);
@@ -118,6 +144,9 @@ public class BookInfo implements BasicModel {
 		}
 	}
 
+	/**
+	 * Add current book object to remote database
+	 */
 	@Override
 	public void add() {
 		HashMap<String, String> data = new HashMap<>();
@@ -136,11 +165,20 @@ public class BookInfo implements BasicModel {
 		}
 	}
 
+	/**
+	 * Check if current book copy object is valid or not
+	 * @return true or false
+	 */
 	@Override
 	public boolean validObject() {
 		return valid;
 	}
 
+	/**
+	 * Return the last type index of book on remote database
+	 * @param type type of the book
+	 * @return last index
+	 */
 	public static int getSum(String type) {
 		Vector<BookInfo> tmp = getAllBook();
 		int result = 0;
