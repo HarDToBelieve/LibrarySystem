@@ -75,6 +75,9 @@ public class Card implements BasicModel {
 
     }
 
+    /**
+     * add a card with fully added information to the database on remote
+     */
     @Override
     public void add() {
         HashMap<String, String> data = new HashMap<>();
@@ -99,6 +102,12 @@ public class Card implements BasicModel {
     public boolean validObject() {
         return false;
     }
+
+    /**
+     * extract information getten from databse
+     * @param lineItems
+     * @return a Vertor of Cards
+     */
     static Vector<Card> dumpCards (Object lineItems) {
         Vector<Card> cards = new Vector<>();
         for (Object o : (JSONArray) lineItems) {
@@ -115,10 +124,20 @@ public class Card implements BasicModel {
         }
         return cards;
     }
+
+    /**
+     *
+     * @return all current card on the database
+     */
     public static Vector<Card> getAllCards() {
         return dumpCards(getAll("card"));
     }
 
+    /**
+     * check if a card_number is in database
+     * @param card_number
+     * @return true if existed, false if not.
+     */
     public boolean check_a_card_existed(String card_number){
         Vector<Card> all_cards = getAllCards();
         for(Card a_card : all_cards){
@@ -127,6 +146,12 @@ public class Card implements BasicModel {
         }
         return false;
     }
+
+    /**
+     * get a username by user card number
+     * @param card_number
+     * @return user's name
+     */
     public static String getUserIdByCardNumber(String card_number){
         HashMap<String, String> dict = new HashMap<>();
         dict.put("card_number", card_number);
@@ -137,7 +162,11 @@ public class Card implements BasicModel {
             return  cards.get(0).getUser_id();
     }
 
-
+    /**
+     * get card number by using user_id
+     * @param userid id of user
+     * @return card_number of that user
+     */
     public static String getCardNumberByUserID(String userid) {
         HashMap<String, String> dict = new HashMap<>();
         dict.put("user_id", userid);

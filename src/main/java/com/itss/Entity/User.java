@@ -76,6 +76,10 @@ public class User implements BasicModel {
         return false;
     }
 
+    /**
+     * get and set information of a user by using user_id
+     * @param ID user_id of a user, that is unique
+     */
     @Override
     public void getByID(String ID) {
         String endpoint = "user/get.php";
@@ -101,6 +105,9 @@ public class User implements BasicModel {
         }
     }
 
+    /**
+     * add a new user to the User table in database
+     */
     @Override
     public void add() {
         HashMap<String, String> data = new HashMap<>();
@@ -121,6 +128,11 @@ public class User implements BasicModel {
         }
     }
 
+    /**
+     * extract information gotten from database
+     * @param lineItems
+     * @return a vertor of Users
+     */
     static Vector<User> dumpUser (Object lineItems) {
         Vector<User> users = new Vector<>();
         for (Object o : (JSONArray) lineItems) {
@@ -139,6 +151,11 @@ public class User implements BasicModel {
         return users;
     }
 
+    /**
+     * get one user with exact information that matches the parameter
+     * @param dict a HashMap that matches the desired user
+     * @return
+     */
     public static User getUniqueUser(HashMap<String, String> dict) {
         try {
             return dumpUser(getUnique("user", dict)).get(0);
@@ -156,6 +173,10 @@ public class User implements BasicModel {
         return user_id;
     }
 
+    /**
+     *
+     * @return all current users that appears in database
+     */
     public static Vector<User> getAllUsers() {
         return dumpUser(getAll("user"));
     }
@@ -167,6 +188,12 @@ public class User implements BasicModel {
         }
         return false;
     }
+
+    /**
+     * get job of a user
+     * @param user_id
+     * @return "student" or "guest" or null
+     */
     public static String getJobOfAUser(String user_id){
         HashMap<String, String> dict=  new HashMap<>();
         dict.put("user_id", user_id);
