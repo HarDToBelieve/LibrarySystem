@@ -112,7 +112,7 @@ public class IssueCardController implements BasicController{
      */
     private boolean genACardNumber(){
         boolean is_ok = true;
-        card_number = getRandomString(this.card_length);
+        card_number = getRandomNumber(this.card_length);
         Vector<Card> existedCard = card.getAllCards();
         for(int index = 0; index < existedCard.size(); index++){
             if(card_number.equals(existedCard.get(index).getCard_number()))
@@ -136,10 +136,15 @@ public class IssueCardController implements BasicController{
         String expired_date = DateHandling.getADate(DateHandling.card_expired_period);
         card = new Card(user_id, "NO", is_student, expired_date,activate_code,this.card_number);
     }
-    public String getRandomString(int length){
+    private String getRandomString(int length){
         RandomString gen = new RandomString(length, ThreadLocalRandom.current());
         String cardNumber = gen.nextString();
         return cardNumber;
+    }
+    private String getRandomNumber(int length){
+        RandomString gen = new RandomString(length, ThreadLocalRandom.current(), "0123456789");
+        String str = gen.nextString();
+        return str;
     }
 
     /**
