@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Fix index of book">
+    <list default="true" id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,20 +42,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookRegistrationController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BookRegistrationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="91" column="60" selection-start-line="91" selection-start-column="60" selection-end-line="91" selection-end-column="60" />
+            <state relative-caret-position="340">
+              <caret line="81" column="52" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookCopyRegistrationController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookCopyRegistrationController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
+            <state relative-caret-position="1445">
               <caret line="99" column="79" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="79" />
               <folding />
             </state>
@@ -103,8 +102,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.form" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java" />
       </list>
     </option>
   </component>
@@ -1332,7 +1331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512578951006</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Fix index of book and copy">
+      <created>1512579364116</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1512579364116</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1417,7 +1423,8 @@
     <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;" />
     <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;fix constraint" />
     <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Add image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Add image" />
+    <MESSAGE value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Fix index of book and copy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'vu.ba.05' of https://github.com/HarDToBelieve/LibrarySystem&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;&#10;Fix index of book and copy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1698,18 +1705,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="91" column="60" selection-start-line="91" selection-start-column="60" selection-end-line="91" selection-end-column="60" />
+        <state relative-caret-position="1445">
+          <caret line="99" column="79" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookRegistrationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="99" column="79" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="79" />
+        <state relative-caret-position="340">
+          <caret line="81" column="52" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
           <folding />
         </state>
       </provider>
