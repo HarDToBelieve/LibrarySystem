@@ -75,10 +75,10 @@ public class BorrowBookForm extends JDialog implements BasicView {
         };
 
         dataTable.setModel(dtm);
-        lablStatus.setVisible(true);
+        lablStatus.setVisible(false);
         stage1.setVisible(false);
         stage2.setVisible(false);
-
+        stage3.setVisible(false);
 
         btnFind.addActionListener(e -> {
             updateViewFromController();
@@ -171,6 +171,8 @@ public class BorrowBookForm extends JDialog implements BasicView {
                     dataTable.setModel(ftm);
                     stage1.setVisible(false);
                     stage2.setVisible(true);
+                    lablStatus.setText("Do you want borrow this book ?");
+                    lablStatus.setVisible(true);
                 }
                 else {
                     JOptionPane.showMessageDialog(this, "Cannot choose those copies");
