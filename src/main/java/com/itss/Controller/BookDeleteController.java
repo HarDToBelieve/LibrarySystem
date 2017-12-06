@@ -28,6 +28,10 @@ public class BookDeleteController implements BasicController {
         this.list_picked_rows = new ArrayList<>();
     }
 
+    /**
+     * Check if a book can be deleted or not
+     * @return boolean
+     */
     public boolean isPickedRowsIsDeletable(){
         //if one row in picked rows is BORROWED => return false, notify "There're books is BORROWED"
         // else return true
@@ -42,7 +46,10 @@ public class BookDeleteController implements BasicController {
         this.pick_from_view = pick_from_view;
     }
 
-
+    /**
+     * Retrieve copy information as vector of strings to put into table
+     * @return Vector of strings of information
+     */
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
@@ -57,6 +64,9 @@ public class BookDeleteController implements BasicController {
         return true;
     }
 
+    /**
+     * Delete book in bookcopyinfo table
+     */
     @Override
     public void updateData() {
         delete_picked_rows();
@@ -67,6 +77,10 @@ public class BookDeleteController implements BasicController {
 
     }
 
+    /**
+     * Search copies by copy ID, return a list
+     * @param copyID is book ID of the book
+     */
     public void getCopyByCopyID(String copyID) {
         HashMap<String, String> dict = new HashMap<>();
         dict.put("copyID", copyID);
@@ -78,6 +92,9 @@ public class BookDeleteController implements BasicController {
         }
     }
 
+    /**
+     * Get picked Book, return a list of that books to process Delete
+     */
     public void getPickedDeleteBook() throws ParseException { //used for displaying rows after picked
         // set picked rows into a class's variable
         list_picked_rows.clear();
@@ -90,6 +107,9 @@ public class BookDeleteController implements BasicController {
         }
     }
 
+    /**
+     * Delete picked copies, check copy status before delete
+     */
     private void delete_picked_rows(){
         // only works after calling function getPickedDeleteBook
         // this function calls to model then delete the row selected in the db of bookcopyinfo

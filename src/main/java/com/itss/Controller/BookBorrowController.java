@@ -33,7 +33,10 @@ public class BookBorrowController implements BasicController {
         this.pick_from_view = pick_from_view;
     }
 
-
+    /**
+     * Retrieve copy information as vector of strings to put into table
+     * @return Vector of strings of information
+     */
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
@@ -43,11 +46,18 @@ public class BookBorrowController implements BasicController {
         return result;
     }
 
+    /**
+     * Check whether invalid copy status, copy type or not, number of total borrowed book more than 5
+     * @return True of False
+     */
     @Override
     public boolean validateObject() {
         return checkCopyStatus()&&check_card_existed()&&checkNumLentBookUnder5();
     }
 
+    /**
+     * Update info of borrowed books to BookLentHistory, change status of new borrowed copies
+     */
     @Override
     public void updateData() throws Exception {
         // do 2 things, change status of the current book, add a new row to booklenthistoy
@@ -65,6 +75,10 @@ public class BookBorrowController implements BasicController {
 
     }
 
+    /**
+     * Search copies by book ID, return a list
+     * @param bookID is book ID of the book
+     */
     public void getCopiesByBookId(String bookID) {
         HashMap<String, String> dict = new HashMap<>();
         dict.put("bookID", bookID);
@@ -75,6 +89,11 @@ public class BookBorrowController implements BasicController {
             copy_list.add(copy);
         }
     }
+
+    /**
+     * Search copies by title, return a list
+     * @param title title of the book
+     */
     public void getCopiesByTitle(String title){
         Vector<BookCopyInfo> bookCopyInfoVector = BookCopyInfo.getBookCopiesByTitle(title);
         copy_list.clear();
@@ -84,6 +103,9 @@ public class BookBorrowController implements BasicController {
         }
     }
 
+    /**
+     * Get picked Book, return a list of that books to process Borrow
+     */
     public void getPickedBorrowBook() throws ParseException { //used for displaying rows after picked
         // set picked rows into a class's variable
         list_picked_rows.clear();
@@ -96,6 +118,10 @@ public class BookBorrowController implements BasicController {
         }
     }
 
+    /**
+     * Check Copy status and type
+     * @return true when status = " AVAILABLE" and type ="BORROWABLE"
+     */
     private boolean checkCopyStatus() {
         String status = "AVAILABLE";
         String type = "BORROWABLE";
@@ -106,11 +132,19 @@ public class BookBorrowController implements BasicController {
         return true;
     }
 
+    /**
+     * Check Card exist
+     * @return boolean
+     */
     public boolean check_card_existed() {
         Card card = new Card();
         return card.check_a_card_existed(cardNo);
     }
 
+    /**
+     * Check total of borrowed books including selecting books more than 5
+     * @return true when <5
+     */
     public boolean checkNumLentBookUnder5() {
         if ((BookLentHistory.countNumLentBook(cardNo) + list_picked_rows.size()) > 5) {
             return false;
