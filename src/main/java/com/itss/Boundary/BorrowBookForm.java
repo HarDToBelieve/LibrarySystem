@@ -26,6 +26,7 @@ public class BorrowBookForm extends JDialog implements BasicView {
     private JPanel stage2;
     private JPanel stage3;
     private JButton btnBack2;
+    private JComboBox comboType;
 
     BookBorrowController bbc;
     DefaultTableModel dtm, ftm;
@@ -34,6 +35,10 @@ public class BorrowBookForm extends JDialog implements BasicView {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnBack);
+        String[] listTypes = new String[]{"Search by title", "Search by copy id"};
+        comboType.addItem(listTypes[0]);
+        comboType.addItem(listTypes[1]);
+
 
         bbc = new BookBorrowController(cardno);
         Vector<String> colNames = new Vector<>();
@@ -98,7 +103,11 @@ public class BorrowBookForm extends JDialog implements BasicView {
     }
 
     private void findCopy() {
-        bbc.getCopiesByBookId(inputFind.getText());
+        if (comboType.getSelectedIndex() == 0) {
+            bbc.getCopiesByTitle(inputFind.getText());
+        } else {
+            bbc.getCopiesByBookId(inputFind.getText());
+        }
         Vector<Object> data = bbc.getModel();
         if ( data.size() > 0 ) {
             if ( dtm.getRowCount() > 0 ) {
