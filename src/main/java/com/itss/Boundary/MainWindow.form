@@ -15,7 +15,7 @@
           </grid>
         </constraints>
         <properties/>
-        <border type="none"/>
+        <border type="none" title-position="2"/>
         <children/>
       </tabbedpane>
     </children>
