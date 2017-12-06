@@ -177,7 +177,7 @@ public class BookDeleteForm extends JDialog implements BasicView {
     public void updateModel() {
         bdc.updateData();
         if ( !bdc.isPickedRowsIsDeletable() ) {
-            JOptionPane.showMessageDialog(this, "There're books is BORROWED");
+            JOptionPane.showMessageDialog(this, "There are books which have been borrowed in your selected list.");
         }
         else {
             JOptionPane.showMessageDialog(this, "Successfully");
