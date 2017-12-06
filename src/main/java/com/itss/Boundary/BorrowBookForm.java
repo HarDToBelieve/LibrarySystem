@@ -86,13 +86,9 @@ public class BorrowBookForm extends JDialog implements BasicView {
         });
         btnYes.addActionListener(e -> {
             updateModel();
-            if ( bbc.validateObject() ) {
-                lablStatus.setText("User: " + username + " Card Number: " + cardno + " ---- Successfully");
-                lablStatus.setVisible(true);
-            }
-            else {
-                error();
-            }
+            lablStatus.setText("User: " + username + " Card Number: " + cardno + " ---- Successfully");
+            lablStatus.setVisible(true);
+
         });
 
         btnNo.addActionListener(e -> initState());
@@ -155,17 +151,21 @@ public class BorrowBookForm extends JDialog implements BasicView {
 
             try {
                 bbc.getPickedBorrowBook();
-                if ( ftm.getRowCount() > 0 ) {
-                    for (int i = ftm.getRowCount() - 1; i>=0; i--)
-                        ftm.removeRow(i);
+                if ( bbc.validateObject() ) {
+                    if (ftm.getRowCount() > 0) {
+                        for (int i = ftm.getRowCount() - 1; i >= 0; i--)
+                            ftm.removeRow(i);
+                    }
+                    for (int i = 0; i < tmp.size(); ++i)
+                        ftm.addRow(tmp.get(i));
+                    ftm.fireTableDataChanged();
+                    dataTable.setModel(ftm);
+                    stage1.setVisible(false);
+                    stage2.setVisible(true);
                 }
-                for (int i=0; i<tmp.size(); ++i)
-                    ftm.addRow(tmp.get(i));
-                ftm.fireTableDataChanged();
-                dataTable.setModel(ftm);
-                stage1.setVisible(false);
-                stage2.setVisible(true);
-
+                else {
+                    JOptionPane.showMessageDialog(this, "Cannot choose those copies");
+                }
             } catch (ParseException e) {
                 error();
             }
