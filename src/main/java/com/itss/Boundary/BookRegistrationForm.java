@@ -156,7 +156,8 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         brc.updateData();
         int opt =JOptionPane.showConfirmDialog(this,"Do you want to add a copy?");
         if ( opt == JOptionPane.YES_OPTION) {
-            BookCopyRegistrationForm tmp_bcrf = new BookCopyRegistrationForm();
+            String sample_id = brc.getBookid();
+            BookCopyRegistrationForm tmp_bcrf = new BookCopyRegistrationForm(sample_id);
             tmp_bcrf.pack();
             tmp_bcrf.setVisible(true);
         }
@@ -184,6 +185,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
         inputTitle.setText(""); inputAuthor.setText(""); inputPubl.setText(""); inputISBN.setText("");
         inputAuthor.setEditable(true); inputISBN.setEditable(true); inputPubl.setEditable(true); inputTitle.setEditable(true);
         btnConfirm.setVisible(false); btnCancel.setVisible(false); btnSubmit.setVisible(true);
+        comboType.setEnabled(true);
     }
 
     /**
@@ -213,6 +215,7 @@ public class BookRegistrationForm extends JDialog implements BasicView {
             inputISBN.setEditable(false);
             inputPubl.setEditable(false);
             inputTitle.setEditable(false);
+            comboType.setEnabled(false);
         }
         else {
             error();

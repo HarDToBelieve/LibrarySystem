@@ -5,20 +5,20 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by HarDToBelieve on 11/21/2017.
+ * Created by HarDToBelieve on 12/6/2017.
  */
-public class BookCopyRegistrationControllerBlackBoxTest {
+public class BookCopyRegistrationControllerWhiteBoxTest {
     @Test
     public void testCase01() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
-        bcrc.setForm("LL0000", "BORROWABLE", "12.0", "12");
+        bcrc.setForm("PS0000", "BORROWABLE", "12.0", "12");
         assertEquals(true, bcrc.validateObject());
     }
 
     @Test
     public void testCase02() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
-        bcrc.setForm("LL0000", "REFERENCE", "12.0", "13");
+        bcrc.setForm("PS0000", "REFERENCE", "12.0", "13");
         assertEquals(true, bcrc.validateObject());
     }
 
@@ -39,14 +39,21 @@ public class BookCopyRegistrationControllerBlackBoxTest {
     @Test
     public void testCase05() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
-        bcrc.setForm("LL0000", "IJ$WB%NFMO", "12.0", "12");
+        bcrc.setForm("PS0000", "IJ$WB%NFMO", "12.0", "12");
         assertEquals(false, bcrc.validateObject());
     }
 
     @Test
     public void testCase06() {
         BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
-        bcrc.setForm("LL0000", "BORROWABLE", "1asda", "12");
+        bcrc.setForm("PS0000", "BORROWABLE", "1asda", "12");
+        assertEquals(false, bcrc.validateObject());
+    }
+
+    @Test
+    public void testCase07() {
+        BookCopyRegistrationController bcrc = new BookCopyRegistrationController();
+        bcrc.setForm("PS0000", "BORROWABLE", "12.0", "zxgasrhj");
         assertEquals(false, bcrc.validateObject());
     }
 }

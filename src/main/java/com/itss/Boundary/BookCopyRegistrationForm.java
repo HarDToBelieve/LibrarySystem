@@ -31,18 +31,20 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
     private BookCopyRegistrationController bcrc;
     private DefaultTableModel dtm;
     private DefaultTableModel dtm2;
+    private String sample_bookID;
 
     /**
      * Initialize all components and listeners
      */
-    public BookCopyRegistrationForm() {
+    public BookCopyRegistrationForm(String bookID) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnSubmit);
         bcrc = new BookCopyRegistrationController();
-        String[] listTypes = new String[]{"Reference", "Borrowable"};
+        String[] listTypes = new String[]{"REFERENCE", "BORROWABLE"};
         combType.addItem(listTypes[0]);
         combType.addItem(listTypes[1]);
+        sample_bookID = bookID;
 
         Vector<String> colNames = new Vector<>();
         colNames.add("CopyID"); colNames.add("Type"); colNames.add("Price"); colNames.add("BookID");
@@ -62,7 +64,8 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             }
         };
 
-        Vector<ArrayList<String>> cur_db = bcrc.getCopy("");
+        inputBookID.setText(sample_bookID);
+        Vector<ArrayList<String>> cur_db = bcrc.getCopy(sample_bookID);
         for (ArrayList<String> tmp : cur_db) {
             dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4), tmp.get(5)});
         }
@@ -136,7 +139,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
                 dtm2.removeRow(i);
             }
         }
-        Vector<ArrayList<String>> cur_db = bcrc.getCopy("");
+        Vector<ArrayList<String>> cur_db = bcrc.getCopy(sample_bookID);
         for (ArrayList<String> tmp : cur_db) {
             dtm2.addRow(new String[]{tmp.get(0), tmp.get(1), tmp.get(2), tmp.get(3), tmp.get(4), tmp.get(5)});
         }
@@ -151,7 +154,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
         inputBookID.setEditable(true);
         inputAvgPrice.setEditable(true);
         inputNumCopy.setEditable(true);
-        combType.setEditable(true);
+        combType.setEnabled(true);
 
         btnConfirm.setVisible(false);
         btnCancel.setVisible(false);
@@ -210,7 +213,7 @@ public class BookCopyRegistrationForm extends JDialog implements BasicView {
             inputBookID.setEditable(false);
             inputAvgPrice.setEditable(false);
             inputNumCopy.setEditable(false);
-            combType.setEditable(false);
+            combType.setEnabled(false);
         }
         else {
             error();

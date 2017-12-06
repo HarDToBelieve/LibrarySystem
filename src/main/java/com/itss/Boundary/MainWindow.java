@@ -25,7 +25,7 @@ public class MainWindow extends JFrame {
             menuTabbed.add(brf.getMainPanel(), "Add new book");
             tmp.add(brf);
 
-            BookCopyRegistrationForm bcrf = new BookCopyRegistrationForm();
+            BookCopyRegistrationForm bcrf = new BookCopyRegistrationForm("");
             menuTabbed.add(bcrf.getMainPanel(), "Add new copy");
             tmp.add(bcrf);
 

@@ -2,6 +2,7 @@ package com.itss.Controller;
 import com.itss.Entity.BookCopyInfo;
 import com.itss.basic.BasicController;
 import com.itss.Entity.BookInfo;
+import com.itss.utilities.Num2Str;
 import com.itss.utilities.RandomString;
 import com.itss.Boundary.Forms.BookForm;
 
@@ -23,6 +24,7 @@ public class BookRegistrationController implements BasicController {
 	public void setDb() {
 		db = BookInfo.getAllBook();
 	}
+	private String bookid;
 
 	private Vector<BookInfo> db;
 
@@ -76,7 +78,8 @@ public class BookRegistrationController implements BasicController {
 	public void genCode(String type) {
 		int last = BookInfo.getSum(type);
 		book = new BookInfo(bookform.getTitle(), bookform.getAuthor(), bookform.getPublisher(),
-				bookform.getIsbn(), type + String.valueOf(last));
+				bookform.getIsbn(), type + Num2Str.convert4Num(last));
+		bookid = type + Num2Str.convert4Num(last);
 	}
 
 	public void setForm (BookForm bf) {
@@ -116,4 +119,7 @@ public class BookRegistrationController implements BasicController {
 	}
 
 
+	public String getBookid() {
+		return bookid;
+	}
 }

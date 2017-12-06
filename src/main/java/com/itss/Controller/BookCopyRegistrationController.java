@@ -60,7 +60,7 @@ public class BookCopyRegistrationController implements BasicController {
 	@Override
 	public boolean validateObject() {
 		boolean condBookID = !bcf.getBookID().isEmpty() && bcf.getBookID().matches("^[a-zA-Z0-9\\s]*$");
-		boolean condType = !bcf.getType().isEmpty() && bcf.getType().matches("Reference|Borrowable$");
+		boolean condType = !bcf.getType().isEmpty() && bcf.getType().matches("REFERENCE|BORROWABLE$");
 		boolean condPrice = !bcf.getPrice().isEmpty() && bcf.getPrice().matches("^[0-9.]*$");
 		boolean condNumCopies = !bcf.getNumOfCopy().isEmpty() && bcf.getNumOfCopy().matches("^[0-9.]*$");
 

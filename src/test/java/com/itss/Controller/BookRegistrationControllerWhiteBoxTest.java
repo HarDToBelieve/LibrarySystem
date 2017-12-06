@@ -6,45 +6,45 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by HarDToBelieve on 11/21/2017.
+ * Created by HarDToBelieve on 12/6/2017.
  */
-public class BookRegistrationControllerBlackBoxTest {
+public class BookRegistrationControllerWhiteBoxTest {
     @Test
-    public void testCase01() {
+    public void CorrectBook() {
         BookRegistrationController brc = new BookRegistrationController();
-        BookForm bf = new BookForm("Digital Fortress", "Dan Brown", "NXB Van Hoa", "123asd");
+        BookForm bf = new BookForm("Inferno", "Dan Brown", "NXB Giao Duc", "zxcdfg");
         brc.setForm(bf);
         assertEquals(true, brc.validateObject());
     }
 
     @Test
-    public void testCase02() {
+    public void WrongBook01() {
         BookRegistrationController brc = new BookRegistrationController();
-        BookForm bf = new BookForm(".//././/.", "Dan Brown", "NXB Van Hoa", "123asd");
+        BookForm bf = new BookForm(".//././/.", "Dan Brown", "NXB Giao Duc", "zxcdfg");
         brc.setForm(bf);
         assertEquals(false, brc.validateObject());
     }
 
     @Test
-    public void testCase03() {
+    public void WrongBook02() {
         BookRegistrationController brc = new BookRegistrationController();
-        BookForm bf = new BookForm("Digital Fortress", "././././.", "NXB Van Hoa", "123asd");
+        BookForm bf = new BookForm("Inferno", "././././.", "NXB Giao Duc", "zxcdfg");
         brc.setForm(bf);
         assertEquals(false, brc.validateObject());
     }
 
     @Test
-    public void testCase04() {
+    public void WrongBook03() {
         BookRegistrationController brc = new BookRegistrationController();
-        BookForm bf = new BookForm("Digital Fortress", "Dan Brown", "!@#@!#@!#!@#@", "123asd");
+        BookForm bf = new BookForm("Inferno", "Dan Brown", "!@#@!#@!#!@#@", "zxcdfg");
         brc.setForm(bf);
         assertEquals(false, brc.validateObject());
     }
 
     @Test
-    public void testCase05() {
+    public void WrongBook04() {
         BookRegistrationController brc = new BookRegistrationController();
-        BookForm bf = new BookForm("Digital Fortress", "Dan Brown", "NXB Van Hoa", "@#!$#$#@%");
+        BookForm bf = new BookForm("Inferno", "Dan Brown", "NXB Giao Duc", "@#!$#$#@%");
         brc.setForm(bf);
         assertEquals(false, brc.validateObject());
     }
