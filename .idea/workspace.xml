@@ -1,36 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="fix borrow">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookDeleteView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookDeleteView$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookDeleteView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BorrowBookView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BorrowBookView$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BorrowBookView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/IssueCardView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/IssueCardView$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/IssueCardView$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/IssueCardView$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/IssueCardView$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/IssueCardView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/ReturnBookView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/ReturnBookView$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/ReturnBookView.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$1.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$2.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$3.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$4.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookCopyRegistrationForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm$1.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm$2.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/BookRegistrationForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Boundary/MainWindow.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Boundary/MainWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Controller/IssueCardController.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Controller/IssueCardController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Entity/BookCopyInfo.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Entity/BookCopyInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/itss/Entity/BookInfo.class" afterPath="$PROJECT_DIR$/target/classes/com/itss/Entity/BookInfo.class" />
+    <list default="true" id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,7 +26,7 @@
       <file leaf-file-name="ReturnBookForm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/ReturnBookForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
+            <state relative-caret-position="306">
               <caret line="182" column="13" selection-start-line="178" selection-start-column="12" selection-end-line="182" selection-end-column="13" />
               <folding />
             </state>
@@ -62,8 +36,8 @@
       <file leaf-file-name="BorrowBookForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="516">
-              <caret line="174" column="46" selection-start-line="174" selection-start-column="46" selection-end-line="174" selection-end-column="46" />
+            <state relative-caret-position="310">
+              <caret line="199" column="35" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -79,8 +53,21 @@
       <file leaf-file-name="BookBorrowController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+            <state relative-caret-position="89">
+              <caret line="94" column="9" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
+              <folding>
+                <element signature="e#1346#1347#0" expanded="true" />
+                <element signature="e#1434#1435#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookCopyRegistrationController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -105,6 +92,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookView.form" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.form" />
+        <option value="$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java" />
       </list>
     </option>
@@ -1004,7 +992,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512554015727</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix borrow">
+      <created>1512554315767</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1512554315767</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1022,7 +1017,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1032,7 +1027,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39957717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1066,7 +1061,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix borrow" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="8" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1154,14 +1151,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/itss/Controller/BookCopyRegistrationControllerBlackBoxTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/IssueCardController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
@@ -1186,14 +1175,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Entity/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/ReturnBookController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-391">
@@ -1205,18 +1186,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/itss/Controller/BookCopyRegistrationControllerBlackBoxTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/ReturnBookForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
+        <state relative-caret-position="306">
           <caret line="182" column="13" selection-start-line="178" selection-start-column="12" selection-end-line="182" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Entity/Card.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+        <state relative-caret-position="180">
+          <caret line="121" column="19" selection-start-line="121" selection-start-column="19" selection-end-line="121" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookCopyRegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1226,10 +1223,21 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="94" column="9" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
+          <folding>
+            <element signature="e#1346#1347#0" expanded="true" />
+            <element signature="e#1434#1435#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="174" column="46" selection-start-line="174" selection-start-column="46" selection-end-line="174" selection-end-column="46" />
+        <state relative-caret-position="310">
+          <caret line="199" column="35" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="35" />
           <folding />
         </state>
       </provider>

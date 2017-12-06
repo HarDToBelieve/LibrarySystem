@@ -17,7 +17,6 @@ import java.util.Vector;
 public class BookBorrowController implements BasicController {
 
     private ArrayList<BookCopyInfo> copy_list;
-    private BookBorrowForm bookBorrowForm;
     Vector<String[]> pick_from_view;
     ArrayList<BookCopyInfo> list_picked_rows;
     private String cardNo;
@@ -108,11 +107,11 @@ public class BookBorrowController implements BasicController {
 
     public boolean check_card_existed() {
         Card card = new Card();
-        return card.check_a_card_existed(bookBorrowForm.getCardNumber());
+        return card.check_a_card_existed(cardNo);
     }
 
     public boolean checkNumLentBookUnder5() {
-        if ((BookLentHistory.countNumLentBook(bookBorrowForm.getCardNumber()) + list_picked_rows.size()) > 5) {
+        if ((BookLentHistory.countNumLentBook(cardNo) + list_picked_rows.size()) > 5) {
             return false;
         }
         return true;

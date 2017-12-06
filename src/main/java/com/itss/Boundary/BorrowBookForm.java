@@ -35,7 +35,7 @@ public class BorrowBookForm extends JDialog implements BasicView {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnBack);
-        String[] listTypes = new String[]{"Search by title", "Search by copy id"};
+        String[] listTypes = new String[]{"Search by title", "Search by book id"};
         comboType.addItem(listTypes[0]);
         comboType.addItem(listTypes[1]);
 
@@ -140,7 +140,7 @@ public class BorrowBookForm extends JDialog implements BasicView {
         }
         dtm.fireTableDataChanged();
         dataTable.setModel(dtm);
-        stage1.setVisible(false);
+        stage1.setVisible(true);
         stage2.setVisible(false);
         stage3.setVisible(false);
         lablStatus.setVisible(false);
@@ -197,6 +197,7 @@ public class BorrowBookForm extends JDialog implements BasicView {
     public void updateModel() {
         try {
             bbc.updateData();
+            stage2.setVisible(false);
             stage3.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
