@@ -29,10 +29,6 @@ public class MainWindow extends JFrame {
             menuTabbed.add(bcrf.getMainPanel(), "Add new copy");
             tmp.add(bcrf);
 
-            BorrowBookForm bbv = new BorrowBookForm(username, cardno);
-            menuTabbed.add(bbv.getMainPanel(), "Borrow Book");
-            tmp.add(bbv);
-
             BookDeleteForm bdv = new BookDeleteForm();
             menuTabbed.add(bdv.getMainPanel(), "Delete book");
             tmp.add(bdv);
@@ -44,6 +40,11 @@ public class MainWindow extends JFrame {
             IssueCardForm icv = new IssueCardForm();
             menuTabbed.add(icv.getMainPanel(), "Issue Card");
             tmp.add(icv);
+        }
+        else if ( job.equals("student") ) {
+            BorrowBookForm bbv = new BorrowBookForm(username, cardno);
+            menuTabbed.add(bbv.getMainPanel(), "Borrow Book");
+            tmp.add(bbv);
         }
 
         ObserverController.setViews(tmp);
