@@ -86,8 +86,13 @@ public class BorrowBookForm extends JDialog implements BasicView {
         });
         btnYes.addActionListener(e -> {
             updateModel();
-            lablStatus.setText("User: " + username + " Card Number: " + cardno + " ---- Successfully");
-            lablStatus.setVisible(true);
+            if ( bbc.validateObject() ) {
+                lablStatus.setText("User: " + username + " Card Number: " + cardno + " ---- Successfully");
+                lablStatus.setVisible(true);
+            }
+            else {
+                error();
+            }
         });
 
         btnNo.addActionListener(e -> initState());

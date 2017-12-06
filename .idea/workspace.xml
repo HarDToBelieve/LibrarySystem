@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="54f0c5dc-a901-4bbb-87e1-a3cd98e30c2e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/MainWindow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookDeleteView.form" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookDeleteForm.form" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookDeleteView.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BookDeleteForm.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookView.form" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.form" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookView.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/IssueCardView.form" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/IssueCardForm.form" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/IssueCardView.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/IssueCardForm.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/ReturnBookView.form" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/ReturnBookForm.form" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/ReturnBookView.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/ReturnBookForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java" afterPath="$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,8 +55,8 @@
       <file leaf-file-name="BorrowBookForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="66" column="59" selection-start-line="66" selection-start-column="59" selection-end-line="66" selection-end-column="59" />
+            <state relative-caret-position="178">
+              <caret line="93" column="24" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -73,7 +65,7 @@
       <file leaf-file-name="BookBorrowController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
+            <state relative-caret-position="323">
               <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding />
             </state>
@@ -670,7 +662,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512550679838</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="refactor name">
+      <created>1512550840269</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1512550840269</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -726,7 +725,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix view" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix view" />
+    <MESSAGE value="refactor name" />
+    <MESSAGE value="fix borrow" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix borrow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -845,14 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Entity/BookCopyInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -874,10 +867,18 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Controller/BookBorrowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/itss/Boundary/BorrowBookForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="66" column="59" selection-start-line="66" selection-start-column="59" selection-end-line="66" selection-end-column="59" />
+        <state relative-caret-position="178">
+          <caret line="93" column="24" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
           <folding />
         </state>
       </provider>
