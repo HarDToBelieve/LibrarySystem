@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
             menuTabbed.add(icv.getMainPanel(), "<html><body><table height='1000'>Issue Card</table></body></html>");
             tmp.add(icv);
         }
-        else if ( job.equals("student") ) {
+        else if ( job.equals("student") || job.equals("guest") ) {
             BorrowBookForm bbv = new BorrowBookForm(username, cardno);
             menuTabbed.add(bbv.getMainPanel(), "<html><body><table height='1000'>Borrow Book</table></body></html>");
             tmp.add(bbv);
