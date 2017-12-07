@@ -27,6 +27,7 @@ public class IssueCardController implements BasicController{
     @Override
     public Vector<Object> getModel() {
         Vector<Object> result = new Vector<>();
+        result.add(new String[]{"card number", card.getCard_number()});
         result.add(new String[]{"user_id" , card.getUser_id()});
         result.add(new String[]{"is_active" , card.getIs_active()});
         result.add(new String[]{"is_student", card.getIs_student()});
