@@ -6,6 +6,7 @@ import com.itss.basic.BasicController;
 import com.itss.utilities.RandomString;
 import com.itss.Boundary.BookCopyRegistrationForm;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
@@ -86,7 +87,17 @@ public class BookCopyRegistrationController implements BasicController {
 	 * @return The last index
 	 */
 	public int getLastCopy(String bookid) {
-		return BookCopyInfo.getSum(bookid);
+		HashMap<String, String> dict = new HashMap<>();
+		dict.put("bookID", bookid);
+		Vector<BookCopyInfo> tmp = BookCopyInfo.getUniqueCopy(dict);
+		int maxnum = 0;
+		for (BookCopyInfo b : tmp) {
+			String[] tmp2 = b.getCopyID().split("_");
+			if ( maxnum < Integer.parseInt(tmp2[1]) )
+				maxnum = Integer.parseInt(tmp2[1]);
+		}
+		return maxnum;
+//		return BookCopyInfo.getSum(bookid);
 	}
 
 	/**
