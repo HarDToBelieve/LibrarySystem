@@ -18,7 +18,7 @@ public class IssueCardController implements BasicController{
     private String card_number;
     private final int card_length = 10;
     private final int code_length = 15;
-    private String type_of_guest;
+    public String type_of_guest;
 
     /**
      *
@@ -154,5 +154,9 @@ public class IssueCardController implements BasicController{
      */
     public boolean isAddCardSuccess(){
         return card.getValid();
+    }
+
+    public Card getCard() {
+        return card;
     }
 }
