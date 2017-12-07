@@ -51,7 +51,7 @@ public class IssueCardController implements BasicController{
     }
 
     /**
-     * check that a user is valid to have a new card, if the expired date < today
+     * check that a user is valid to have a new card, if the expired date less than today
      * @return true if valid, false if not
      * @throws ParseException
      */

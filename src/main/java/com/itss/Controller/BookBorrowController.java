@@ -143,7 +143,7 @@ public class BookBorrowController implements BasicController {
 
     /**
      * Check total of borrowed books including selecting books more than 5
-     * @return true when <5
+     * @return true when less than 5
      */
     public boolean checkNumLentBookUnder5() {
         if ((BookLentHistory.countNumLentBook(cardNo) + list_picked_rows.size()) > 5) {
